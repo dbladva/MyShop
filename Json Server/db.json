@@ -1,0 +1,22 @@
+{
+  "SignupData": [
+    {
+      "id": 1,
+      "name": "json-server",
+      "email": "typicode",
+      "password": "typicode"
+    },
+    {
+      "name": "",
+      "email": "",
+      "password": "",
+      "id": 5
+    },
+    {
+      "name": "vcxvxcv",
+      "email": "xcvcxvc",
+      "password": "vcv",
+      "id": 6
+    }
+  ]
+}

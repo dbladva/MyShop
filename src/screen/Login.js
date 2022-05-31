@@ -6,15 +6,18 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  scrr
 } from 'react-native';
 import React from 'react';
 // import AntDesign from 'react-native-vector-icons/AntDesign';
 // import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { NativeScreenNavigationContainer } from 'react-native-screens';
 
-const Login = () => {
+const Login = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
+
       <View>
         <Image
           style={{marginTop: -90, marginLeft: -65, height: 270, width: 250}}
@@ -33,7 +36,7 @@ const Login = () => {
           }}>
           <Text style={styles.SignnInBtn}>Sign In</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{width: '40%', alignItems: 'center'}}>
+        <TouchableOpacity style={{width: '40%', alignItems: 'center'}} onPress={()=> navigation.navigate('Signup')}>
           <Text style={styles.SignnInBtn}>Sign Up</Text>
         </TouchableOpacity>
       </View>
@@ -106,7 +109,6 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10, 
     color: 'white',
-    // width: '100%',
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 5,
@@ -115,13 +117,14 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   TextInputTitle: {
+    marginLeft: 10,
     fontSize: 18,
     color: 'white',
   },
   InputView: {
     width: '90%',
     alignSelf: 'center',
-    marginTop: 15,
+    marginTop: 10,
   },
   Loginbtn: {
     textAlign: 'right',
