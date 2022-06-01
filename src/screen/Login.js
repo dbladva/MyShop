@@ -60,7 +60,7 @@ const Login = ({navigation}) => {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.StartedBtn}>
+      <TouchableOpacity style={styles.StartedBtn} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.btnText}>Login</Text>
       </TouchableOpacity>
       <Text style={{textAlign: 'center', margin: 20, fontWeight: 'bold'}}>
