@@ -11,9 +11,6 @@ import {
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {FlatList} from 'react-native-gesture-handler';
-import {color} from 'react-native-reanimated';
-import {black} from 'react-native-paper/lib/typescript/styles/colors';
 
 const Home = ({navigation}) => {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -115,64 +112,95 @@ const Home = ({navigation}) => {
           </View>
         </View>
 
-        <ScrollView 
+        <ScrollView
           horizontal={true}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}>
-          <View style={styles.ItemCard}>
-            <View style={styles.ItemImage}>
-              <Image
-                style={styles.ItemImageStyle}
-                source={require('../images/burger.jpg')}
-              />
-            </View>
-            <Text style={styles.Itemname}>Breaf Salad</Text>
-            <Text style={styles.ItenPrice}>RS: 500</Text>
-          </View>
-
-          <View style={styles.ItemCard}>
-            <View style={styles.ItemImage}>
-              <Image
-                style={styles.ItemImageStyle}
-                source={require('../images/burger.jpg')}
-              />
-            </View>
-            <Text style={styles.Itemname}>Breaf Salad</Text>
-            <Text style={styles.ItenPrice}>RS: 500</Text>
-          </View>
-
-          <View style={styles.ItemCard}>
-            <View style={styles.ItemImage}>
-              <Image
-                style={styles.ItemImageStyle}
-                source={require('../images/burger.jpg')}
-              />
-            </View>
-            <Text style={styles.Itemname}>Breaf Salad</Text>
-            <Text style={styles.ItenPrice}>RS: 500</Text>
-          </View>
-
-          <View style={styles.ItemCard}>
-            <View style={styles.ItemImage}>
-              <Image
-                style={styles.ItemImageStyle}
-                source={require('../images/burger.jpg')}
-              />
-            </View>
-            <Text style={styles.Itemname}>Breaf Salad</Text>
-            <Text style={styles.ItenPrice}>RS: 500</Text>
-          </View>
-
-          <View style={styles.ItemCard}>
+          <View style={{width: '100%', flexWrap: 'wrap'}}>
             <TouchableOpacity>
-              <View style={styles.ItemImage}>
-                <Image
-                  style={styles.ItemImageStyle}
-                  source={require('../images/burger.jpg')}
+              <View style={styles.ItemCard}>
+                <View style={styles.ItemImage}>
+                  <Image
+                    style={styles.ItemImageStyle}
+                    source={require('../images/burger.jpg')}
+                  />
+                </View>
+                <Text style={styles.Itemname}>Breaf Salad</Text>
+                <Text style={styles.ItenPrice}>RS: 500</Text>
+                <FontAwesome
+                  style={{position: 'absolute', top: 10, right: 10}}
+                  name="heart"
+                  size={25}
+                  color={'red'}
                 />
               </View>
-              <Text style={styles.Itemname}>Breaf Salad</Text>
-              <Text style={styles.ItenPrice}>RS: 500</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View style={styles.ItemCard}>
+                <View style={styles.ItemImage}>
+                  <Image
+                    style={styles.ItemImageStyle}
+                    source={require('../images/burger.jpg')}
+                  />
+                </View>
+                <Text style={styles.Itemname}>Breaf Salad</Text>
+                <Text style={styles.ItenPrice}>RS: 500</Text>
+                <TouchableOpacity
+                  style={{position: 'absolute', top: 10, right: 10}}>
+                  <FontAwesome name="heart" size={25} color={'red'} />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <View style={styles.ItemCard}>
+                <View style={styles.ItemImage}>
+                  <Image
+                    style={styles.ItemImageStyle}
+                    source={require('../images/burger.jpg')}
+                  />
+                </View>
+                <Text style={styles.Itemname}>Breaf Salad</Text>
+                <Text style={styles.ItenPrice}>RS: 500</Text>
+                <TouchableOpacity
+                  style={{position: 'absolute', top: 10, right: 10}}>
+                  <FontAwesome name="heart" size={25} color={'red'} />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <View style={styles.ItemCard}>
+                <View style={styles.ItemImage}>
+                  <Image
+                    style={styles.ItemImageStyle}
+                    source={require('../images/burger.jpg')}
+                  />
+                </View>
+                <Text style={styles.Itemname}>Breaf Salad</Text>
+                <Text style={styles.ItenPrice}>RS: 500</Text>
+                <TouchableOpacity
+                  style={{position: 'absolute', top: 10, right: 10}}>
+                  <FontAwesome name="heart" size={25} color={'red'} />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <View style={styles.ItemCard}>
+                <View style={styles.ItemImage}>
+                  <Image
+                    style={styles.ItemImageStyle}
+                    source={require('../images/burger.jpg')}
+                  />
+                </View>
+                <Text style={styles.Itemname}>Breaf Salad</Text>
+                <Text style={styles.ItenPrice}>RS: 500</Text>
+                <TouchableOpacity
+                  style={{position: 'absolute', top: 10, right: 10}}>
+                  <FontAwesome name="heart" size={25} color={'red'} />
+                </TouchableOpacity>
+              </View>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -285,13 +313,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '700',
     marginBottom: 5,
-    fontSize: 18,
+    fontSize: 16,
   },
   Priceoffer: {
     alignItems: 'center',
   },
   Price: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: '500',
     color: 'white',
     textTransform: 'uppercase',
@@ -324,13 +352,13 @@ const styles = StyleSheet.create({
   },
   ItemCard: {
     margin: 10,
-    width: '25%',
-    height: '50%',
+    width: 170,
+    height: 160,
     backgroundColor: '#2E2E2E',
     alignItems: 'center',
     borderRadius: 10,
-    shadowColor: 'white',
-    elevation: 5,
+    // shadowColor: 'white',
+    // elevation: 5,
     justifyContent: 'space-between',
     padding: 5,
   },

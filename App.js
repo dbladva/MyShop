@@ -13,6 +13,9 @@ import 'react-native-gesture-handler';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';  
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';  
+import FontAwesome from 'react-native-vector-icons/FontAwesome';  
+import CustomDrawer from './src/screen/CustomDrawer';
+import Favrorites from './src/screen/Favrorites';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -30,11 +33,11 @@ const HomeScreenTab = () => {
             iconName = focused ? 'home' : 'home';
           } else if (route.name === 'Settings') {
             iconName = focused ? 'ios-list-box' : 'ios-list';
-          } else if (route.name == 'Logins') {
-            iconName = focused ? 'login' : 'login';
           }
-          else if (route.name == 'signupp') {
-            iconName = focused ? 'logout' : 'logout';
+          else if (route.name == 'Favorites') {
+            return <FontAwesome name='heart' size={size} color={color} />;
+            // iconName = focused ? 'ios-list-box' : 'ios-list';
+
           }
           // You can return any component that you like here!
           return <MaterialIcons name={iconName} size={size} color={color} />;
@@ -42,12 +45,11 @@ const HomeScreenTab = () => {
         tabBarActiveBackgroundColor: 'black',
         tabBarInactiveBackgroundColor: 'black',
 
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: 'orange',
         tabBarInactiveTintColor: 'white',
       })}>
       <Tab.Screen name="Homeeeee" component={Home} />
-      <Tab.Screen name="Logins" component={Login} />
-      <Tab.Screen name="signupp" component={Signup} />
+      <Tab.Screen name="Favorites" component={Favrorites} />
     </Tab.Navigator>
   );
 };
@@ -58,7 +60,7 @@ const StackScreen = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Homeeee" component={Welcome} />
+      <Stack.Screen name="Homee" component={Welcome} />
       <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="signin" component={Login} />
       <Stack.Screen name="Home" component={HomeScreenTab} />
@@ -70,10 +72,35 @@ const App = ({navigation}) => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Drawer.Navigator screenOptions={{headerShown: false}}>
-          <Drawer.Screen  name="home" component={StackScreen} />
-          <Drawer.Screen name="welcome" component={Welcome} />
-          <Drawer.Screen name="Loginn" component={Login} />
+        <Drawer.Navigator  screenOptions={{headerShown: false}} drawerContent={(props) => <CustomDrawer {...props} />}>
+          <Drawer.Screen  name="home"  component={StackScreen}  options={{
+                drawerIcon: ({ focused, size }) => (
+                  <Ionicons
+                    name="home"
+                    size={size}
+                    color={focused ? '#7cc' : '#d0c2e8'}
+                  />
+                ),
+              }} />
+             
+          <Drawer.Screen name="welcome" component={Welcome}  options={{
+                drawerIcon: ({ focused, size }) => (
+                  <Ionicons
+                    name="home"
+                    size={size}
+                    color={focused ? '#7cc' : '#d0c2e8'}
+                  />
+                ),
+              }}/>
+          <Drawer.Screen name="Loginn" component={Login}  options={{
+                drawerIcon: ({ focused, size }) => (
+                  <Ionicons
+                    name="home"
+                    size={size}
+                    color={focused ? '#7cc' : '#d0c2e8'}
+                  />
+                ),
+              }}/>
         </Drawer.Navigator>
       </NavigationContainer>
     </Provider>

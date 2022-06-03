@@ -14,6 +14,13 @@ switch (action.type) {
             signup: action.payload,
             Error: ''
         }
+         case ActionType.SIGN_IN:
+        return{
+            ...state,
+            product: action.payload,
+            isLoading: false,
+            error: ''
+        }
     default:
         return state
 }
