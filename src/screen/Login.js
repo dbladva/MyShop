@@ -76,8 +76,11 @@ const Login = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity>
      <Image style={styles.LoginIcon} source={require('../images/twitter.png')}/>
-        </TouchableOpacity>
+        </TouchableOpacity> 
       </View>
+
+
+
     </SafeAreaView>
   );
 };
@@ -162,5 +165,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 15,
     margin:5,
-  }
+  },
+
+
 });

@@ -46,7 +46,7 @@ const Signup = ({navigation}) => {
             width: '40%',
             alignItems: 'center',
           }}
-          onPress={() => navigation.navigate('Login')}>
+          onPress={() => navigation.navigate('signin')}>
           <Text style={styles.SignnInBtn}>Sign In</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -64,6 +64,7 @@ const Signup = ({navigation}) => {
       <View style={styles.InputView}>
         <Text style={styles.TextInputTitle}>Full Name</Text>
         <TextInput
+        value={name}
           style={styles.EmailInput}
           placeholder="Name"
           onChangeText={text => setName(text)}
@@ -73,6 +74,7 @@ const Signup = ({navigation}) => {
       <View style={styles.InputView}>
         <Text style={styles.TextInputTitle}>E-Mail address</Text>
         <TextInput
+        value={email}
           style={styles.EmailInput}
           placeholder="E-mail"
           onChangeText={text => setEmail(text)}
@@ -84,6 +86,7 @@ const Signup = ({navigation}) => {
         <TextInput
           style={styles.EmailInput}
           secureTextEntry={true}
+          value={password}
           placeholder="Password"
           onChangeText={text => setPassword(text)}
         />

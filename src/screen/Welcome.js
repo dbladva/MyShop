@@ -18,7 +18,7 @@ const Welcome = ({navigation}) => {
           <Text style={styles.Subtitle}>
             Testy meal delivery to {'\n'} your doorstep
           </Text>
-          <TouchableOpacity style={styles.StartedBtn} onPress={() => navigation.navigate('Login')}>
+          <TouchableOpacity style={styles.StartedBtn} onPress={() => navigation.navigate('signin')}>
             <Text style={styles.btnText}>Get Started</Text>
           </TouchableOpacity>
         </View>
