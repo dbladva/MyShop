@@ -14,13 +14,13 @@ import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { NativeScreenNavigationContainer } from 'react-native-screens';
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
 
       <View>
         <Image
-          style={{marginTop: -90, marginLeft: -65, height: 270, width: 250}}
+          style={{ marginTop: -90, marginLeft: -65, height: 270, width: 250 }}
           source={require('../images/dish.png')}
         />
       </View>
@@ -36,7 +36,7 @@ const Login = ({navigation}) => {
           }}>
           <Text style={styles.SignnInBtn}>Sign In</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{width: '40%', alignItems: 'center'}} onPress={()=> navigation.navigate('Signup')}>
+        <TouchableOpacity style={{ width: '40%', alignItems: 'center' }} onPress={() => navigation.navigate('Signup')}>
           <Text style={styles.SignnInBtn}>Sign Up</Text>
         </TouchableOpacity>
       </View>
@@ -63,20 +63,23 @@ const Login = ({navigation}) => {
       <TouchableOpacity style={styles.StartedBtn} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.btnText}>Login</Text>
       </TouchableOpacity>
-      <Text style={{textAlign: 'center', margin: 20, fontWeight: 'bold'}}>
-        --------------------------- OR --------------------------
-      </Text>
+      <View style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'center'}}>
+        <View style={{borderWidth: 1,borderColor: 'white',width: 50,}}></View>
+        <Text style={{ textAlign: 'center', margin: 20, fontWeight: 'bold' }}>OR</Text>
+        <View style={{borderWidth: 1,borderColor: 'white',width: 50,}}></View>
+
+      </View>
       <Text style={styles.SignnInUsing}>Sign In Using:</Text>
-      <View style={{flexDirection: 'row',alignSelf: 'center',}}>
+      <View style={{ flexDirection: 'row', alignSelf: 'center', }}>
         <TouchableOpacity>
-     <Image style={styles.LoginIcon} source={require('../images/google.png')}/>
+          <Image style={styles.LoginIcon} source={require('../images/google.png')} />
         </TouchableOpacity>
         <TouchableOpacity>
-     <Image style={styles.LoginIcon} source={require('../images/facebook.png')}/>
+          <Image style={styles.LoginIcon} source={require('../images/facebook.png')} />
         </TouchableOpacity>
         <TouchableOpacity>
-     <Image style={styles.LoginIcon} source={require('../images/twitter.png')}/>
-        </TouchableOpacity> 
+          <Image style={styles.LoginIcon} source={require('../images/twitter.png')} />
+        </TouchableOpacity>
       </View>
 
 
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
   SignnupBtn: {},
   EmailInput: {
     padding: 10,
-    margin: 10, 
+    margin: 10,
     color: 'white',
     borderWidth: 1,
     borderColor: 'white',
@@ -159,12 +162,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
-  LoginIcon:{
+  LoginIcon: {
     marginTop: 20,
     width: 50,
     height: 50,
     borderRadius: 15,
-    margin:5,
+    margin: 5,
   },
 
 
