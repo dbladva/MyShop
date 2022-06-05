@@ -11,11 +11,12 @@ import Home from './src/screen/Home';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import 'react-native-gesture-handler';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Ionicons from 'react-native-vector-icons/Ionicons';  
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';  
-import FontAwesome from 'react-native-vector-icons/FontAwesome';  
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import CustomDrawer from './src/screen/CustomDrawer';
 import Favrorites from './src/screen/Favrorites';
+import Address from './src/screen/Address';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -33,11 +34,9 @@ const HomeScreenTab = () => {
             iconName = focused ? 'home' : 'home';
           } else if (route.name === 'Settings') {
             iconName = focused ? 'ios-list-box' : 'ios-list';
-          }
-          else if (route.name == 'Favorites') {
-            return <FontAwesome name='heart' size={size} color={color} />;
+          } else if (route.name == 'Favorites') {
+            return <FontAwesome name="heart" size={size} color={color} />;
             // iconName = focused ? 'ios-list-box' : 'ios-list';
-
           }
           // You can return any component that you like here!
           return <MaterialIcons name={iconName} size={size} color={color} />;
@@ -72,35 +71,36 @@ const App = ({navigation}) => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Drawer.Navigator  screenOptions={{headerShown: false}} drawerContent={(props) => <CustomDrawer {...props} />}>
-          <Drawer.Screen  name="home"  component={StackScreen}  options={{
-                drawerIcon: ({ focused, size }) => (
-                  <Ionicons
-                    name="home"
-                    size={size}
-                    color={focused ? '#7cc' : '#d0c2e8'}
-                  />
-                ),
-              }} />
-             
-          <Drawer.Screen name="welcome" component={Welcome}  options={{
-                drawerIcon: ({ focused, size }) => (
-                  <Ionicons
-                    name="home"
-                    size={size}
-                    color={focused ? '#7cc' : '#d0c2e8'}
-                  />
-                ),
-              }}/>
-          <Drawer.Screen name="Loginn" component={Login}  options={{
-                drawerIcon: ({ focused, size }) => (
-                  <Ionicons
-                    name="home"
-                    size={size}
-                    color={focused ? '#7cc' : '#d0c2e8'}
-                  />
-                ),
-              }}/>
+        <Drawer.Navigator
+          screenOptions={{headerShown: false}}
+          drawerContent={props => <CustomDrawer {...props} />}>
+          <Drawer.Screen
+            name="home"
+            component={StackScreen}
+            options={{
+              drawerIcon: ({focused, size}) => (
+                <Ionicons
+                  name="home"
+                  size={size}
+                  color={focused ? '#7cc' : '#d0c2e8'}
+                />
+              ),
+            }}
+          />
+
+          <Drawer.Screen
+            name="Address"
+            component={Address}
+            options={{
+              drawerIcon: ({focused, size}) => (
+                <Ionicons
+                  name="location"
+                  size={size}
+                  color={focused ? '#7cc' : '#d0c2e8'}
+                />
+              ),
+            }}
+          />
         </Drawer.Navigator>
       </NavigationContainer>
     </Provider>

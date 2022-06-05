@@ -6,7 +6,7 @@ import { BottomNavigation } from 'react-native-paper';
 
 const CustomDrawer = (props) => {
   return (
-    <View style={{flex: 1,backgroundColor: '#dbffff'}}>
+    <View style={{flex: 1,backgroundColor: 'tomato'}}>
         <DrawerContentScrollView {...props} >
         <View style={{margin: 10,flexDirection: 'row',alignItems: 'center',marginBottom: 30,marginTop: 30}}> 
                 <Image style={{height: 80,width: 80,borderRadius: 50}} source={require('../images/user.jpg')}/> 
