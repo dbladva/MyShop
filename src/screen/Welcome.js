@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   ImageBackground,
   TouchableOpacity,
+  StatusBar
 } from 'react-native';
 import React from 'react';
 
@@ -12,17 +13,18 @@ const Welcome = ({navigation}) => {
   return (
       <ImageBackground
         style={styles.ImageBG}
-        source={require('../images/Veg.jpg')}>
+        source={require('../images/bg.jpg')}>
         <View style={styles.Text}>
-          <Text style={styles.Title}>Yummies</Text>
+          <Text style={styles.Title}>E-Commerce</Text>
           <Text style={styles.Subtitle}>
-            Testy meal delivery to {'\n'} your doorstep
+          Data Data Data! I can’t make {'\n'}bricks without clay
           </Text>
           <TouchableOpacity style={styles.StartedBtn} onPress={() => navigation.navigate('signin')}>
             <Text style={styles.btnText}>Get Started</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
+      
   );
 };
 

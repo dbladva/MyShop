@@ -37,7 +37,7 @@ const Login = ({navigation}) => {
       <View>
         <Image
           style={{marginTop: -90, marginLeft: -65, height: 270, width: 250}}
-          source={require('../images/dish.png')}
+          source={require('../images/watch.jpg')}
         />
       </View>
 

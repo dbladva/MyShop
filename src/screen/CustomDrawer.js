@@ -6,7 +6,7 @@ import { BottomNavigation } from 'react-native-paper';
 
 const CustomDrawer = (props) => {
   return (
-    <View style={{flex: 1,backgroundColor: 'tomato'}}>
+    <View style={{flex: 1,backgroundColor: '#E5E5E5'}}>
         <DrawerContentScrollView {...props} >
         <View style={{margin: 10,flexDirection: 'row',alignItems: 'center',marginBottom: 30,marginTop: 30}}> 
                 <Image style={{height: 80,width: 80,borderRadius: 50}} source={require('../images/user.jpg')}/> 
@@ -15,7 +15,9 @@ const CustomDrawer = (props) => {
                     <Text style={{fontWeight: 'bold',fontSize: 15,color: 'black',}}>Ladva</Text>
                 </View>
             </View> 
+            {/* <View style={{borderBottomColor: 'white',borderBottomWidth: 2,color: 'white'}}> */}
             <DrawerItemList {...props} />
+            {/* </View> */}
             <TouchableOpacity style={{position: 'absolute',top: 20, right: 20,}} >
             {/* <FontAwesome  name='close' size={25} color={'black'} /> */}
             </TouchableOpacity>

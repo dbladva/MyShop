@@ -35,7 +35,7 @@ const Signup = ({navigation}) => {
       <View style={{alignItems: 'flex-end'}}>
         <Image
           style={{marginTop: -90, marginRight: -65, height: 270, width: 255}}
-          source={require('../images/dish2.png')}
+          source={require('../images/watch.jpg')}
         />
       </View>
 

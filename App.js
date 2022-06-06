@@ -15,8 +15,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import CustomDrawer from './src/screen/CustomDrawer';
-import Favrorites from './src/screen/Favrorites';
-import Address from './src/screen/Address';
+import Whishlist from './src/screen/Whishlist';
+import Profile from './src/screen/Profile';
+
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -34,21 +35,21 @@ const HomeScreenTab = () => {
             iconName = focused ? 'home' : 'home';
           } else if (route.name === 'Settings') {
             iconName = focused ? 'ios-list-box' : 'ios-list';
-          } else if (route.name == 'Favorites') {
+          } else if (route.name == 'Whishlist') {
             return <FontAwesome name="heart" size={size} color={color} />;
             // iconName = focused ? 'ios-list-box' : 'ios-list';
           }
           // You can return any component that you like here!
           return <MaterialIcons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveBackgroundColor: 'black',
-        tabBarInactiveBackgroundColor: 'black',
-
-        tabBarActiveTintColor: 'orange',
-        tabBarInactiveTintColor: 'white',
+        tabBarActiveBackgroundColor: '#E5E5E5',
+        tabBarInactiveBackgroundColor: '#E5E5E5',
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: '#5956E9',
+        tabBarInactiveTintColor: '#000000',
       })}>
       <Tab.Screen name="Homeeeee" component={Home} />
-      <Tab.Screen name="Favorites" component={Favrorites} />
+      <Tab.Screen name="Whishlist" component={Whishlist} />
     </Tab.Navigator>
   );
 };
@@ -59,10 +60,11 @@ const StackScreen = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Homee" component={Welcome} />
-      <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="signin" component={Login} />
+      {/* <Stack.Screen name="Homee" component={Welcome} /> */}
+      {/* <Stack.Screen name="Signup" component={Signup} /> */}
+      {/* <Stack.Screen name="signin" component={Login} /> */}
       <Stack.Screen name="Home" component={HomeScreenTab} />
+      <Stack.Screen name="Whishlist" component={Whishlist} />
     </Stack.Navigator>
   );
 };
@@ -72,7 +74,11 @@ const App = ({navigation}) => {
     <Provider store={store}>
       <NavigationContainer>
         <Drawer.Navigator
-          screenOptions={{headerShown: false}}
+          screenOptions={{headerShown: false,
+            activeBackgroundColor: 'white',
+            inactiveTintColor: 'black',
+            inactiveBackgroundColor: 'red',}}
+
           drawerContent={props => <CustomDrawer {...props} />}>
           <Drawer.Screen
             name="home"
@@ -88,19 +94,21 @@ const App = ({navigation}) => {
             }}
           />
 
-          <Drawer.Screen
-            name="Address"
-            component={Address}
+<Drawer.Screen 
+            name="Profile"
+            component={Profile}
             options={{
               drawerIcon: ({focused, size}) => (
                 <Ionicons
-                  name="location"
+                  name="home"
                   size={size}
                   color={focused ? '#7cc' : '#d0c2e8'}
                 />
               ),
             }}
           />
+
+     
         </Drawer.Navigator>
       </NavigationContainer>
     </Provider>
