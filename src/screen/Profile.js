@@ -54,28 +54,28 @@ const Home = ({navigation}) => {
 
         <TouchableOpacity>
           <View style={styles.EditProfile}>
-            <Text style={styles.name}>Edit Profile</Text>
+            <Text style={styles.name}>Shoping address</Text>
             <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity>
           <View style={styles.EditProfile}>
-            <Text style={styles.name}>Edit Profile</Text>
+            <Text style={styles.name}>Order histroy</Text>
             <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity>
           <View style={styles.EditProfile}>
-            <Text style={styles.name}>Edit Profile</Text>
+            <Text style={styles.name}>Cards</Text>
             <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity>
           <View style={styles.EditProfile}>
-            <Text style={styles.name}>Edit Profile</Text>
+            <Text style={styles.name}>Notification</Text>
             <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
           </View>
         </TouchableOpacity>
@@ -123,11 +123,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     color: '#000000',
-    marginTop: 5,
+    // marginTop: 5,
   },
   address: {
     flexDirection: 'row',
-    width: '65%',
+    width: '70%',
     alignSelf: 'center',
     margin: 10,
   },

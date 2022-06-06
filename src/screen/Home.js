@@ -531,7 +531,6 @@ const Home = ({navigation}) => {
     networkActivityIndicatorVisible = {true}
 />
     </View>
-
   );
 };
 
@@ -577,7 +576,6 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: '#000000',
-    lineHeight: 36,
   },
   titleView: {
     // marginLeft: 25,

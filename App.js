@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Welcome from './src/screen/Welcome';
 import Login from './src/screen/Login';
 import Signup from './src/screen/Signup';
@@ -17,6 +17,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import CustomDrawer from './src/screen/CustomDrawer';
 import Whishlist from './src/screen/Whishlist';
 import Profile from './src/screen/Profile';
+import SplashScreen from 'react-native-splash-screen'
 
 
 const Drawer = createDrawerNavigator();
@@ -70,6 +71,10 @@ const StackScreen = () => {
 };
 
 const App = ({navigation}) => {
+  useEffect(() => {
+    SplashScreen.hide();
+  })
+  
   return (
     <Provider store={store}>
       <NavigationContainer>
