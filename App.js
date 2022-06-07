@@ -1,16 +1,16 @@
-import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import React, { useEffect } from 'react';
 import Welcome from './src/screen/Welcome';
 import Login from './src/screen/Login';
 import Signup from './src/screen/Signup';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Provider} from 'react-redux';
-import {store} from './src/redux/store';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
 import Home from './src/screen/Home';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import 'react-native-gesture-handler';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -27,9 +27,9 @@ const Tab = createBottomTabNavigator();
 const HomeScreenTab = () => {
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
+      screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarIcon: ({focused, color, size}) => {
+        tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
           if (route.name === 'Homeeeee') {
@@ -64,32 +64,34 @@ const StackScreen = () => {
       {/* <Stack.Screen name="Homee" component={Welcome} /> */}
       {/* <Stack.Screen name="Signup" component={Signup} /> */}
       {/* <Stack.Screen name="signin" component={Login} /> */}
-      <Stack.Screen name="Home" component={HomeScreenTab} />
+      {/* <Stack.Screen name="Home" component={HomeScreenTab} /> */}
       <Stack.Screen name="Whishlist" component={Whishlist} />
     </Stack.Navigator>
   );
 };
 
-const App = ({navigation}) => {
+const App = ({ navigation }) => {
   useEffect(() => {
     SplashScreen.hide();
   })
-  
+
   return (
     <Provider store={store}>
       <NavigationContainer>
         <Drawer.Navigator
-          screenOptions={{headerShown: false,
+          screenOptions={{
+            headerShown: false,
             activeBackgroundColor: 'white',
             inactiveTintColor: 'black',
-            inactiveBackgroundColor: 'red',}}
+            inactiveBackgroundColor: 'red',
+          }}
 
           drawerContent={props => <CustomDrawer {...props} />}>
           <Drawer.Screen
             name="home"
             component={StackScreen}
             options={{
-              drawerIcon: ({focused, size}) => (
+              drawerIcon: ({ focused, size }) => (
                 <Ionicons
                   name="home"
                   size={size}
@@ -99,11 +101,11 @@ const App = ({navigation}) => {
             }}
           />
 
-<Drawer.Screen 
+          <Drawer.Screen
             name="Profile"
             component={Profile}
             options={{
-              drawerIcon: ({focused, size}) => (
+              drawerIcon: ({ focused, size }) => (
                 <Ionicons
                   name="home"
                   size={size}
@@ -113,7 +115,7 @@ const App = ({navigation}) => {
             }}
           />
 
-     
+
         </Drawer.Navigator>
       </NavigationContainer>
     </Provider>

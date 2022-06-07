@@ -24,7 +24,7 @@ const Welcome = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </ImageBackground>
-      
+    
   );
 };
 
