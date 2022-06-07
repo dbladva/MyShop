@@ -6,21 +6,23 @@ import {
   TextInput,
   ScrollView,
   Image,
+  SafeAreaView
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {color} from 'react-native-reanimated';
+import { color } from 'react-native-reanimated';
 import { StatusBar } from 'react-native'
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
+  const [category, setCategory] = useState(0)
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.container2}>
         <View style={styles.menuicon}>
-          <TouchableOpacity  onPress={() => navigation.openDrawer()}>
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
             {/* <MaterialIcons name="menu" color={'#000000'} size={40} /> */}
-            <Image style={{height: 35,width: 35}} source={require('../images/menuicon.png')}/>
+            <Image style={{ height: 35, width: 35 }} source={require('../images/menuicon.png')} />
           </TouchableOpacity>
           <View style={styles.SearchBar}>
             <MaterialIcons name="search" color={'gray'} size={25} />
@@ -34,32 +36,31 @@ const Home = ({navigation}) => {
         </View>
 
         <View style={styles.categoryBtn}>
-          {/* <TouchableOpacity> */}
-          <Text
-            style={[
-              styles.btnText,
-              {
-                borderBottomColor: 'blue',
-                borderBottomWidth: 2,
-                color: 'blue',
-                paddingBottom: 7,
-              },
-            ]}>
-            Wearable
-          </Text>
-          {/* </TouchableOpacity> */}
-          {/* <TouchableOpacity> */}
-          <Text style={styles.btnText}>Laptop</Text>
-          {/* </TouchableOpacity> */}
-          {/* <TouchableOpacity> */}
-          <Text style={styles.btnText}>Phones</Text>
-          {/* </TouchableOpacity> */}
-          {/* <TouchableOpacity> */}
-          <Text style={styles.btnText}>Drones</Text>
-          {/* </TouchableOpacity> */}
+
+          <TouchableOpacity style={category === 0 ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory(0)}>
+            <Text
+              style={[
+                styles.btnText,
+                category === 0 && {color: 'blue'}
+              ]}>
+              Wearable
+            </Text>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity style={category === 1 ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory(1)}>
+            <Text style={[styles.btnText,category === 1 && {color: 'blue'}]}>Laptop</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={category === 2 ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory(2)}>
+            <Text style={[styles.btnText,category === 2 && {color: 'blue'}]}>Phones</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={category === 3 ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory(3)}>
+            <Text style={[styles.btnText,category === 3 && {color: 'blue'}]}>Drones</Text>
+          </TouchableOpacity>
         </View>
 
-        <View style={{height: '50%', width: '100%'}}>
+        <View style={{ height: '50%', width: '100%' }}>
           <ScrollView
             horizontal={true}
             showsVerticalScrollIndicator={false}
@@ -70,6 +71,7 @@ const Home = ({navigation}) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 // marginLeft: 30,
+                marginHorizontal: 16,
               }}>
               <TouchableOpacity>
                 <View style={styles.ItemCard}>
@@ -139,12 +141,12 @@ const Home = ({navigation}) => {
         </View>
       </View>
       <StatusBar
-    barStyle = "dark-content"
-    backgroundColor = "#E5E5E5"
-    translucent = {false}
-    networkActivityIndicatorVisible = {true}
-/>
-    </View>
+        barStyle="dark-content"
+        backgroundColor="#E5E5E5"
+        translucent={false}
+        networkActivityIndicatorVisible={true}
+      />
+    </SafeAreaView>
   );
 };
 
@@ -157,16 +159,13 @@ const styles = StyleSheet.create({
   },
   container2: {
     flex: 1,
-    marginLeft: 60,
-    marginTop: 30,
   },
   menuicon: {
     height: '10%',
-    marginTop: 10,
-    // marginLeft: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
+    marginHorizontal: 16,
   },
   SearchBar: {
     borderWidth: 1,
@@ -174,7 +173,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    margin: 10,
     borderRadius: 50,
     padding: 2,
     shadowColor: 'gray',
@@ -192,17 +190,14 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   titleView: {
-    // marginLeft: 25,
     height: '10%',
-    marginTop: 50,
-    marginBottom: 50,
-    justifyContent: 'center',
+    marginVertical: 50,
+    marginHorizontal: 16,
   },
   categoryBtn: {
-    // marginLeft: 24,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginRight: 10,
+    marginHorizontal: 16,
   },
   btnText: {
     fontSize: 17,
@@ -217,7 +212,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 5,
     marginTop: 50,
-    marginRight: 30
+    marginRight: 16,
+
   },
   ItemImage: {
     // padding: 10,
@@ -257,4 +253,13 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginRight: 5,
   },
+  selectedBtn: {
+    color: 'blue',
+    borderBottomColor: 'blue',
+    borderBottomWidth: 2,
+    paddingBottom: 7,
+  },
+  nonSelectBtn: {
+    color: 'blue',
+  }
 });

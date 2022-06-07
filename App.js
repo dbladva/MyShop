@@ -64,7 +64,7 @@ const StackScreen = () => {
       {/* <Stack.Screen name="Homee" component={Welcome} /> */}
       {/* <Stack.Screen name="Signup" component={Signup} /> */}
       {/* <Stack.Screen name="signin" component={Login} /> */}
-      {/* <Stack.Screen name="Home" component={HomeScreenTab} /> */}
+      <Stack.Screen name="Home" component={HomeScreenTab} />
       <Stack.Screen name="Whishlist" component={Whishlist} />
     </Stack.Navigator>
   );
@@ -74,7 +74,7 @@ const App = ({ navigation }) => {
   useEffect(() => {
     SplashScreen.hide();
   })
-
+  
   return (
     <Provider store={store}>
       <NavigationContainer>
