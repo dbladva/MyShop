@@ -22,7 +22,7 @@ const Home = ({navigation}) => {
             <MaterialIcons name="arrow-back" color={'#000000'} size={30} />
           </TouchableOpacity>
         </View>
-
+        <ScrollView >
         <View style={styles.title}>
           <Text style={styles.titleText}>My Profile</Text>
         </View>
@@ -79,7 +79,9 @@ const Home = ({navigation}) => {
             <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
           </View>
         </TouchableOpacity>
+        </ScrollView>
       </View>
+      
       <StatusBar
         barStyle="dark-content"
         backgroundColor="#E5E5E5"
@@ -136,7 +138,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     width: '80%',
     borderRadius: 10,
-    padding: 20,
+    padding: 15,
     alignSelf: 'center',
     paddingLeft: 20,
     flexDirection: 'row',

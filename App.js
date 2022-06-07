@@ -13,6 +13,7 @@ import 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import CustomDrawer from './src/screen/CustomDrawer';
 import Whishlist from './src/screen/Whishlist';
@@ -61,9 +62,9 @@ const StackScreen = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      {/* <Stack.Screen name="Homee" component={Welcome} /> */}
+      {/* <Stack.Screen name="Homee" component={Welcome} />  */}
       {/* <Stack.Screen name="Signup" component={Signup} /> */}
-      {/* <Stack.Screen name="signin" component={Login} /> */}
+      {/* <Stack.Screen name="Login" component={Login} /> */}
       <Stack.Screen name="Home" component={HomeScreenTab} />
       <Stack.Screen name="Whishlist" component={Whishlist} />
     </Stack.Navigator>
@@ -106,8 +107,8 @@ const App = ({ navigation }) => {
             component={Profile}
             options={{
               drawerIcon: ({ focused, size }) => (
-                <Ionicons
-                  name="home"
+                <AntDesign
+                  name="user"
                   size={size}
                   color={focused ? '#7cc' : '#d0c2e8'}
                 />

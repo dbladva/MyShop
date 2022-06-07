@@ -5,26 +5,53 @@ import {
   SafeAreaView,
   ImageBackground,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 import React from 'react';
 
 const Welcome = ({navigation}) => {
   return (
-      <ImageBackground
-        style={styles.ImageBG}
-        source={require('../images/bg.jpg')}>
-        <View style={styles.Text}>
-          <Text style={styles.Title}>E-Commerce</Text>
+    <ImageBackground
+      style={styles.ImageBG}
+      source={require('../images/splashbg.png')}>
+      <View
+        style={{
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          position: 'absolute',
+          bottom: '10.5%',
+          right: '10%',
+        }}>
+        <TouchableOpacity
+          style={{
+            backgroundColor: '#ffffff',
+            height: 70,
+            width: 314,
+            borderRadius: 10,
+            justifyContent: 'center',
+          }}
+          onPress={() => navigation.navigate('Login')}>
+          <Text
+            style={{
+              textAlign: 'center',
+              color: '#5956E9',
+              fontSize: 20,
+              fontWeight: 'bold',
+            }}>
+            Get started
+          </Text>
+        </TouchableOpacity>
+      </View>
+      {/* <View style={styles.Text}> */}
+      {/* <Text style={styles.Title}>E-Commerce</Text>
           <Text style={styles.Subtitle}>
           Data Data Data! I can’t make {'\n'}bricks without clay
           </Text>
           <TouchableOpacity style={styles.StartedBtn} onPress={() => navigation.navigate('signin')}>
             <Text style={styles.btnText}>Get Started</Text>
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
-    
+          </TouchableOpacity> */}
+      {/* </View> */}
+    </ImageBackground>
   );
 };
 
@@ -34,7 +61,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000000',
-
   },
   ImageBG: {
     flex: 1,
@@ -42,19 +68,18 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     // backgroundColor: 'rgba(0,0,0,0.2)'
   },
-  Text: {
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex:1, 
-  },
+  // Text: {
+  //   backgroundColor: 'rgba(0,0,0,0.7)',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   flex:1,
+  // },
   Title: {
     textAlign: 'center',
     fontSize: 30,
     fontWeight: 'bold',
     color: 'white',
     margin: 10,
-    
   },
   Subtitle: {
     textAlign: 'center',
