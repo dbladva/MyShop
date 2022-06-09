@@ -42,7 +42,7 @@ const Profile = ({navigation}) => {
               style={{width: '10%', marginRight: 5}}
             />
             <Text style={{color: '#000000', fontSize: 15,}}>
-              fdsfffsdfsfsfsdf dfg s gsffdsf sgs dfs fgsdfsf sgsd{' '}
+            The city of Los Angeles{'\n'}U.s
             </Text>
           </View>
         </View>
