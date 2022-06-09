@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
-  scrr,
+  StatusBar,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 // import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -34,15 +34,46 @@ const Login = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{height: '30%',backgroundColor: '#5956E9',justifyContent: 'center'}}>
+      <View
+        style={{
+          height: '30%',
+          backgroundColor: '#5956E9',
+          justifyContent: 'center',
+        }}>
         <Text style={styles.titleText}>Welcome</Text>
         <Text style={styles.titleText}>Back</Text>
-        <View style={{height: 20,width: 20,borderRadius: 100,borderWidth: 4,borderColor: '#706EFD',backgroundColor: '#5956E9',shadowColor: 'gray',elevation: 30,position: 'absolute',top:20,left: 100,}}></View>
-        <View style={{height: 30,width: 30,borderRadius: 100,borderWidth: 4,borderColor: '#706EFD',backgroundColor: '#5956E9',shadowColor: 'gray',elevation: 30,position: 'absolute',bottom:20,right: 100,}}></View>
+        <View
+          style={{
+            height: 20,
+            width: 20,
+            borderRadius: 100,
+            borderWidth: 4,
+            borderColor: '#706EFD',
+            backgroundColor: '#5956E9',
+            shadowColor: 'gray',
+            elevation: 30,
+            position: 'absolute',
+            top: 20,
+            left: 100,
+          }}></View>
+        <View
+          style={{
+            height: 30,
+            width: 30,
+            borderRadius: 100,
+            borderWidth: 4,
+            borderColor: '#706EFD',
+            backgroundColor: '#5956E9',
+            shadowColor: 'gray',
+            elevation: 30,
+            position: 'absolute',
+            bottom: 20,
+            right: 100,
+          }}></View>
       </View>
       <View
         style={{
-          height: '60%',
+          height: '100%',
           backgroundColor: '#FFFFFF',
           borderTopRightRadius: 20,
           borderTopLeftRadius: 20,
@@ -145,6 +176,12 @@ const Login = ({navigation}) => {
           </View>
         </View>
       </View>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="#5956E9"
+        translucent={false}
+        networkActivityIndicatorVisible={true}
+      />
     </SafeAreaView>
   );
 };
@@ -155,15 +192,13 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     backgroundColor: '#5956E9',
-    // justifyContent: 'space-around',
     height: '100%',
   },
-  titleText:{
-color: '#ffffff',
-fontSize: 50,
-fontWeight: 'bold',
-marginLeft: 50,
-
+  titleText: {
+    color: '#ffffff',
+    fontSize: 50,
+    fontWeight: 'bold',
+    marginLeft: 50,
   },
   BtnTab: {
     marginTop: 16,
@@ -178,7 +213,7 @@ marginLeft: 50,
     padding: 5,
     fontSize: 22,
     fontWeight: 'normal',
-    color: '#000000'
+    color: '#000000',
   },
   SignnupBtn: {},
   EmailInput: {

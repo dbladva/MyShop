@@ -6,52 +6,39 @@ import {
   ImageBackground,
   TouchableOpacity,
   StatusBar,
+  Image,
 } from 'react-native';
 import React from 'react';
 
 const Welcome = ({navigation}) => {
   return (
-    <ImageBackground
-      style={styles.ImageBG}
-      source={require('../images/splashbg.png')}>
-      <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-          position: 'absolute',
-          bottom: '10.5%',
-          right: '10%',
-        }}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: '#ffffff',
-            height: 70,
-            width: 314,
-            borderRadius: 10,
-            justifyContent: 'center',
-          }}
-          onPress={() => navigation.navigate('Login')}>
-          <Text
-            style={{
-              textAlign: 'center',
-              color: '#5956E9',
-              fontSize: 20,
-              fontWeight: 'bold',
-            }}>
-            Get started
-          </Text>
-        </TouchableOpacity>
+    <View style={styles.container}>
+      <View>
+        <Text style={styles.title}>Find your</Text>
+        <Text style={styles.title}>Gadget</Text>
       </View>
-      {/* <View style={styles.Text}> */}
-      {/* <Text style={styles.Title}>E-Commerce</Text>
-          <Text style={styles.Subtitle}>
-          Data Data Data! I can’t make {'\n'}bricks without clay
-          </Text>
-          <TouchableOpacity style={styles.StartedBtn} onPress={() => navigation.navigate('signin')}>
-            <Text style={styles.btnText}>Get Started</Text>
-          </TouchableOpacity> */}
-      {/* </View> */}
-    </ImageBackground>
+      <View style={{height: 300, width: 300}}>
+        <Image style={styles.image} source={require('../images/logo.png')} />
+      </View>
+      <TouchableOpacity style={{width: '80%', alignSelf: 'center'}} onPress={() => navigation.navigate('Login')}>
+        <View
+          style={{
+            alignSelf: 'center',
+            width: '80%',
+            backgroundColor: '#FFFFFF',
+            borderRadius: 10,
+          }}>
+          <Text style={styles.btnText}>Get started</Text>
+        </View>
+      </TouchableOpacity>
+
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="#5956E9"
+        translucent={false}
+        networkActivityIndicatorVisible={true}
+      />
+    </View>
   );
 };
 
@@ -60,50 +47,27 @@ export default Welcome;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
-  },
-  ImageBG: {
-    flex: 1,
-    justifyContent: 'center',
-    resizeMode: 'cover',
-    // backgroundColor: 'rgba(0,0,0,0.2)'
-  },
-  // Text: {
-  //   backgroundColor: 'rgba(0,0,0,0.7)',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   flex:1,
-  // },
-  Title: {
-    textAlign: 'center',
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: 'white',
-    margin: 10,
-  },
-  Subtitle: {
-    textAlign: 'center',
-    fontSize: 18,
-    color: 'white',
-    fontWeight: 'bold',
-    margin: 5,
-  },
-  StartedBtn: {
-    borderRadius: 40,
-    margin: 10,
-    alignSelf: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 7,
-    paddingBottom: 7,
-    backgroundColor: 'orange',
-    width: '70%',
+    backgroundColor: '#5956E9',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    marginTop: 20,
+  },
+  image: {
+    alignItems: 'center',
+    height: '100%',
+    width: '100%',
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 65,
+    fontWeight: 'bold',
+    color: 'white',
+    lineHeight: 63,
   },
   btnText: {
+    textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'white',
+    marginVertical: 15,
+    color: '#5956E9',
   },
 });

@@ -13,15 +13,9 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { color } from 'react-native-reanimated';
 import { StatusBar } from 'react-native'
-import ImagePicker from "react-native-customized-image-picker";
 
 const Home = ({ navigation }) => {
   const [category, setCategory] = useState(0)
-
-  ImagePicker.openPicker({})
-  .then(image => {
-    console.log(image);
-  })
 
   return (
     <SafeAreaView style={styles.container}>
@@ -67,7 +61,7 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: '50%', width: '100%' }}>
+        <View style={{ height: '55%', width: '100%' }}>
           <ScrollView
             horizontal={true}
             showsVerticalScrollIndicator={false}
@@ -80,7 +74,7 @@ const Home = ({ navigation }) => {
                 // marginLeft: 30,
                 marginHorizontal: 16,
               }}>
-              <TouchableOpacity onPress={() => {ImagePicker()}}>
+              <TouchableOpacity >
                 <View style={styles.ItemCard}>
                   <View style={styles.ItemImage}>
                     <Image

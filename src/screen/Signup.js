@@ -1,3 +1,212 @@
+// import {
+//   StyleSheet,
+//   Text,
+//   View,
+//   SafeAreaView,
+//   Image,
+//   TouchableOpacity,
+//   TextInput,
+// } from 'react-native';
+// import React, {useState} from 'react';
+// import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+// import {useDispatch} from 'react-redux';
+// import {signup} from '../redux/action/SIgnup_action';
+
+// const Signup = ({navigation}) => {
+// const [name, setName] = useState('');
+// const [email, setEmail] = useState('');
+// const [password, setPassword] = useState('');
+
+// let dispatch = useDispatch();
+// const CreateAccount = () => {
+//   let sData = {
+//     name,
+//     email,
+//     password,
+//   };
+//   dispatch(signup(sData));
+//   setName('');
+//   setPassword('');
+//   setEmail('');
+// };
+
+//   return (
+//     <SafeAreaView style={styles.container}>
+//       <View style={{alignItems: 'flex-end'}}>
+//         <Image
+//           style={{marginTop: -90, marginRight: -65, height: 270, width: 255}}
+//           source={require('../images/watch.jpg')}
+//         />
+//       </View>
+
+//       <View style={styles.BtnTab}>
+//         <TouchableOpacity
+//           disabled={false}
+//           style={{
+//             width: '40%',
+//             alignItems: 'center',
+//           }}
+//           onPress={() => navigation.navigate('signin')}>
+//           <Text style={styles.SignnInBtn}>Sign In</Text>
+//         </TouchableOpacity>
+//         <TouchableOpacity
+//           disabled={true}
+//           style={{
+//             width: '40%',
+//             borderBottomColor: 'orange',
+//             borderBottomWidth: 2,
+//             alignItems: 'center',
+//           }}>
+//           <Text style={styles.SignnInBtn}>Sign Up</Text>
+//         </TouchableOpacity>
+//       </View>
+
+//       <View style={styles.InputView}>
+//         <Text style={styles.TextInputTitle}>Full Name</Text>
+//         <TextInput
+//         value={name}
+//           style={styles.EmailInput}
+//           placeholder="Name"
+//           onChangeText={text => setName(text)}
+//         />
+//       </View>
+
+//       <View style={styles.InputView}>
+//         <Text style={styles.TextInputTitle}>E-Mail address</Text>
+//         <TextInput
+//         value={email}
+//           style={styles.EmailInput}
+//           placeholder="E-mail"
+//           onChangeText={text => setEmail(text)}
+//         />
+//       </View>
+
+//       <View style={styles.InputView}>
+//         <Text style={styles.TextInputTitle}>Enter Password</Text>
+//         <TextInput
+//           style={styles.EmailInput}
+//           secureTextEntry={true}
+//           value={password}
+//           placeholder="Password"
+//           onChangeText={text => setPassword(text)}
+//         />
+//       </View>
+
+//       <TouchableOpacity
+//         style={styles.StartedBtn}
+//         onPress={() => CreateAccount()}>
+//         <Text style={styles.btnText}>Create Account</Text>
+//       </TouchableOpacity>
+//       <Text style={{textAlign: 'center', margin: 20, fontWeight: 'bold'}}>
+//         --------------------------- OR --------------------------
+//       </Text>
+//       <Text style={styles.SignnInUsing}>Sign In Using:</Text>
+//       <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+//         <TouchableOpacity>
+//           <Image
+//             style={styles.LoginIcon}
+//             source={require('../images/google.png')}
+//           />
+//         </TouchableOpacity>
+//         <TouchableOpacity>
+//           <Image
+//             style={styles.LoginIcon}
+//             source={require('../images/facebook.png')}
+//           />
+//         </TouchableOpacity>
+//         <TouchableOpacity>
+//           <Image
+//             style={styles.LoginIcon}
+//             source={require('../images/twitter.png')}
+//           />
+//         </TouchableOpacity>
+//       </View>
+//     </SafeAreaView>
+//   );
+// };
+
+// export default Signup;
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#000000',
+//     justifyContent: 'space-around',
+//   },
+//   BtnTab: {
+//     marginTop: 16,
+//     marginBottom: 16,
+//     marginLeft: 8,
+//     marginRight: 8,
+//     flexDirection: 'row',
+//     justifyContent: 'space-around',
+//   },
+//   SignnInBtn: {
+//     padding: 5,
+//     fontSize: 22,
+//     fontWeight: 'bold',
+//   },
+//   SignnupBtn: {},
+//   EmailInput: {
+//     margin: 10,
+//     padding: 10,
+//     color: 'white',
+//     borderWidth: 1,
+//     borderColor: 'white',
+//     borderRadius: 5,
+//     fontSize: 16,
+//     shadowColor: 'gray',
+//     elevation: 2,
+//   },
+//   TextInputTitle: {
+//     marginLeft: 10,
+//     fontSize: 18,
+//     color: 'white',
+//   },
+//   InputView: {
+//     width: '90%',
+//     alignSelf: 'center',
+//     marginTop: 10,
+//   },
+//   Loginbtn: {
+//     textAlign: 'right',
+//     color: 'gray',
+//     fontWeight: '600',
+//     marginLeft: 5,
+//     marginRight: 25,
+//     margin: 8,
+//   },
+//   btnText: {
+//     fontSize: 20,
+//     fontWeight: 'bold',
+//     color: 'white',
+//   },
+//   StartedBtn: {
+//     borderRadius: 15,
+//     margin: 10,
+//     alignSelf: 'center',
+//     paddingLeft: 10,
+//     paddingRight: 10,
+//     paddingTop: 7,
+//     paddingBottom: 7,
+//     backgroundColor: 'orange',
+//     width: '70%',
+//     alignItems: 'center',
+//     marginTop: 30,
+//   },
+//   SignnInUsing: {
+//     fontSize: 18,
+//     textAlign: 'center',
+//   },
+//   LoginIcon: {
+//     marginTop: 20,
+//     width: 50,
+//     height: 50,
+//     borderRadius: 50,
+//     margin: 5,
+//   },
+// });
+
 import {
   StyleSheet,
   Text,
@@ -6,13 +215,18 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  StatusBar,
+  ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
+// import AntDesign from 'react-native-vector-icons/AntDesign';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {useDispatch} from 'react-redux';
-import {signup} from '../redux/action/SIgnup_action';
+import { NativeScreenNavigationContainer } from 'react-native-screens';
+import { useDispatch, useSelector } from 'react-redux';
+import { signup } from '../redux/action/SIgnup_action';
 
-const Signup = ({navigation}) => {
+const Signup = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,7 +238,7 @@ const Signup = ({navigation}) => {
       email,
       password,
     };
-    dispatch(signup(sData));
+    dispatch(signup(sData,navigation));
     setName('');
     setPassword('');
     setEmail('');
@@ -32,95 +246,168 @@ const Signup = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{alignItems: 'flex-end'}}>
-        <Image
-          style={{marginTop: -90, marginRight: -65, height: 270, width: 255}}
-          source={require('../images/watch.jpg')}
-        />
+      <View
+        style={{
+          height: '30%',
+          backgroundColor: '#5956E9',
+          justifyContent: 'center',
+        }}>
+        <Text style={styles.titleText}>Create</Text>
+        <Text style={styles.titleText}>Account</Text>
+        <View
+          style={{
+            height: 20,
+            width: 20,
+            borderRadius: 100,
+            borderWidth: 4,
+            borderColor: '#706EFD',
+            backgroundColor: '#5956E9',
+            shadowColor: 'gray',
+            elevation: 30,
+            position: 'absolute',
+            top: 20,
+            left: 100,
+          }}></View>
+        <View
+          style={{
+            height: 30,
+            width: 30,
+            borderRadius: 100,
+            borderWidth: 4,
+            borderColor: '#706EFD',
+            backgroundColor: '#5956E9',
+            shadowColor: 'gray',
+            elevation: 30,
+            position: 'absolute',
+            bottom: 20,
+            right: 100,
+          }}></View>
       </View>
-
-      <View style={styles.BtnTab}>
-        <TouchableOpacity
-          disabled={false}
+      <ScrollView>
+        <View
           style={{
-            width: '40%',
-            alignItems: 'center',
-          }}
-          onPress={() => navigation.navigate('signin')}>
-          <Text style={styles.SignnInBtn}>Sign In</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          disabled={true}
-          style={{
-            width: '40%',
-            borderBottomColor: 'orange',
-            borderBottomWidth: 2,
-            alignItems: 'center',
+            height: '100%',
+            backgroundColor: '#FFFFFF',
+            borderTopRightRadius: 20,
+            borderTopLeftRadius: 20,
           }}>
-          <Text style={styles.SignnInBtn}>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
+          <View style={styles.BtnTab}>
+            <TouchableOpacity
+              style={{
+                alignItems: 'center',
+              }}
+              onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.SignnInBtn}>Sign In</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                borderBottomColor: '#5956E9',
+                borderBottomWidth: 2,
+                width: '40%',
+                alignItems: 'center',
+              }}
+              onPress={() => navigation.navigate('Signup')}>
+              <Text style={styles.SignnInBtn}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
 
-      <View style={styles.InputView}>
-        <Text style={styles.TextInputTitle}>Full Name</Text>
-        <TextInput
-        value={name}
-          style={styles.EmailInput}
-          placeholder="Name"
-          onChangeText={text => setName(text)}
+          <View style={styles.InputView}>
+            <Text style={styles.TextInputTitle}>E-Mail address</Text>
+            <TextInput
+              style={styles.EmailInput}
+              placeholder="E-mail"
+              onChangeText={text => setEmail(text)}
+            />
+          </View>
+
+          <View style={styles.InputView}>
+            <Text style={styles.TextInputTitle}>Name</Text>
+            <TextInput
+              style={styles.EmailInput}
+              placeholder="Name"
+              onChangeText={text => setName(text)}
+            />
+          </View>
+
+          <View style={styles.InputView}>
+            <Text style={styles.TextInputTitle}>Enter Password</Text>
+            <TextInput
+              style={styles.EmailInput}
+              secureTextEntry={true}
+              placeholder="Password"
+              onChangeText={text => setPassword(text)}
+            />
+          </View>
+
+          {/* <View style={styles.Login}>
+          <TouchableOpacity>
+            <Text style={styles.Loginbtn}>Forgot Password ?</Text>
+          </TouchableOpacity>
+        </View> */}
+          {/* onPress={() => navigation.navigate('Home')} */}
+          <TouchableOpacity
+            style={styles.StartedBtn}
+            onPress={() => CreateAccount()}>
+            <Text style={styles.btnText}>Create Account</Text>
+          </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <View
+              style={{
+                borderWidth: 1,
+                borderColor: '#000000',
+                width: '30%',
+              }}></View>
+            <Text style={{ textAlign: 'center', margin: 20, fontWeight: 'bold' }}>
+              OR
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                borderColor: '#000000',
+                width: '30%',
+              }}></View>
+          </View>
+          <Text style={styles.SignnInUsing}>Sign In Using:</Text>
+          <View
+            style={{
+              backgroundColor: '#ffffff',
+              borderBottomLeftRadius: 10,
+              borderBottomRightRadius: 10,
+            }}>
+            <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+              <TouchableOpacity>
+                <Image
+                  style={styles.LoginIcon}
+                  source={require('../images/google.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image
+                  style={styles.LoginIcon}
+                  source={require('../images/facebook.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image
+                  style={styles.LoginIcon}
+                  source={require('../images/twitter.png')}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor="#5956E9"
+          translucent={false}
+          networkActivityIndicatorVisible={true}
         />
-      </View>
-
-      <View style={styles.InputView}>
-        <Text style={styles.TextInputTitle}>E-Mail address</Text>
-        <TextInput
-        value={email}
-          style={styles.EmailInput}
-          placeholder="E-mail"
-          onChangeText={text => setEmail(text)}
-        />
-      </View>
-
-      <View style={styles.InputView}>
-        <Text style={styles.TextInputTitle}>Enter Password</Text>
-        <TextInput
-          style={styles.EmailInput}
-          secureTextEntry={true}
-          value={password}
-          placeholder="Password"
-          onChangeText={text => setPassword(text)}
-        />
-      </View>
-
-      <TouchableOpacity
-        style={styles.StartedBtn}
-        onPress={() => CreateAccount()}>
-        <Text style={styles.btnText}>Create Account</Text>
-      </TouchableOpacity>
-      <Text style={{textAlign: 'center', margin: 20, fontWeight: 'bold'}}>
-        --------------------------- OR --------------------------
-      </Text>
-      <Text style={styles.SignnInUsing}>Sign In Using:</Text>
-      <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-        <TouchableOpacity>
-          <Image
-            style={styles.LoginIcon}
-            source={require('../images/google.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image
-            style={styles.LoginIcon}
-            source={require('../images/facebook.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image
-            style={styles.LoginIcon}
-            source={require('../images/twitter.png')}
-          />
-        </TouchableOpacity>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -129,9 +416,15 @@ export default Signup;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    justifyContent: 'space-around',
+    // flex: 1,
+    backgroundColor: '#5956E9',
+    height: '100%',
+  },
+  titleText: {
+    color: '#ffffff',
+    fontSize: 50,
+    fontWeight: 'bold',
+    marginLeft: 50,
   },
   BtnTab: {
     marginTop: 16,
@@ -139,29 +432,31 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     marginRight: 8,
     flexDirection: 'row',
+    width: '100%',
     justifyContent: 'space-around',
   },
   SignnInBtn: {
     padding: 5,
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: 'normal',
+    color: '#000000',
   },
   SignnupBtn: {},
   EmailInput: {
-    margin: 10,
     padding: 10,
-    color: 'white',
+    margin: 10,
+    color: '#000000',
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: '#000000',
     borderRadius: 5,
     fontSize: 16,
-    shadowColor: 'gray',
-    elevation: 2,
+    // shadowColor: 'gray',
+    // elevation: 5,
   },
   TextInputTitle: {
     marginLeft: 10,
     fontSize: 18,
-    color: 'white',
+    color: '#000000',
   },
   InputView: {
     width: '90%',
@@ -173,7 +468,7 @@ const styles = StyleSheet.create({
     color: 'gray',
     fontWeight: '600',
     marginLeft: 5,
-    marginRight: 25,
+    marginRight: 33,
     margin: 8,
   },
   btnText: {
@@ -182,27 +477,28 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   StartedBtn: {
-    borderRadius: 15,
+    borderRadius: 40,
     margin: 10,
     alignSelf: 'center',
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 7,
     paddingBottom: 7,
-    backgroundColor: 'orange',
+    backgroundColor: '#5956E9',
     width: '70%',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 20,
   },
   SignnInUsing: {
     fontSize: 18,
     textAlign: 'center',
+    backgroundColor: '#ffffff',
   },
   LoginIcon: {
     marginTop: 20,
     width: 50,
     height: 50,
-    borderRadius: 50,
+    borderRadius: 15,
     margin: 5,
   },
 });

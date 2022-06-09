@@ -1,207 +1,125 @@
 {
   "SignupData": [
     {
-      "id": 1,
-      "name": "json-server",
-      "email": "typicode",
-      "password": "typicode"
-    },
-    {
-      "name": "",
-      "email": "",
-      "password": "",
-      "id": 5
-    },
-    {
-      "name": "vcxvxcv",
-      "email": "xcvcxvc",
-      "password": "vcv",
-      "id": 6
-    },
-    {
-      "name": "",
-      "email": "",
-      "password": "",
-      "id": 7
-    },
-    {
-      "name": "",
-      "email": "",
-      "password": "",
-      "id": 8
-    },
-    {
       "name": "12345",
       "email": "12345",
       "password": "12345",
       "id": 9
     },
     {
-      "name": "",
-      "email": "",
-      "password": "",
-      "id": 10
-    },
-    {
-      "name": "fsfsdf",
-      "email": "dffd",
-      "password": "dfd",
-      "id": 11
-    },
-    {
       "name": "12",
       "email": "12",
       "password": "12",
       "id": 12
-    }
-  ],
-  "Address": [
-    {
-      "name": "Ladva Dharmesh ",
-      "address": "10,Rnaujadham Society",
-      "city": "Surat",
-      "phone": "6353382371",
-      "id": 2
-    },
-    {
-      "name": "d",
-      "address": "dsdasd",
-      "city": "asdasd",
-      "phone": "6546464646",
-      "id": 3
     },
     {
       "name": "",
-      "address": "",
-      "city": "",
-      "phone": "54354353",
-      "id": 4
-    },
-    {
-      "name": "sdsd",
-      "address": "dsd",
-      "city": "dsada",
-      "phone": "544353455",
-      "id": 5
-    },
-    {
-      "name": "fdsf",
-      "address": "fdsfsdf",
-      "city": "dsfsdfsdf",
-      "phone": "453535345",
-      "id": 6
-    },
-    {
-      "name": "sdsd",
-      "address": "dad",
-      "city": "adada",
-      "phone": "453535",
-      "id": 7
-    },
-    {
-      "name": "fsdf",
-      "address": "sfsdf",
-      "city": "dsfdsfd",
-      "phone": "45353535",
-      "id": 8
-    },
-    {
-      "name": "sdsad",
-      "address": "ddd",
-      "city": "asdasd",
-      "phone": "4534535",
-      "id": 9
-    },
-    {
-      "name": "s",
-      "address": "dsdasds",
-      "city": "adasd",
-      "phone": "745635435345345",
-      "id": 10
-    },
-    {
-      "name": "fs",
-      "address": "fd",
-      "city": "asdads",
-      "phone": "46564646",
-      "id": 11
-    },
-    {
-      "name": "sdfsdf",
-      "address": "dsfsfs",
-      "city": "dfsdfsdf",
-      "phone": "sdfsdfsdfs",
-      "id": 12
-    },
-    {
-      "name": "sd",
-      "address": "sdas",
-      "city": "sdada",
-      "phone": "dsad",
+      "email": "",
+      "password": "",
       "id": 13
     },
     {
-      "name": "dsdasd",
-      "address": "dsad",
-      "city": "dsadasd",
-      "phone": "0000000000",
+      "name": "dfsdf",
+      "email": "fsf",
+      "password": "dfsf",
       "id": 14
     },
     {
-      "name": "dasd",
-      "address": "dsad",
-      "city": "sdas",
-      "phone": "1111111111",
+      "name": "dfsdfsa",
+      "email": "fsfds",
+      "password": "dfsfsda",
       "id": 15
     },
     {
-      "name": "sdfsf",
-      "address": "dsfdsf",
-      "city": "dfsdfdsfsdf",
-      "phone": "1244343333",
+      "name": "fdsf",
+      "email": "dfsf",
+      "password": "fsdf",
       "id": 16
     },
     {
-      "name": "ghfh",
-      "address": "ghfgh",
-      "city": "ghfh",
-      "phone": "6754543455",
+      "name": "dfsfsdf",
+      "email": "dfsf",
+      "password": "dfsfs",
       "id": 17
     },
     {
-      "name": "dfs",
-      "address": "fdfsdf",
-      "city": "sfdsfdfsf",
-      "phone": "4324242343",
+      "name": "",
+      "email": "",
+      "password": "",
       "id": 18
     },
     {
-      "name": "dfdsdf",
-      "address": "dssddf",
-      "city": "dfd",
-      "phone": "4342342423",
+      "name": "",
+      "email": "",
+      "password": "",
       "id": 19
     },
     {
-      "name": "fdf",
-      "address": "dfsfsd",
-      "city": "dfsf",
-      "phone": "1111111111",
+      "name": "",
+      "email": "",
+      "password": "",
       "id": 20
     },
     {
-      "name": "gdfg",
-      "address": "fgfdg",
-      "city": "fgfgf",
-      "phone": "6666666666",
+      "name": "dfsfsd",
+      "email": "dfsf",
+      "password": "fsdfs",
       "id": 21
     },
     {
-      "name": "shubham",
-      "address": "20,",
-      "city": "ahamdabad",
-      "phone": "6565655656",
+      "name": "",
+      "email": "",
+      "password": "",
       "id": 22
+    },
+    {
+      "name": "",
+      "email": "",
+      "password": "",
+      "id": 23
+    },
+    {
+      "name": "",
+      "email": "",
+      "password": "",
+      "id": 24
+    },
+    {
+      "name": "fsdf",
+      "email": "dsfs",
+      "password": "dfsf",
+      "id": 25
+    },
+    {
+      "name": "",
+      "email": "",
+      "password": "",
+      "id": 26
+    },
+    {
+      "name": "",
+      "email": "",
+      "password": "",
+      "id": 27
+    },
+    {
+      "name": "",
+      "email": "",
+      "password": "",
+      "id": 28
+    },
+    {
+      "name": "",
+      "email": "",
+      "password": "",
+      "id": 29
+    },
+    {
+      "name": "fsdfsf",
+      "email": "dfdf",
+      "password": "dfdsfs",
+      "id": 30
     }
-  ]
+  ],
+  "Address": []
 }

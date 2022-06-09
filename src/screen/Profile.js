@@ -13,7 +13,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
 
-const Home = ({navigation}) => {
+const Profile = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
@@ -23,10 +23,12 @@ const Home = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <ScrollView >
+        
         <View style={styles.title}>
           <Text style={styles.titleText}>My Profile</Text>
         </View>
         <View style={styles.profileDetails}>
+          
           <Image
             source={require('../images/user.jpg')}
             style={{width: 80, height: 80, borderRadius: 50,marginTop: -30}}
@@ -92,7 +94,7 @@ const Home = ({navigation}) => {
   );
 };
 
-export default Home;
+export default Profile;
 
 const styles = StyleSheet.create({
   container: {
@@ -101,12 +103,15 @@ const styles = StyleSheet.create({
   },
   container2: {
     flex: 1,
-    margin: 30,
-   
+    // margin: 30,
+    marginVertical: 20,
+    marginHorizontal: 16,
   },
   title: {
+    width: '90%',
+    borderRadius: 20,
+    alignSelf: 'center',
     marginTop: 20,
-    marginLeft: 40,
   },
   titleText: {
     fontSize: 34,
@@ -116,7 +121,7 @@ const styles = StyleSheet.create({
   profileDetails: {
     marginTop: 50,
     backgroundColor: '#FFFFFF',
-    width: '80%',
+    width: '90%',
     borderRadius: 20,
     alignItems: 'center',
     alignSelf: 'center',
@@ -136,7 +141,7 @@ const styles = StyleSheet.create({
   EditProfile: {
     marginTop: 30,
     backgroundColor: '#FFFFFF',
-    width: '80%',
+    width: '90%',
     borderRadius: 10,
     padding: 15,
     alignSelf: 'center',
