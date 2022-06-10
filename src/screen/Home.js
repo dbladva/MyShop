@@ -31,7 +31,6 @@ const Home = ({ navigation }) => {
   const renderItem = ({ item }) => {
     const {id,name} = item;
     if (category === 'wearable' && item.category === 'wearable') {
-      console.log('Wearable item id : ' , item.id);
       return (
         <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.Price,category: item.category})}>
           <View style={styles.ItemCard}>
@@ -49,7 +48,6 @@ const Home = ({ navigation }) => {
         </TouchableOpacity>
       )
     } else if (category === 'laptop' && item.category === 'laptop') {
-      console.log('laptop',item.id);
       return (
         <TouchableOpacity  onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.Price,category: item.category})}>
           <View style={styles.ItemCard}>
@@ -333,6 +331,7 @@ const styles = StyleSheet.create({
     color: '#868686',
     fontWeight: '600',
     fontSize: 18,
+    textAlign: 'center',
   },
   seeMoreBtn: {
     color: '#5956E9',

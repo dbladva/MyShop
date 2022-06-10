@@ -7,18 +7,44 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { getproduct } from '../redux/action/product.action';
 
-const Basket = ({navigation}) => {
+const Basket = ({route,navigation}) => {
+  const id = route.params;
+  console.log(id);
+
+  const item = useSelector(state => state.product)
+  const dispatch= useDispatch()
+
+  useEffect(() => {
+    dispatch(getproduct())
+  }, [])
+  
+
+const itemHandler = () => {
+  item.Product.map((data) => {
+    if(data.id === id) {
+    
+     
+    }else{
+      console.log('not matched');
+    }
+  })
+}
+
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
+      
         <View style={styles.back}>
+        {itemHandler()}
           <TouchableOpacity
             style={styles.backArrow}
             onPress={() => navigation.goBack()}>

@@ -5,7 +5,6 @@ const initValue = ({
     Product: [],
     Error: '',
 })
-
 export const GetProduct = (state = initValue, action) => {
     switch (action.type) {
         case ActionType.GET_PRODUCT:

@@ -29,6 +29,8 @@ const Details = ({ route, navigation }) => {
   const ItemData = item.Product;
 
 
+
+
   useEffect(() => {
     dispatch(getproduct());
   }, []);
@@ -153,7 +155,8 @@ const Details = ({ route, navigation }) => {
               <Text style={styles.itemPrice}>$ {price}</Text>
             </View>
 
-            <TouchableOpacity
+            <TouchableOpacity 
+            onPress={() => navigation.navigate('Basket',{id: itemid})}
               style={{ width: '100%', alignSelf: 'center', marginTop: 10 }}>
               <View
                 style={{

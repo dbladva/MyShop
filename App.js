@@ -82,6 +82,7 @@ const StackScreen = () => {
       <Stack.Screen name="Home" component={HomeScreenTab} />
       <Stack.Screen name="Whishlist" component={Whishlist} />
       <Stack.Screen name="Details" component={Details} />
+      <Stack.Screen name="Basket" component={Basket} />
 
     </Stack.Navigator>
   );
