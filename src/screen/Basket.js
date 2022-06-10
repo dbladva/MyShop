@@ -25,7 +25,7 @@ const Basket = ({navigation}) => {
             <MaterialIcons name="arrow-back" color={'#000000'} size={30} />
           </TouchableOpacity>
           <View style={{alignSelf: 'center'}}>
-            <Text style={styles.favrioteText}>My Order</Text>
+            <Text style={styles.favrioteText}>Basket</Text>
           </View>
           <TouchableOpacity>
             <MaterialIcons name="delete-outline" color={'#FA4A0C'} size={25} />

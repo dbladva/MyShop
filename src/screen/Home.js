@@ -13,16 +13,15 @@ import React, { useState, useEffect } from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { color, useDerivedValue } from 'react-native-reanimated';
-import { useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { StatusBar } from 'react-native'
 import { getproduct } from '../redux/action/product.action';
 
 const Home = ({ navigation }) => {
-  const [category, setCategory] = useState(0)
+  const [category, setCategory] = useState('wearable')
 
   const item = useSelector(state => state.product)
   const dispatch = useDispatch()
-
 
   useEffect(() => {
     dispatch(getproduct())
@@ -30,24 +29,81 @@ const Home = ({ navigation }) => {
 
 
   const renderItem = ({ item }) => {
-  return(
-    <TouchableOpacity >
-                <View style={styles.ItemCard}>
-                  <View style={styles.ItemImage}>
-                    <Image
-                      style={styles.ItemImageStyle}
-                      // source={require('../images/watch2.jpg')}
-                      source={{
-                        uri: 'https://lh3.googleusercontent.com/BfiSlADc1CuGOL_aQdpA1aSfgYKluCdlbtLWlMYkBUU_smKozXrDmkv7f5bB_5nKnOXX38zq9QsX8peIuw9DCgdonDHOkNnuuDZ0bplIS8-YT1I7OK0vwZnbt6fUoaKadjL7pldwEEW1AWPTVd1Qbr6_uAstkJFWDMuaxbjRFyTkVHuOkofkO4Ogok53pC5sWNO6oeTjZDuQ42SMvm7-mE2onp5ncQWEFAaseNmERk8-HICeBoTxySaQsq3I-cC68tYC2c3_ZlvBdaNyIuDvtoPitihyvGxKh5Ax6bZzFsq7istR6w6MTmHUo4BVRZlFClJ4ujPT3QQM9-wtWJu-iWH0tVVrNpfDXrJPyLl8gOeIlUc39lJTt__fuzHj7NPm-ZOqMK-QcgtC7vbRWgqUnwMhh_jwKnAsC2pdrkDyd7GE6obnz1B0zQMxcr-0cNobfoJL475xFt6JrPOK-IIBWLIejVVZ7wOVECSjrmt9ez7HCry8Gidad_oHWf7O3jx7jbIDorJo6qg9ihtoSTrnLWI_VBlF_IBxBx2wJpILNCOyzf8WNn9_4gh5JLzhF4t3vPPwfkFyGvRPT2tLR8Rd4_vBEIGRRHVx8eQ6aOeNVI2qzpRXrhljN65b5tjoFW_9J5Z_6L1QOxRu8u5AUF7WklTI1WCDq09_1n_6g3qEOQ_m55dNW0cyvxBt_VGrW2o9bSBr7jagESPUpBL09keLy1QcFZv-aOYDGgAAM5X5AFnWPAWeUwUWu3XIaEY=w491-h654-no?authuser=0',
-                      }}
-                    />
-                  </View>
-                  <Text style={styles.Itemname}>{item.name}</Text>
-                  <Text style={styles.subtitle}>{item.detais}</Text>
-                  <Text style={styles.ItenPrice}>${item.Price}</Text>
-                </View>
-              </TouchableOpacity>
-  )
+    const {id,name} = item;
+    if (category === 'wearable' && item.category === 'wearable') {
+      console.log('Wearable item id : ' , item.id);
+      return (
+        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.Price,category: item.category})}>
+          <View style={styles.ItemCard}>
+            <View style={styles.ItemImage}>
+              <Image
+                style={styles.ItemImageStyle}
+                source={require('../images/watch2.jpg')}
+              
+              />
+            </View>
+            <Text style={styles.Itemname}>{item.name}</Text>
+            <Text style={styles.subtitle}>{item.detais}</Text>
+            <Text style={styles.ItenPrice}>${item.Price}</Text>
+          </View>
+        </TouchableOpacity>
+      )
+    } else if (category === 'laptop' && item.category === 'laptop') {
+      console.log('laptop',item.id);
+      return (
+        <TouchableOpacity  onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.Price,category: item.category})}>
+          <View style={styles.ItemCard}>
+            <View style={styles.ItemImage}>
+              <Image
+                style={styles.ItemImageStyle}
+                source={require('../images/mac.jpg')}
+              
+              />
+            </View>
+            <Text style={styles.Itemname}>{item.name}</Text>
+            <Text style={styles.subtitle}>{item.detais}</Text>
+            <Text style={styles.ItenPrice}>${item.Price}</Text>
+          </View>
+        </TouchableOpacity>
+      )
+    }
+    else if (category === 'phones' && item.category === 'phones') {
+      return (
+        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.Price,category: item.category})}>
+          <View style={styles.ItemCard}>
+            <View style={styles.ItemImage}>
+              <Image
+                style={styles.ItemImageStyle}
+                source={require('../images/iphone.jpg')}
+              
+              />
+            </View>
+            <Text style={styles.Itemname}>{item.name}</Text>
+            <Text style={styles.subtitle}>{item.detais}</Text>
+            <Text style={styles.ItenPrice}>${item.Price}</Text>
+          </View>
+        </TouchableOpacity>
+      )
+    }
+    else if (category === 'drones' && item.category === 'drones') {
+      return (
+        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.Price,category: item.category})}>
+          <View style={styles.ItemCard}>
+            <View style={styles.ItemImage}>
+              <Image
+                style={styles.ItemImageStyle}
+                source={require('../images/drones.jpg')}
+              
+              />
+            </View>
+            <Text style={styles.Itemname}>{item.name}</Text>
+            <Text style={styles.subtitle}>{item.detais}</Text>
+            <Text style={styles.ItenPrice}>${item.Price}</Text>
+          </View>
+        </TouchableOpacity>
+      )
+    }
+
   }
 
   return (
@@ -72,26 +128,26 @@ const Home = ({ navigation }) => {
 
         <View style={styles.categoryBtn}>
 
-          <TouchableOpacity style={category === 0 ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory(0)}>
+          <TouchableOpacity style={category === 'wearable' ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory('wearable')}>
             <Text
               style={[
                 styles.btnText,
-                category === 0 && { color: 'blue' }
+                category === 'wearable' && { color: 'blue' }
               ]}>
               Wearable
             </Text>
           </TouchableOpacity>
 
 
-          <TouchableOpacity style={category === 1 ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory(1)}>
-            <Text style={[styles.btnText, category === 1 && { color: 'blue' }]}>Laptop</Text>
+          <TouchableOpacity style={category === 'laptop' ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory('laptop')}>
+            <Text style={[styles.btnText, category === 'laptop' && { color: 'blue' }]}>Laptop</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={category === 2 ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory(2)}>
-            <Text style={[styles.btnText, category === 2 && { color: 'blue' }]}>Phones</Text>
+          <TouchableOpacity style={category === 'phones' ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory('phones')}>
+            <Text style={[styles.btnText, category === 'phones' && { color: 'blue' }]}>Phones</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={category === 3 ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory(3)}>
-            <Text style={[styles.btnText, category === 3 && { color: 'blue' }]}>Drones</Text>
+          <TouchableOpacity style={category === 'drones' ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory('drones')}>
+            <Text style={[styles.btnText, category === 'drones' && { color: 'blue' }]}>Drones</Text>
           </TouchableOpacity>
         </View>
 
@@ -109,16 +165,16 @@ const Home = ({ navigation }) => {
                 marginHorizontal: 16,
               }}>
 
-          <FlatList
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          legacyImplementation={false}
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                legacyImplementation={false}
                 data={item.Product}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
-             />
+              />
 
-             
+
               {/* <TouchableOpacity>
                 <View style={styles.ItemCard}>
                   <View style={styles.ItemImage}>
@@ -262,7 +318,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     letterSpacing: 2,
     color: '#000000',
-    fontSize: 22,
+    fontSize: 20,
     // opacity: 0.8,
     fontWeight: 'bold',
   },

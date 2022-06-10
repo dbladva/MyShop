@@ -24,6 +24,7 @@ import SplashScreen from 'react-native-splash-screen';
 import Delevery from './src/screen/Delevery';
 import Setting from './src/screen/Setting';
 import Basket from './src/screen/Basket';
+import Details from './src/screen/Details';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -75,11 +76,13 @@ const StackScreen = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      {/* <Stack.Screen name="Homee" component={Welcome} />  */}
-      {/* <Stack.Screen name="Login" component={Login} /> */}
-      {/* <Stack.Screen name="Signup" component={Signup} /> */}
+      <Stack.Screen name="Homee" component={Welcome} /> 
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Home" component={HomeScreenTab} />
       <Stack.Screen name="Whishlist" component={Whishlist} />
+      <Stack.Screen name="Details" component={Details} />
+
     </Stack.Navigator>
   );
 };
