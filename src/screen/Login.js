@@ -7,19 +7,17 @@ import {
   TouchableOpacity,
   TextInput,
   StatusBar,
+  ScrollView
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-// import AntDesign from 'react-native-vector-icons/AntDesign';
-// import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {NativeScreenNavigationContainer} from 'react-native-screens';
 import {useDispatch, useSelector} from 'react-redux';
-import {signup_reducer} from '../redux/reducer/Signup_reducer';
 import {signin_action} from '../redux/action/SIgnup_action';
+import { signup } from '../redux/action/SIgnup_action';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState(' ');
   const [password, setPassword] = useState(' ');
+  const [Signup, setSignup] = useState(0);
 
   const login = useSelector(state => state.signin);
 
@@ -32,150 +30,332 @@ const Login = ({navigation}) => {
     dispatch(signin_action(lData, navigation));
   };
 
+
+  // Signup 
+
+  const [name, setName] = useState('');
+  const [Semail, setSEmail] = useState('');
+  const [Spassword, setSPassword] = useState('');
+
+  // let dispatch = useDispatch();
+  const CreateAccount = () => {
+    let sData = {
+      name,
+      Semail,
+      Spassword,
+    };
+    dispatch(signup(sData,navigation));
+    setName('');
+    setSPassword('');
+    setSEmail('');
+  };
+
+
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          height: '30%',
-          backgroundColor: '#5956E9',
-          justifyContent: 'center',
-        }}>
-        <Text style={styles.titleText}>Welcome</Text>
-        <Text style={styles.titleText}>Back</Text>
+      {Signup === 0 ? (
         <View
           style={{
-            height: 20,
-            width: 20,
-            borderRadius: 100,
-            borderWidth: 4,
-            borderColor: '#706EFD',
+            height: '30%',
             backgroundColor: '#5956E9',
-            shadowColor: 'gray',
-            elevation: 30,
-            position: 'absolute',
-            top: 20,
-            left: 100,
-          }}></View>
-        <View
-          style={{
-            height: 30,
-            width: 30,
-            borderRadius: 100,
-            borderWidth: 4,
-            borderColor: '#706EFD',
-            backgroundColor: '#5956E9',
-            shadowColor: 'gray',
-            elevation: 30,
-            position: 'absolute',
-            bottom: 20,
-            right: 100,
-          }}></View>
-      </View>
-      <View
-        style={{
-          height: '100%',
-          backgroundColor: '#FFFFFF',
-          borderTopRightRadius: 20,
-          borderTopLeftRadius: 20,
-        }}>
-        <View style={styles.BtnTab}>
-          <TouchableOpacity
-            disabled={true}
-            style={{
-              borderBottomColor: '#5956E9',
-              borderBottomWidth: 2,
-              width: '40%',
-              alignItems: 'center',
-            }}>
-            <Text style={styles.SignnInBtn}>Sign In</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{width: '40%', alignItems: 'center'}}
-            onPress={() => navigation.navigate('Signup')}>
-            <Text style={styles.SignnInBtn}>Sign Up</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.InputView}>
-          <Text style={styles.TextInputTitle}>E-Mail address</Text>
-          <TextInput
-            style={styles.EmailInput}
-            placeholder="E-mail"
-            onChangeText={text => setEmail(text)}
-          />
-        </View>
-        <View style={styles.InputView}>
-          <Text style={styles.TextInputTitle}>Enter Password</Text>
-          <TextInput
-            style={styles.EmailInput}
-            secureTextEntry={true}
-            placeholder="Password"
-            onChangeText={text => setPassword(text)}
-          />
-        </View>
-
-        <View style={styles.Login}>
-          <TouchableOpacity>
-            <Text style={styles.Loginbtn}>Forgot Password ?</Text>
-          </TouchableOpacity>
-        </View>
-        {/* onPress={() => navigation.navigate('Home')} */}
-        <TouchableOpacity
-          style={styles.StartedBtn}
-          onPress={() => LoginHandler()}>
-          <Text style={styles.btnText}>Login</Text>
-        </TouchableOpacity>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
             justifyContent: 'center',
           }}>
+          <Text style={styles.titleText}>Welcome</Text>
+          <Text style={styles.titleText}>Back</Text>
           <View
             style={{
-              borderWidth: 1,
-              borderColor: '#000000',
-              width: '30%',
+              height: 20,
+              width: 20,
+              borderRadius: 100,
+              borderWidth: 4,
+              borderColor: '#706EFD',
+              backgroundColor: '#5956E9',
+              shadowColor: 'gray',
+              elevation: 30,
+              position: 'absolute',
+              top: 20,
+              left: 100,
             }}></View>
-          <Text style={{textAlign: 'center', margin: 20, fontWeight: 'bold'}}>
-            OR
-          </Text>
           <View
             style={{
-              borderWidth: 1,
-              borderColor: '#000000',
-              width: '30%',
+              height: 30,
+              width: 30,
+              borderRadius: 100,
+              borderWidth: 4,
+              borderColor: '#706EFD',
+              backgroundColor: '#5956E9',
+              shadowColor: 'gray',
+              elevation: 30,
+              position: 'absolute',
+              bottom: 20,
+              right: 100,
             }}></View>
         </View>
-        <Text style={styles.SignnInUsing}>Sign In Using:</Text>
+      ) : (
         <View
           style={{
-            backgroundColor: '#ffffff',
-            borderBottomLeftRadius: 10,
-            borderBottomRightRadius: 10,
+            height: '30%',
+            backgroundColor: '#5956E9',
+            justifyContent: 'center',
           }}>
-          <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-            <TouchableOpacity>
-              <Image
-                style={styles.LoginIcon}
-                source={require('../images/google.png')}
-              />
+          <Text style={styles.titleText}>Create</Text>
+          <Text style={styles.titleText}>Account</Text>
+          <View
+            style={{
+              height: 20,
+              width: 20,
+              borderRadius: 100,
+              borderWidth: 4,
+              borderColor: '#706EFD',
+              backgroundColor: '#5956E9',
+              shadowColor: 'gray',
+              elevation: 30,
+              position: 'absolute',
+              top: 20,
+              left: 100,
+            }}></View>
+          <View
+            style={{
+              height: 30,
+              width: 30,
+              borderRadius: 100,
+              borderWidth: 4,
+              borderColor: '#706EFD',
+              backgroundColor: '#5956E9',
+              shadowColor: 'gray',
+              elevation: 30,
+              position: 'absolute',
+              bottom: 20,
+              right: 100,
+            }}></View>
+        </View>
+      )}
+      {Signup === 0 ? (
+        <View
+          style={{
+            height: '70%',
+            backgroundColor: '#FFFFFF',
+            borderTopRightRadius: 20,
+            borderTopLeftRadius: 20,
+            justifyContent: 'space-around',
+          }}>
+          <View style={styles.BtnTab}>
+            <TouchableOpacity
+              disabled={true}
+              style={{
+                borderBottomColor: '#5956E9',
+                borderBottomWidth: 2,
+                // width: '40%',
+                alignItems: 'center',
+              }}>
+              <Text style={styles.SignnInBtn}>Sign In</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                style={styles.LoginIcon}
-                source={require('../images/facebook.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                style={styles.LoginIcon}
-                source={require('../images/twitter.png')}
-              />
+            <TouchableOpacity
+              style={{
+              alignItems: 'center'
+            }}
+              onPress={() => setSignup(1)}
+              // onPress={() => navigation.navigate('Signup')}
+            >
+              <Text style={styles.SignnInBtn}>Sign Up</Text>
             </TouchableOpacity>
           </View>
+
+          <View style={styles.InputView}>
+            <Text style={styles.TextInputTitle}>E-Mail address</Text>
+            <TextInput
+              style={styles.EmailInput}
+              placeholder="E-mail"
+              onChangeText={data => setEmail(data)}
+            />
+          </View>
+          <View style={styles.InputView}>
+            <Text style={styles.TextInputTitle}>Enter Password</Text>
+            <TextInput
+              style={styles.EmailInput}
+              secureTextEntry={true}
+              placeholder="Password"
+              onChangeText={text => setPassword(text)}
+            />
+          </View>
+
+          <View style={styles.Login}>
+            <TouchableOpacity>
+              <Text style={styles.Loginbtn}>Forgot Password ?</Text>
+            </TouchableOpacity>
+          </View>
+          
+          <TouchableOpacity
+            style={styles.StartedBtn}
+            onPress={() =>  {LoginHandler()}}>
+            <Text style={styles.btnText}>Login</Text>
+          </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <View
+              style={{
+                borderWidth: 1,
+                borderColor: '#000000',
+                width: '30%',
+              }}></View>
+            <Text style={{textAlign: 'center', margin: 20, fontWeight: 'bold'}}>
+              OR
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                borderColor: '#000000',
+                width: '30%',
+              }}></View>
+          </View>
+          <Text style={styles.SignnInUsing}>Sign In Using:</Text>
+          <View
+            style={{
+              backgroundColor: '#ffffff',
+              borderBottomLeftRadius: 10,
+              borderBottomRightRadius: 10,
+            }}>
+            <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+              <TouchableOpacity>
+                <Image
+                  style={styles.LoginIcon}
+                  source={require('../images/google.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image
+                  style={styles.LoginIcon}
+                  source={require('../images/facebook.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image
+                  style={styles.LoginIcon}
+                  source={require('../images/twitter.png')}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-      </View>
+      ) : (
+        <View
+          style={{
+            height: '70%',
+            backgroundColor: '#FFFFFF',
+            borderTopRightRadius: 20,
+            borderTopLeftRadius: 20,
+            justifyContent: 'space-around'
+          }}>
+          <View style={styles.BtnTab}>
+            <TouchableOpacity
+            onPress={() => setSignup(0)}
+              style={{
+                alignItems: 'center',
+              }}
+              >
+              <Text style={styles.SignnInBtn}>Sign In</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+            disabled={true}
+              style={{
+                borderBottomColor: '#5956E9',
+                borderBottomWidth: 2,
+                // ,
+                alignItems: 'center',
+              }}>
+              <Text style={styles.SignnInBtn}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.InputView}>
+            <Text style={styles.TextInputTitle}>E-Mail address</Text>
+            <TextInput
+              style={styles.EmailInput}
+              placeholder="E-mail"
+              onChangeText={text => setSEmail(text)}
+            />
+          </View>
+
+          <View style={styles.InputView}>
+            <Text style={styles.TextInputTitle}>Name</Text>
+            <TextInput
+              style={styles.EmailInput}
+              placeholder="Name"
+              onChangeText={text => setName(text)}
+            />
+          </View>
+
+          <View style={styles.InputView}>
+            <Text style={styles.TextInputTitle}>Enter Password</Text>
+            <TextInput
+              style={styles.EmailInput}
+              secureTextEntry={true}
+              placeholder="Password"
+              onChangeText={text => setSPassword(text)}
+            />
+          </View>
+
+          <TouchableOpacity
+            style={styles.StartedBtn}
+            onPress={() => CreateAccount()}>
+            <Text style={styles.btnText}>Create Account</Text>
+          </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <View
+              style={{
+                borderWidth: 1,
+                borderColor: '#000000',
+                width: '30%',
+              }}></View>
+            <Text style={{textAlign: 'center', margin: 20, fontWeight: 'bold'}}>
+              OR
+            </Text>
+            <View
+              style={{
+                borderWidth: 1,
+                borderColor: '#000000',
+                width: '30%',
+              }}></View>
+          </View>
+          <Text style={styles.SignnInUsing}>Sign In Using:</Text>
+          <View
+            style={{
+              backgroundColor: '#ffffff',
+              borderBottomLeftRadius: 10,
+              borderBottomRightRadius: 10,
+            }}>
+            <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+              <TouchableOpacity>
+                <Image
+                  style={styles.LoginIcon}
+                  source={require('../images/google.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image
+                  style={styles.LoginIcon}
+                  source={require('../images/facebook.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image
+                  style={styles.LoginIcon}
+                  source={require('../images/twitter.png')}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      )}
       <StatusBar
         barStyle="dark-content"
         backgroundColor="#5956E9"
@@ -206,7 +386,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     marginRight: 8,
     flexDirection: 'row',
-    width: '100%',
+    // width: '100%',
     justifyContent: 'space-around',
   },
   SignnInBtn: {
