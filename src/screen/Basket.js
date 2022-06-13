@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   Image,
+  FlatList
 } from 'react-native';
 import React,{useEffect,useState} from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -14,29 +15,44 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { getproduct } from '../redux/action/product.action';
+import { CartItem, getproduct } from '../redux/action/product.action';
 
 const Basket = ({route,navigation}) => {
   const id = route.params;
-  console.log(id);
-
   const item = useSelector(state => state.product)
   const dispatch= useDispatch()
 
   useEffect(() => {
-    dispatch(getproduct())
+    dispatch(CartItem())
   }, [])
   
 
-const itemHandler = () => {
-  item.Product.map((data) => {
-    if(data.id === id) {
-    
-     
-    }else{
-      console.log('not matched');
-    }
-  })
+const renderItem = ({item}) => {
+  console.log('Itemsssssssssssssssssssssss',item);
+    return(
+      <View style={styles.itemView}>
+      <View style={styles.itemImage}>
+        <Image
+          style={styles.image}
+          source={require('../images/15.png')}
+        />
+      </View>
+      <View style={styles.itemText}>
+        <Text style={styles.itemTitle}>{item.name}</Text>
+        <Text style={styles.itemPrice}>${item.Price}</Text>
+        <View style={styles.Quantity}>
+          <Text style={styles.quantityText}>Quantity</Text>
+          <TouchableOpacity>
+            <Text style={styles.decreasBtn}>-</Text>
+          </TouchableOpacity>
+          <Text style={styles.counterNum}> 1 </Text>
+          <TouchableOpacity>
+            <Text style={styles.decreasBtn}>+</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+    )
 }
 
   return (
@@ -44,7 +60,6 @@ const itemHandler = () => {
       <View style={styles.container2}>
       
         <View style={styles.back}>
-        {itemHandler()}
           <TouchableOpacity
             style={styles.backArrow}
             onPress={() => navigation.goBack()}>
@@ -76,30 +91,17 @@ const itemHandler = () => {
         </View>
         <View style={{height: '65%', marginHorizontal: 20}}>
           <ScrollView>
-            <View style={styles.itemView}>
-              <View style={styles.itemImage}>
-                <Image
-                  style={styles.image}
-                  source={require('../images/15.png')}
-                />
-              </View>
-              <View style={styles.itemText}>
-                <Text style={styles.itemTitle}>2020 Apple iPad Air 10.9"</Text>
-                <Text style={styles.itemPrice}>$579.00</Text>
-                <View style={styles.Quantity}>
-                  <Text style={styles.quantityText}>Quantity</Text>
-                  <TouchableOpacity>
-                    <Text style={styles.decreasBtn}>-</Text>
-                  </TouchableOpacity>
-                  <Text style={styles.counterNum}> 1 </Text>
-                  <TouchableOpacity>
-                    <Text style={styles.decreasBtn}>+</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </View>
 
-            <View style={styles.itemView}>
+          <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                legacyImplementation={false}
+                data={item.Product}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+              />
+
+            {/* <View style={styles.itemView}>
               <View style={styles.itemImage}>
                 <Image
                   style={styles.image}
@@ -120,7 +122,30 @@ const itemHandler = () => {
                   </TouchableOpacity>
                 </View>
               </View>
-            </View>
+            </View> */}
+
+            {/* <View style={styles.itemView}>
+              <View style={styles.itemImage}>
+                <Image
+                  style={styles.image}
+                  source={require('../images/15.png')}
+                />
+              </View>
+              <View style={styles.itemText}>
+                <Text style={styles.itemTitle}>2020 Apple iPad Air 10.9"</Text>
+                <Text style={styles.itemPrice}>$579.00</Text>
+                <View style={styles.Quantity}>
+                  <Text style={styles.quantityText}>Quantity</Text>
+                  <TouchableOpacity>
+                    <Text style={styles.decreasBtn}>-</Text>
+                  </TouchableOpacity>
+                  <Text style={styles.counterNum}> 1 </Text>
+                  <TouchableOpacity>
+                    <Text style={styles.decreasBtn}>+</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View> */}
         
           </ScrollView>
         </View>

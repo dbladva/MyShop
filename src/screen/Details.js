@@ -16,7 +16,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import { color } from 'react-native-reanimated';
 import { StatusBar } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { getproduct } from '../redux/action/product.action';
+import { CartItem, getproduct } from '../redux/action/product.action';
 
 const Details = ({ route, navigation }) => {
   const { itemid } = route.params;
@@ -35,20 +35,13 @@ const Details = ({ route, navigation }) => {
     dispatch(getproduct());
   }, []);
 
-  // console.log(JSON.stringify(name));
 
-  // const AllItemHandler = () => {
-  //   ItemData.map((data) => {
-  //     if(itemid == data.id){
-  //     console.log('If statement Matched');
-  //       return( 
-  //         <View>
-  //           <Text style={styles.itemName}>{data.name}</Text>)
-  //       </View>
-  //       )
-  //     }  
-  //   })
-  // }
+  const HandelBasketItem = (id) => {
+    dispatch(CartItem(id,navigation))
+    
+     }
+
+
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
@@ -155,8 +148,10 @@ const Details = ({ route, navigation }) => {
               <Text style={styles.itemPrice}>$ {price}</Text>
             </View>
 
+            {/* navigation.navigate('Basket',{id: itemid}) */}
+
             <TouchableOpacity 
-            onPress={() => navigation.navigate('Basket',{id: itemid})}
+            onPress={() => HandelBasketItem(itemid)}
               style={{ width: '100%', alignSelf: 'center', marginTop: 10 }}>
               <View
                 style={{

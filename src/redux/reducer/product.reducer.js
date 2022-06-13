@@ -7,6 +7,7 @@ const initValue = ({
 })
 export const GetProduct = (state = initValue, action) => {
     switch (action.type) {
+        
         case ActionType.GET_PRODUCT:
             return {
                 ...state,
@@ -14,6 +15,14 @@ export const GetProduct = (state = initValue, action) => {
                 Product: action.payload,
                 Error: '',
             }
+
+            case ActionType.CART_ITEM:
+                return {
+                    ...state,
+                    isLoading: false,
+                    Product: action.payload,
+                    Error: '',
+                }
 
         default:
             return state
