@@ -2,7 +2,9 @@ import * as ActionType from '../ActionType'
 
 export const getproduct = () => (dispatch) => {
     try {
-        fetch('http://192.168.43.200:8000/products', {
+        // fetch('http://192.168.43.200:8000/products', {
+        fetch('http://localhost:3004/products', {
+
               method: 'GET',
             })
               .then(response => {
@@ -30,6 +32,7 @@ export const CartItem = (id,navigation) => (dispatch) => {
   try {
       fetch('http://192.168.43.200:8000/products', {
         // fetch('http://192.168.1.7:8000/products', {
+        // fetch('http://localhost:3004/products', {
             method: 'GET',
           })
         

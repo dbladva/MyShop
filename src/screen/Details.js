@@ -40,8 +40,6 @@ const Details = ({ route, navigation }) => {
     dispatch(CartItem(id,navigation))
     
      }
-
-
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
