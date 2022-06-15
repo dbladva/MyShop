@@ -15,15 +15,6 @@ export const GetProduct = (state = initValue, action) => {
                 Product: action.payload,
                 Error: '',
             }
-
-            case ActionType.CART_ITEM:
-                return {
-                    ...state,
-                    isLoading: false,
-                    Product: action.payload,
-                    Error: '',
-                }
-
         default:
             return state
     }

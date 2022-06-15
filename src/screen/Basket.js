@@ -6,7 +6,8 @@ import {
   TextInput,
   ScrollView,
   Image,
-  FlatList
+  FlatList,
+SafeAreaView,
 } from 'react-native';
 import React,{useEffect,useState} from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -15,11 +16,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { CartItem, getproduct } from '../redux/action/product.action';
+import { getproduct } from '../redux/action/product.action';
+import { CartItem } from '../redux/action/cart.action';
 
 const Basket = ({route,navigation}) => {
   const id = route.params;
-  const item = useSelector(state => state.product)
+  const item = useSelector(state => state.cart)
   const dispatch= useDispatch()
 
   useEffect(() => {
@@ -56,6 +58,7 @@ const renderItem = ({item}) => {
 }
 
   return (
+    <SafeAreaView style={styles.container}>
     <View style={styles.container}>
       <View style={styles.container2}>
       
@@ -189,6 +192,7 @@ const renderItem = ({item}) => {
         networkActivityIndicatorVisible={true}
       />
     </View>
+    </SafeAreaView>
   );
 };
 

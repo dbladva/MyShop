@@ -16,7 +16,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import { color } from 'react-native-reanimated';
 import { StatusBar } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { CartItem, getproduct } from '../redux/action/product.action';
+import { getproduct } from '../redux/action/product.action';
+import { CartItem } from '../redux/action/cart.action';
 
 const Details = ({ route, navigation }) => {
   const { itemid } = route.params;
@@ -24,21 +25,20 @@ const Details = ({ route, navigation }) => {
   const { price } = route.params;
   const { category } = route.params;
 
-  const item = useSelector(state => state.product);
+  const item = useSelector(state => state.cart);
   const dispatch = useDispatch();
-  const ItemData = item.Product;
+  const ItemData = item.cart;
 
 
 
 
   useEffect(() => {
-    dispatch(getproduct());
+    dispatch(CartItem());
   }, []);
 
 
   const HandelBasketItem = (id) => {
     dispatch(CartItem(id,navigation))
-    
      }
   return (
     <View style={styles.container}>

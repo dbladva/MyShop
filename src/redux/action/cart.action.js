@@ -1,12 +1,14 @@
 import * as ActionType from '../ActionType'
 
-export const getproduct = () => (dispatch) => {
+export const CartItem = (id,navigation) => (dispatch) => {
+    console.log("dispatchedddddddddddddddddddddddd");
     try {
         // fetch('http://192.168.43.200:8000/products', {
-        fetch('http://localhost:3004/products', {
-
+          // fetch('http://192.168.1.7:8000/products', {
+          fetch('http://localhost:3004/products', {
               method: 'GET',
             })
+          
               .then(response => {
                 if (response.ok) {
                   return response.json()
@@ -15,8 +17,14 @@ export const getproduct = () => (dispatch) => {
                 }
               })
               .then((data) => {
-                dispatch({type:ActionType.GET_PRODUCT,payload:data})
-                console.log(data);
+                // data.map((item) => {
+                //   if(item.id === id ){
+                    // console.log('IDDDDDDDDDDDDDDDDDDD',item.id);
+                    dispatch({type:ActionType.CART_ITEM,payload:data})
+                    navigation.navigate('Basket')   
+                //   }
+                 
+                // }) 
               })
               .catch(error => {
                 console.log('Error',error);
@@ -24,6 +32,6 @@ export const getproduct = () => (dispatch) => {
       }catch(error) {
         console.log("Error", Error);      
     }
-}
-
-
+  
+    
+  }
