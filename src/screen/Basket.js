@@ -7,61 +7,78 @@ import {
   ScrollView,
   Image,
   FlatList,
+<<<<<<< Updated upstream
 SafeAreaView,
+=======
+>>>>>>> Stashed changes
 } from 'react-native';
-import React,{useEffect,useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
+<<<<<<< Updated upstream
 import { useDispatch, useSelector } from 'react-redux';
 import { getproduct } from '../redux/action/product.action';
 import { CartItem } from '../redux/action/cart.action';
+=======
+import {useDispatch, useSelector} from 'react-redux';
+import {CartItem, getproduct} from '../redux/action/product.action';
 
-const Basket = ({route,navigation}) => {
+const Basket = ({route, navigation}) => {
+
+  const [quantity, setQuantity] = useState(1)
+>>>>>>> Stashed changes
+
   const id = route.params;
+<<<<<<< Updated upstream
   const item = useSelector(state => state.cart)
   const dispatch= useDispatch()
+=======
+  const item = useSelector(state => state.product);
+  const dispatch = useDispatch();
+>>>>>>> Stashed changes
 
   useEffect(() => {
-    dispatch(CartItem())
-  }, [])
-  
+    dispatch(CartItem());
+  }, []);
 
-const renderItem = ({item}) => {
-  console.log('Itemsssssssssssssssssssssss',item);
-    return(
+  const renderItem = ({item}) => {
+    return (
       <View style={styles.itemView}>
-      <View style={styles.itemImage}>
-        <Image
-          style={styles.image}
-          source={require('../images/15.png')}
-        />
-      </View>
-      <View style={styles.itemText}>
-        <Text style={styles.itemTitle}>{item.name}</Text>
-        <Text style={styles.itemPrice}>${item.Price}</Text>
-        <View style={styles.Quantity}>
-          <Text style={styles.quantityText}>Quantity</Text>
-          <TouchableOpacity>
-            <Text style={styles.decreasBtn}>-</Text>
-          </TouchableOpacity>
-          <Text style={styles.counterNum}> 1 </Text>
-          <TouchableOpacity>
-            <Text style={styles.decreasBtn}>+</Text>
-          </TouchableOpacity>
+        <View style={styles.itemImage}>
+          <Image style={styles.image} source={require('../images/15.png')} />
+        </View>
+        
+        <View style={styles.itemText}>
+          <Text style={styles.itemTitle}>{item.name}</Text>
+          <Text style={styles.itemPrice}>${item.Price}</Text>
+          <View style={styles.Quantity}>
+            <Text style={styles.quantityText}>Quantity</Text>
+            <TouchableOpacity onPress={() => {
+              if(quantity === 1){
+                alert('Minimum product Value is 1')
+              }else{setQuantity(quantity - 1)}
+            }}>
+              <Text style={styles.decreasBtn}>-</Text>
+            </TouchableOpacity>
+            <Text style={styles.counterNum}> {quantity} </Text>
+            <TouchableOpacity onPress={() => {
+              setQuantity(quantity + 1)
+            }}>
+              <Text style={styles.decreasBtn}>+</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
-    )
-}
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
     <View style={styles.container}>
       <View style={styles.container2}>
-      
         <View style={styles.back}>
           <TouchableOpacity
             style={styles.backArrow}
@@ -94,62 +111,14 @@ const renderItem = ({item}) => {
         </View>
         <View style={{height: '65%', marginHorizontal: 20}}>
           <ScrollView>
-
-          <FlatList
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                legacyImplementation={false}
-                data={item.Product}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-              />
-
-            {/* <View style={styles.itemView}>
-              <View style={styles.itemImage}>
-                <Image
-                  style={styles.image}
-                  source={require('../images/15.png')}
-                />
-              </View>
-              <View style={styles.itemText}>
-                <Text style={styles.itemTitle}>2020 Apple iPad Air 10.9"</Text>
-                <Text style={styles.itemPrice}>$579.00</Text>
-                <View style={styles.Quantity}>
-                  <Text style={styles.quantityText}>Quantity</Text>
-                  <TouchableOpacity>
-                    <Text style={styles.decreasBtn}>-</Text>
-                  </TouchableOpacity>
-                  <Text style={styles.counterNum}> 1 </Text>
-                  <TouchableOpacity>
-                    <Text style={styles.decreasBtn}>+</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </View> */}
-
-            {/* <View style={styles.itemView}>
-              <View style={styles.itemImage}>
-                <Image
-                  style={styles.image}
-                  source={require('../images/15.png')}
-                />
-              </View>
-              <View style={styles.itemText}>
-                <Text style={styles.itemTitle}>2020 Apple iPad Air 10.9"</Text>
-                <Text style={styles.itemPrice}>$579.00</Text>
-                <View style={styles.Quantity}>
-                  <Text style={styles.quantityText}>Quantity</Text>
-                  <TouchableOpacity>
-                    <Text style={styles.decreasBtn}>-</Text>
-                  </TouchableOpacity>
-                  <Text style={styles.counterNum}> 1 </Text>
-                  <TouchableOpacity>
-                    <Text style={styles.decreasBtn}>+</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </View> */}
-        
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+              legacyImplementation={false}
+              data={item.Product}
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
+            />
           </ScrollView>
         </View>
 
@@ -167,22 +136,22 @@ const renderItem = ({item}) => {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-          <Text style={{color: '#000000'}}>Total</Text>
-          <Text style={styles.itemPrice}>$ 579</Text>
+            <Text style={{color: '#000000'}}>Total</Text>
+            <Text style={styles.itemPrice}>$ 579</Text>
           </View>
-         
-          <TouchableOpacity style={{width: '90%', alignSelf: 'center',marginVertical: 10,}}>
-        <View
-          style={{
-            alignSelf: 'center',
-            width: '100%',
-            backgroundColor: '#5956E9',
-            borderRadius: 10,
-          }}>
-          <Text style={styles.btnText}>Checkout</Text>
-        </View>
-      </TouchableOpacity>
 
+          <TouchableOpacity
+            style={{width: '90%', alignSelf: 'center', marginVertical: 10}}>
+            <View
+              style={{
+                alignSelf: 'center',
+                width: '100%',
+                backgroundColor: '#5956E9',
+                borderRadius: 10,
+              }}>
+              <Text style={styles.btnText}>Checkout</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
       <StatusBar

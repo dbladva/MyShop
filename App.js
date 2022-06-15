@@ -76,9 +76,9 @@ const StackScreen = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      {/* <Stack.Screen name="Homee" component={Welcome} />  */}
-      {/* <Stack.Screen name="Login" component={Login} /> */}
-      {/* <Stack.Screen name="Signup" component={Signup} /> */}
+      <Stack.Screen name="Homee" component={Welcome} /> 
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Home" component={HomeScreenTab} />
       <Stack.Screen name="Whishlist" component={Whishlist} />
       <Stack.Screen name="Details" component={Details} />

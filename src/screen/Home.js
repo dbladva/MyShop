@@ -172,46 +172,6 @@ const Home = ({ navigation }) => {
                 keyExtractor={item => item.id}
               />
 
-
-              {/* <TouchableOpacity>
-                <View style={styles.ItemCard}>
-                  <View style={styles.ItemImage}>
-                    <Image
-                      style={styles.ItemImageStyle}
-                      source={require('../images/watch.jpg')}
-                    />
-                  </View>
-                  <Text style={styles.Itemname}>Apple Watch</Text>
-                  <Text style={styles.subtitle}>Searies 6 RED</Text>
-                  <Text style={styles.ItenPrice}>$ 500</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.ItemCard}>
-                  <View style={styles.ItemImage}>
-                    <Image
-                      style={styles.ItemImageStyle}
-                      source={require('../images/watch2.jpg')}
-                    />
-                  </View>
-                  <Text style={styles.Itemname}>Apple Watch</Text>
-                  <Text style={styles.subtitle}>Searies 6 RED</Text>
-                  <Text style={styles.ItenPrice}>$ 500</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View style={styles.ItemCard}>
-                  <View style={styles.ItemImage}>
-                    <Image
-                      style={styles.ItemImageStyle}
-                      source={require('../images/watch2.jpg')}
-                    />
-                  </View>
-                  <Text style={styles.Itemname}>Apple Watch</Text>
-                  <Text style={styles.subtitle}>Searies 6 RED</Text>
-                  <Text style={styles.ItenPrice}>$ 500</Text>
-                </View>
-              </TouchableOpacity> */}
             </View>
           </ScrollView>
 
