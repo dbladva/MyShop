@@ -32,13 +32,14 @@ const Details = ({ route, navigation }) => {
 
 
 
-  useEffect(() => {
-    dispatch(CartItem());
-  }, []);
 
-
-  const HandelBasketItem = (id) => {
-    dispatch(CartItem(id,navigation))
+  const HandelBasketItem = (id,name,price,category,navigation) => {
+    const data = ({
+      name,
+      price,
+      category
+    })
+      dispatch(CartItem(data,navigation));
      }
   return (
     <View style={styles.container}>
@@ -149,7 +150,7 @@ const Details = ({ route, navigation }) => {
             {/* navigation.navigate('Basket',{id: itemid}) */}
 
             <TouchableOpacity 
-            onPress={() => HandelBasketItem(itemid)}
+            onPress={() => HandelBasketItem(itemid,name,price,category,navigation)}
               style={{ width: '100%', alignSelf: 'center', marginTop: 10 }}>
               <View
                 style={{

@@ -7,53 +7,70 @@ import {
   ScrollView,
   Image,
   FlatList,
-<<<<<<< Updated upstream
-SafeAreaView,
-=======
->>>>>>> Stashed changes
+  SafeAreaView
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
-<<<<<<< Updated upstream
-import { useDispatch, useSelector } from 'react-redux';
-import { getproduct } from '../redux/action/product.action';
-import { CartItem } from '../redux/action/cart.action';
-=======
 import {useDispatch, useSelector} from 'react-redux';
-import {CartItem, getproduct} from '../redux/action/product.action';
+import {deleteCartItem, GetCartItem} from '../redux/action/cart.action';
 
 const Basket = ({route, navigation}) => {
-
   const [quantity, setQuantity] = useState(1)
->>>>>>> Stashed changes
+  const [total, setTotal] = useState(0)
 
-  const id = route.params;
-<<<<<<< Updated upstream
-  const item = useSelector(state => state.cart)
-  const dispatch= useDispatch()
-=======
-  const item = useSelector(state => state.product);
+  // const id = route.params;
+  const item = useSelector(state => state.cartitem);
   const dispatch = useDispatch();
->>>>>>> Stashed changes
-
+  
   useEffect(() => {
-    dispatch(CartItem());
+    dispatch(GetCartItem());
   }, []);
 
+  const totalHandler = (price) => {
+    setTotal(total + price)
+  }
+
+  
+  const deleteHandler = (id) => {
+      dispatch(deleteCartItem(id))
+  }
+
+
   const renderItem = ({item}) => {
+    const {name,price} = item
     return (
       <View style={styles.itemView}>
         <View style={styles.itemImage}>
-          <Image style={styles.image} source={require('../images/15.png')} />
+          {/* {totalHandler(price)} */}
+        {
+              item.category === 'wearable' ? 
+              (<Image
+                style={styles.image}
+              source={require('../images/watch.jpg')}
+            /> ) : item.category==='laptop' ? ( <Image
+              style={styles.image}
+              source={require('../images/mac.jpg')}
+            />) : item.category === 'phones' ? ( <Image
+              style={styles.image}
+              source={require('../images/iphone.jpg')}
+            />) : item.category ==='drones' ? ( <Image
+              style={styles.image}
+              source={require('../images/drones.jpg')}
+            />) : ( <Image
+              style={styles.image}
+              source={require('../images/mac.jpg')}
+            />)
+            }
         </View>
         
         <View style={styles.itemText}>
           <Text style={styles.itemTitle}>{item.name}</Text>
-          <Text style={styles.itemPrice}>${item.Price}</Text>
+          <Text style={styles.itemPrice}>${item.price}</Text>
           <View style={styles.Quantity}>
             <Text style={styles.quantityText}>Quantity</Text>
             <TouchableOpacity onPress={() => {
@@ -70,6 +87,9 @@ const Basket = ({route, navigation}) => {
               <Text style={styles.decreasBtn}>+</Text>
             </TouchableOpacity>
           </View>
+          <TouchableOpacity style={styles.removebtn} onPress={() => deleteHandler(item.id)}>
+            <MaterialCommunityIcons color={'#FA4A0C'} size={25} name='delete-empty' />
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -82,7 +102,7 @@ const Basket = ({route, navigation}) => {
         <View style={styles.back}>
           <TouchableOpacity
             style={styles.backArrow}
-            onPress={() => navigation.goBack()}>
+            onPress={() => navigation.navigate('Home')}>
             <MaterialIcons name="arrow-back" color={'#000000'} size={30} />
           </TouchableOpacity>
           <View style={{alignSelf: 'center'}}>
@@ -100,6 +120,7 @@ const Basket = ({route, navigation}) => {
               backgroundColor: '#D3F2FF',
               padding: 7,
               marginTop: 20,
+              marginBottom: 5,
               borderRadius: 5,
               alignItems: 'center',
             }}>
@@ -115,7 +136,7 @@ const Basket = ({route, navigation}) => {
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
               legacyImplementation={false}
-              data={item.Product}
+              data={item.cartItem}
               renderItem={renderItem}
               keyExtractor={item => item.id}
             />
@@ -125,7 +146,7 @@ const Basket = ({route, navigation}) => {
         <View
           style={{
             marginHorizontal: 20,
-            marginVertical: 20,
+            marginVertical: 10,
             justifyContent: 'space-around',
             height: '20%',
           }}>
@@ -137,7 +158,7 @@ const Basket = ({route, navigation}) => {
               justifyContent: 'space-between',
             }}>
             <Text style={{color: '#000000'}}>Total</Text>
-            <Text style={styles.itemPrice}>$ 579</Text>
+            <Text style={styles.itemPrice}>$ {total}</Text>
           </View>
 
           <TouchableOpacity
@@ -231,6 +252,8 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width: 90,
+    borderRadius: 10,
+
   },
   itemText: {
     justifyContent: 'space-around',
@@ -270,5 +293,10 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontWeight: 'bold',
     marginHorizontal: 3,
+  },
+  removebtn:{
+    position: 'absolute',
+    top: 0,
+    right: 0,
   },
 });

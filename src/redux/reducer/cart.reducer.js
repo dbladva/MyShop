@@ -7,7 +7,6 @@ const initValue = ({
 })
 
 export const cartItem = (state = initValue,action) => {
-    console.log('cart dataaaaaa' , action.type);
     switch (action.type) {
             case ActionType.CART_ITEM:
                 return {
