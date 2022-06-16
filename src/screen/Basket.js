@@ -102,7 +102,7 @@ const Basket = ({route, navigation}) => {
         <View style={styles.back}>
           <TouchableOpacity
             style={styles.backArrow}
-            onPress={() => navigation.navigate('Home')}>
+            onPress={() => navigation.goBack()}>
             <MaterialIcons name="arrow-back" color={'#000000'} size={30} />
           </TouchableOpacity>
           <View style={{alignSelf: 'center'}}>

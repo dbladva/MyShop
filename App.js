@@ -25,6 +25,7 @@ import Delevery from './src/screen/Delevery';
 import Setting from './src/screen/Setting';
 import Basket from './src/screen/Basket';
 import Details from './src/screen/Details';
+import promises from './src/screen/promises';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -161,6 +162,19 @@ const App = ({navigation}) => {
           <Drawer.Screen
             name="Delevery"
             component={Delevery}
+            options={{
+              drawerIcon: ({focused, size}) => (
+                <MaterialCommunityIcons
+                  name="truck-delivery-outline"
+                  size={size}
+                  color={focused ? '#7cc' : '#d0c2e8'}
+                />
+              ),
+            }}
+          />
+              <Drawer.Screen
+            name="Promises"
+            component={promises}  
             options={{
               drawerIcon: ({focused, size}) => (
                 <MaterialCommunityIcons

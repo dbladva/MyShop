@@ -55,10 +55,8 @@ export const CartItem = (data,navigation) => (dispatch) => {
 
   export const deleteCartItem = (id) => (dispatch) => {
   try {
-    fetch(baseURL+'/cartitem/'+id, {
-    
+    fetch(baseURL+'/cartitem/'+id, {    
         // fetch('http://localhost:3004/products/' + id, {
-          // fetch('https://157.32.248.206:8000/products', {
           method: 'DELETE',
         })
           .then(response => {
