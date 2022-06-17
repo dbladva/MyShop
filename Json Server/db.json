@@ -24,30 +24,6 @@
   ],
   "products": [
     {
-      "id": 1,
-      "name": "dsfsf",
-      "detais": "dsfs",
-      "Price": "dsfsf",
-      "category": "phones",
-      "location": "dsfs"
-    },
-    {
-      "name": "watch",
-      "detais": "new ",
-      "Price": "999",
-      "category": "wearable",
-      "location": "none",
-      "id": 2
-    },
-    {
-      "name": "laptop",
-      "detais": "newwwwwwww",
-      "Price": "789",
-      "category": "laptop",
-      "location": "nonw",
-      "id": 3
-    },
-    {
       "name": "phones ",
       "detais": "new phones",
       "Price": "456",
@@ -108,6 +84,18 @@
       "price": "456",
       "category": "drones",
       "id": 1
+    },
+    {
+      "name": "drones",
+      "price": "456",
+      "category": "drones",
+      "id": 2
+    },
+    {
+      "name": "drones",
+      "price": "456",
+      "category": "drones",
+      "id": 3
     }
   ]
 }

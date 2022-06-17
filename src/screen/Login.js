@@ -13,13 +13,15 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {signin_action} from '../redux/action/SIgnup_action';
 import { signup } from '../redux/action/SIgnup_action';
+import auth from '@react-native-firebase/auth';
+
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState(' ');
   const [password, setPassword] = useState(' ');
   const [Signup, setSignup] = useState(0);
 
-  const login = useSelector(state => state.signin);
+  // const login = useSelector(state => state.signin);
 
   const dispatch = useDispatch();
   const LoginHandler = () => {
@@ -38,16 +40,46 @@ const Login = ({navigation}) => {
   const [Spassword, setSPassword] = useState('');
 
   // let dispatch = useDispatch();
+  // const CreateAccount = () => {
+  //   let sData = {
+  //     name,
+  //     Semail,
+  //     Spassword,
+  //   };
+  //   dispatch(signup(sData,navigation));
+  //   setName('');
+  //   setSPassword('');
+  //   setSEmail('');
+  // };
+
   const CreateAccount = () => {
-    let sData = {
-      name,
-      Semail,
-      Spassword,
-    };
-    dispatch(signup(sData,navigation));
+    // let sData = {
+    //   name,
+    //   email,
+    //   password,
+    // };
+    // dispatch(signup(sData,navigation));
+
+    auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log('User account created & signed in!');
+    })
+    .catch(error => {
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
+  
+      if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      }
+      console.error(error);
+    });
+
+    setSEmail('');
     setName('');
     setSPassword('');
-    setSEmail('');
+
   };
 
 
@@ -166,6 +198,7 @@ const Login = ({navigation}) => {
             <TextInput
               style={styles.EmailInput}
               placeholder="E-mail"
+              autoCapitalize="none"
               onChangeText={data => setEmail(data)}
             />
           </View>
@@ -276,6 +309,8 @@ const Login = ({navigation}) => {
             <TextInput
               style={styles.EmailInput}
               placeholder="E-mail"
+              value={Semail}
+              autoCapitalize="none"
               onChangeText={text => setSEmail(text)}
             />
           </View>
@@ -285,6 +320,7 @@ const Login = ({navigation}) => {
             <TextInput
               style={styles.EmailInput}
               placeholder="Name"
+              value={name}
               onChangeText={text => setName(text)}
             />
           </View>
@@ -294,6 +330,7 @@ const Login = ({navigation}) => {
             <TextInput
               style={styles.EmailInput}
               secureTextEntry={true}
+              value={Spassword}
               placeholder="Password"
               onChangeText={text => setSPassword(text)}
             />

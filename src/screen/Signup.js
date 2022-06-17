@@ -14,6 +14,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { NativeScreenNavigationContainer } from 'react-native-screens';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../redux/action/SIgnup_action';
+import auth from '@react-native-firebase/auth';
+
 
 const Signup = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -22,15 +24,33 @@ const Signup = ({ navigation }) => {
 
   let dispatch = useDispatch();
   const CreateAccount = () => {
-    let sData = {
-      name,
-      email,
-      password,
-    };
-    dispatch(signup(sData,navigation));
-    setName('');
-    setPassword('');
-    setEmail('');
+    // let sData = {
+    //   name,
+    //   email,
+    //   password,
+    // };
+    // dispatch(signup(sData,navigation));
+
+    auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log('User account created & signed in!');
+    })
+    .catch(error => {
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
+  
+      if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      }
+      console.error(error);
+    });
+
+    // setName('');
+    // setPassword('');
+    // setEmail('');
+
   };
 
   return (
