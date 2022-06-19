@@ -6,7 +6,7 @@ import * as ActionType from '../ActionType'
 export const CartItem = (data,navigation) => (dispatch) => {
     console.log("dispatchedddddddddddddddddddddddd");
     try {
-      fetch(baseURLlab+'/cartitem', {
+      fetch(baseURL+'/cartitem', {
         // fetch('http://26.190.111.222:8000/SignupData', {
         method: 'POST',
         headers: {
@@ -36,7 +36,7 @@ export const CartItem = (data,navigation) => (dispatch) => {
 
   export const GetCartItem = () => (dispatch) => {
     try {
-      fetch(baseURLlab+'/cartitem', {
+      fetch(baseURL+'/cartitem', {
         // fetch(baseURLlab+'/users', {
   
         method: 'GET',
@@ -55,8 +55,8 @@ export const CartItem = (data,navigation) => (dispatch) => {
 
   export const deleteCartItem = (id) => (dispatch) => {
   try {
-    // fetch(baseURL+'/cartitem/'+id, {    
-        fetch('http://localhost:3004/products/' + id, {
+    fetch(baseURL+'/cartitem/'+id, {    
+        // fetch('http://localhost:3004/products/' + id, {
           method: 'DELETE',
         })
           .then(response => {

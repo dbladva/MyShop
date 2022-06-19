@@ -7,29 +7,43 @@ import {
   TouchableOpacity,
   TextInput,
   StatusBar,
-  ScrollView
+  ScrollView,
+  ActivityIndicator
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {signin_action} from '../redux/action/SIgnup_action';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { signin_action } from '../redux/action/SIgnup_action';
 import { signup } from '../redux/action/SIgnup_action';
 import auth from '@react-native-firebase/auth';
+import { Loading, signInWithFirebase, signupWithFirebase } from '../redux/action/login.action';
+import { LoggedIn } from '../redux/action/loggedin.action';
 
 
-const Login = ({navigation}) => {
-  const [email, setEmail] = useState(' ');
-  const [password, setPassword] = useState(' ');
+const Login = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [Signup, setSignup] = useState(0);
+  const [loading, setisLoading] = useState(false);
+  const [hide, setShow] = useState(true)
 
-  // const login = useSelector(state => state.signin);
-
+  // useEffect(() => {
+   
+  // },[])
+  const load = useSelector(state => state.firebaseLogin);
+  console.log(load.isLoading);
+  
   const dispatch = useDispatch();
+  
   const LoginHandler = () => {
-    let lData = {
-      email,
-      password,
-    };
-    dispatch(signin_action(lData, navigation));
+    // let lData = {
+    //   email,
+    //   password,
+    // };
+    // dispatch(signin_action(lData, navigation));
+
+    dispatch(Loading())
+    dispatch(signInWithFirebase(email, password, navigation))
   };
 
 
@@ -59,23 +73,8 @@ const Login = ({navigation}) => {
     //   password,
     // };
     // dispatch(signup(sData,navigation));
-
-    auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(() => {
-      console.log('User account created & signed in!');
-    })
-    .catch(error => {
-      if (error.code === 'auth/email-already-in-use') {
-        console.log('That email address is already in use!');
-      }
-  
-      if (error.code === 'auth/invalid-email') {
-        console.log('That email address is invalid!');
-      }
-      console.error(error);
-    });
-
+    dispatch(Loading())
+    dispatch(signupWithFirebase(Semail, Spassword, navigation))
     setSEmail('');
     setName('');
     setSPassword('');
@@ -171,6 +170,8 @@ const Login = ({navigation}) => {
             borderTopLeftRadius: 20,
             justifyContent: 'space-around',
           }}>
+                  <ScrollView keyboardDismissMode='none'>
+
           <View style={styles.BtnTab}>
             <TouchableOpacity
               disabled={true}
@@ -184,10 +185,10 @@ const Login = ({navigation}) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={{
-              alignItems: 'center'
-            }}
+                alignItems: 'center'
+              }}
               onPress={() => setSignup(1)}
-              // onPress={() => navigation.navigate('Signup')}
+            // onPress={() => navigation.navigate('Signup')}
             >
               <Text style={styles.SignnInBtn}>Sign Up</Text>
             </TouchableOpacity>
@@ -204,12 +205,24 @@ const Login = ({navigation}) => {
           </View>
           <View style={styles.InputView}>
             <Text style={styles.TextInputTitle}>Enter Password</Text>
+            {/* <View style={{alignItems: 'center',justifyContent: 'space-between',flexDirection: 'row',}}> */}
             <TextInput
               style={styles.EmailInput}
-              secureTextEntry={true}
+              secureTextEntry={hide === true ? true : false}
+              autoCapitalize="none"
               placeholder="Password"
               onChangeText={text => setPassword(text)}
             />
+            <TouchableOpacity onPress={() => {
+              if(hide === true ){
+                setShow(false)
+              }else {
+                setShow(true)
+              }
+            }}>
+              <Ionicons name={hide === true ? 'eye' : 'eye-off-sharp'} color={'gray'} size={25}  style={{position: 'absolute',bottom: 20,right: 20 }}/>
+              </TouchableOpacity>
+            {/* </View> */}
           </View>
 
           <View style={styles.Login}>
@@ -217,11 +230,11 @@ const Login = ({navigation}) => {
               <Text style={styles.Loginbtn}>Forgot Password ?</Text>
             </TouchableOpacity>
           </View>
-          
+
           <TouchableOpacity
             style={styles.StartedBtn}
-            onPress={() =>  {LoginHandler()}}>
-            <Text style={styles.btnText}>Login</Text>
+            onPress={() => { LoginHandler() }}>
+            <Text style={styles.btnText}>{load.isLoading === true ? <ActivityIndicator size="small" color="#00ff00" /> : "Login"}</Text>
           </TouchableOpacity>
           <View
             style={{
@@ -235,7 +248,7 @@ const Login = ({navigation}) => {
                 borderColor: '#000000',
                 width: '30%',
               }}></View>
-            <Text style={{textAlign: 'center', margin: 20, fontWeight: 'bold'}}>
+            <Text style={{ textAlign: 'center', margin: 20, fontWeight: 'bold' }}>
               OR
             </Text>
             <View
@@ -252,7 +265,7 @@ const Login = ({navigation}) => {
               borderBottomLeftRadius: 10,
               borderBottomRightRadius: 10,
             }}>
-            <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+            <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
               <TouchableOpacity>
                 <Image
                   style={styles.LoginIcon}
@@ -273,6 +286,7 @@ const Login = ({navigation}) => {
               </TouchableOpacity>
             </View>
           </View>
+          </ScrollView>
         </View>
       ) : (
         <View
@@ -283,17 +297,18 @@ const Login = ({navigation}) => {
             borderTopLeftRadius: 20,
             justifyContent: 'space-around'
           }}>
+
           <View style={styles.BtnTab}>
             <TouchableOpacity
-            onPress={() => setSignup(0)}
+              onPress={() => setSignup(0)}
               style={{
                 alignItems: 'center',
               }}
-              >
+            >
               <Text style={styles.SignnInBtn}>Sign In</Text>
             </TouchableOpacity>
             <TouchableOpacity
-            disabled={true}
+              disabled={true}
               style={{
                 borderBottomColor: '#5956E9',
                 borderBottomWidth: 2,
@@ -303,7 +318,7 @@ const Login = ({navigation}) => {
               <Text style={styles.SignnInBtn}>Sign Up</Text>
             </TouchableOpacity>
           </View>
-
+          <ScrollView keyboardDismissMode='none'>
           <View style={styles.InputView}>
             <Text style={styles.TextInputTitle}>E-Mail address</Text>
             <TextInput
@@ -329,17 +344,27 @@ const Login = ({navigation}) => {
             <Text style={styles.TextInputTitle}>Enter Password</Text>
             <TextInput
               style={styles.EmailInput}
-              secureTextEntry={true}
+              secureTextEntry={hide === true ? true : false}
               value={Spassword}
               placeholder="Password"
+              autoCapitalize="none"
               onChangeText={text => setSPassword(text)}
             />
+            <TouchableOpacity onPress={() => {
+              if(hide === true ){
+                setShow(false)
+              }else {
+                setShow(true)
+              }
+            }}>
+              <Ionicons name={hide === true ? 'eye' : 'eye-off-sharp'} color={'gray'} size={25}  style={{position: 'absolute',bottom: 20,right: 20 }}/>
+              </TouchableOpacity>
           </View>
 
           <TouchableOpacity
             style={styles.StartedBtn}
             onPress={() => CreateAccount()}>
-            <Text style={styles.btnText}>Create Account</Text>
+            <Text style={styles.btnText}>{load.isLoading === true ? <ActivityIndicator size="small" color="#00ff00" /> : "Create Account"}</Text>
           </TouchableOpacity>
           <View
             style={{
@@ -353,7 +378,7 @@ const Login = ({navigation}) => {
                 borderColor: '#000000',
                 width: '30%',
               }}></View>
-            <Text style={{textAlign: 'center', margin: 20, fontWeight: 'bold'}}>
+            <Text style={{ textAlign: 'center', margin: 20, fontWeight: 'bold' }}>
               OR
             </Text>
             <View
@@ -370,7 +395,7 @@ const Login = ({navigation}) => {
               borderBottomLeftRadius: 10,
               borderBottomRightRadius: 10,
             }}>
-            <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+            <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
               <TouchableOpacity>
                 <Image
                   style={styles.LoginIcon}
@@ -391,6 +416,7 @@ const Login = ({navigation}) => {
               </TouchableOpacity>
             </View>
           </View>
+          </ScrollView>
         </View>
       )}
       <StatusBar
@@ -443,6 +469,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     // shadowColor: 'gray',
     // elevation: 5,
+    // width: '90%'
   },
   TextInputTitle: {
     marginLeft: 10,

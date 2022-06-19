@@ -5,8 +5,8 @@ import Login from './src/screen/Login';
 import Signup from './src/screen/Signup';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Provider} from 'react-redux';
-import {store} from './src/redux/store';
+import {Provider, useSelector} from 'react-redux';
+import {configStore, store} from './src/redux/store';
 import Home from './src/screen/Home';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import 'react-native-gesture-handler';
@@ -25,11 +25,19 @@ import Delevery from './src/screen/Delevery';
 import Setting from './src/screen/Setting';
 import Basket from './src/screen/Basket';
 import Details from './src/screen/Details';
-import promises from './src/screen/promises';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+// const selector = () => {
+//   const LoggedInCheck = useSelector(state => state.loggedin)
+//   const {loggedIn} = LoggedInCheck.loggedIn
+//   console.log('Loggggggggggggggg',loggedIn);
+
+// }
+//  selector()
 
 const HomeScreenTab = () => {
   return (
@@ -72,6 +80,7 @@ const HomeScreenTab = () => {
 };
 
 const StackScreen = () => {
+  
   return (
     <Stack.Navigator
       screenOptions={{
@@ -79,23 +88,25 @@ const StackScreen = () => {
       }}>
       <Stack.Screen name="Homee" component={Welcome} /> 
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Signup" component={Signup} />
+      {/* <Stack.Screen name="Signup" component={Signup} /> */}
       <Stack.Screen name="Home" component={HomeScreenTab} />
       <Stack.Screen name="Whishlist" component={Whishlist} />
       <Stack.Screen name="Details" component={Details} />
       <Stack.Screen name="Basket" component={Basket} />
-
     </Stack.Navigator>
   );
 };
 
 const App = ({navigation}) => {
+  
   useEffect(() => {
     SplashScreen.hide();
   });
 
+  const { Store, persistor } = configStore();
   return (
-    <Provider store={store}>
+        <Provider store={Store}>
+      <PersistGate loading={null} persistor={persistor}>
       <NavigationContainer>
         <Drawer.Navigator
           screenOptions={{
@@ -172,19 +183,6 @@ const App = ({navigation}) => {
               ),
             }}
           />
-              <Drawer.Screen
-            name="Promises"
-            component={promises}  
-            options={{
-              drawerIcon: ({focused, size}) => (
-                <MaterialCommunityIcons
-                  name="truck-delivery-outline"
-                  size={size}
-                  color={focused ? '#7cc' : '#d0c2e8'}
-                />
-              ),
-            }}
-          />
 
           <Drawer.Screen
             name="Setting"
@@ -201,6 +199,7 @@ const App = ({navigation}) => {
           />
         </Drawer.Navigator>
       </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 };

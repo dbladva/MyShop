@@ -2,8 +2,8 @@ import axios from "axios"
 import { baseURL } from "../baseURL";
 
 const Instance = axios.create({
-    baseURL: 'http://localhost:3004',
-    // baseURL: baseURL,
+    // baseURL: 'http://localhost:3004',
+    baseURL: baseURL,
     timeout: 3000,
 });
 
@@ -35,7 +35,7 @@ export const deleteRequest = (path,id) => {
 }
 
 
-export const updateProduct = (path,ItemId,data) => {
+export const updateProduct = (path,ItemId,data) => {        
     const {id} = ItemId
     return SendRequest({
         url: path + id,
