@@ -1,6 +1,5 @@
 import auth from '@react-native-firebase/auth';
 import * as ActionType from '../ActionType'
-import { LoggedIn } from './loggedin.action';
 
 export const signupWithFirebase = (email,password,navigation) => (dispatch) => {
     dispatch(Loading())
@@ -36,7 +35,6 @@ export const signInWithFirebase = (email,password,navigation) => (dispatch) => {
     auth()
     .signInWithEmailAndPassword(email, password)
     .then(() => {
-      dispatch(LoggedIn())
       console.log('User account created & signed in!');
       // dispatch({type: ActionType.SUCCESSFULLY_SIGNUP})
     navigation.navigate('Home')

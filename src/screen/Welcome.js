@@ -12,8 +12,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const Welcome = ({navigation}) => {
-  const LoggedInCheck = useSelector(state => state.loggedin)
-  console.log('bbbbbbbbbbbbbbb',LoggedInCheck);
+
   return (
     <View style={styles.container}>
       <View>

@@ -1,8 +1,7 @@
 import { combineReducers } from "redux";
 import { cartItem } from "./cart.reducer";
 import { getCartItem } from "./Getcart.reducer";
-import { LoggedinOrNot } from "./LoggedInOrNot.reducer";
-import { LoginWithFirebase } from "./Login.reducer";
+import { LoginWithFirebase } from "./Auth.reducer";
 import { GetProduct } from "./product.reducer";
 import { signup_reducer } from "./Signup_reducer";
 
@@ -12,5 +11,4 @@ export const RootReducer = combineReducers({
     cart : cartItem,
     cartitem: getCartItem,
     firebaseLogin: LoginWithFirebase,
-    loggedin : LoggedinOrNot
 })

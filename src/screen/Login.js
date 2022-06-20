@@ -17,7 +17,6 @@ import { signin_action } from '../redux/action/SIgnup_action';
 import { signup } from '../redux/action/SIgnup_action';
 import auth from '@react-native-firebase/auth';
 import { Loading, signInWithFirebase, signupWithFirebase } from '../redux/action/login.action';
-import { LoggedIn } from '../redux/action/loggedin.action';
 
 
 const Login = ({ navigation }) => {
@@ -27,9 +26,6 @@ const Login = ({ navigation }) => {
   const [loading, setisLoading] = useState(false);
   const [hide, setShow] = useState(true)
 
-  // useEffect(() => {
-   
-  // },[])
   const load = useSelector(state => state.firebaseLogin);
   console.log(load.isLoading);
   
@@ -289,6 +285,7 @@ const Login = ({ navigation }) => {
           </ScrollView>
         </View>
       ) : (
+        
         <View
           style={{
             height: '70%',

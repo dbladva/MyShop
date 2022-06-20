@@ -8,9 +8,9 @@ import { RootReducer } from "./reducer";
 // export const store = createStore(RootReducer,applyMiddleware(thunk))
 
 const persistConfig = {
-    key: 'root',
-    storage: AsyncStorage,
-    whitelist: ['loggedin']
+    // key: 'root',
+    // storage: AsyncStorage,
+    // whitelist: ['loggedin']
   }
    
   const persistedReducer = persistReducer(persistConfig, RootReducer)

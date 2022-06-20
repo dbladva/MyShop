@@ -31,14 +31,6 @@ const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-// const selector = () => {
-//   const LoggedInCheck = useSelector(state => state.loggedin)
-//   const {loggedIn} = LoggedInCheck.loggedIn
-//   console.log('Loggggggggggggggg',loggedIn);
-
-// }
-//  selector()
-
 const HomeScreenTab = () => {
   return (
     <Tab.Navigator
