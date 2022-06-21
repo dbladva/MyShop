@@ -15,6 +15,7 @@ import { NativeScreenNavigationContainer } from 'react-native-screens';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../redux/action/SIgnup_action';
 import auth from '@react-native-firebase/auth';
+import { createUserWithEmail } from '../redux/action/auth.action';
 
 
 const Signup = ({ navigation }) => {
@@ -29,23 +30,7 @@ const Signup = ({ navigation }) => {
     //   email,
     //   password,
     // };
-    // dispatch(signup(sData,navigation));
-
-    auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(() => {
-      console.log('User account created & signed in!');
-    })
-    .catch(error => {
-      if (error.code === 'auth/email-already-in-use') {
-        console.log('That email address is already in use!');
-      }
-  
-      if (error.code === 'auth/invalid-email') {
-        console.log('That email address is invalid!');
-      }
-      console.error(error);
-    });
+    dispatch(createUserWithEmail(email,password));
 
     // setName('');
     // setPassword('');

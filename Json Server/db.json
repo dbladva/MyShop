@@ -78,24 +78,5 @@
       "id": 16
     }
   ],
-  "cartitem": [
-    {
-      "name": "drones",
-      "price": "456",
-      "category": "drones",
-      "id": 1
-    },
-    {
-      "name": "drones",
-      "price": "456",
-      "category": "drones",
-      "id": 2
-    },
-    {
-      "name": "drones",
-      "price": "456",
-      "category": "drones",
-      "id": 3
-    }
-  ]
+  "cartitem": []
 }

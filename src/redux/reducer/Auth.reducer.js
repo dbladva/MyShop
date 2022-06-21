@@ -1,37 +1,65 @@
 import * as ActionType from '../ActionType'
 
-const InitVal = ({
+const initValue = {
     isLoading: false,
-    signup: '',
-    Error: '',
-})
+    user: null,
+    error: '',
+    authMsg: ''
+}
 
-export const LoginWithFirebase = (state=InitVal, action) => {
-switch (action.type) {
-    case ActionType.SUCCESSFULLY_SIGNUP:
-        return{
-            ...state,
-            isLoading: false,
-            signup: alert('Succesfully Signuped'),
-            Error: ''
-        }
-
-        case ActionType.ERROR_SIGNUP:
-            return{
+export const authReducer = (state = initValue, action) => {
+    switch (action.type) {
+        case ActionType.USER_EMAIL:
+            return {
                 ...state,
                 isLoading: false,
-                signup: '',
-                Error: alert(action.payload)
+                error: '',
+                user: null,
+                authMsg: alert(action.payload)
             }
-
+    
+        case ActionType.AUTH_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                error: alert(action.payload),
+                user: null,
+                authMsg: ''
+            }
             case ActionType.LOADING_LOGIN:
             return {
                 ...state,
                 isLoading: true,
-                Error: ''
+                error: '',
+                user: null,
+                authMsg: ''
             }
+            case ActionType.SIGNIN_SUCCESS:
+                return {
+                    ...state,
+                    isLoading: false,
+                    error: '',
+                    user: action.payload,
+                    authMsg: ''
+                }
+                case ActionType.SIGNOUT_USER:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                user: null,
+                authMsg: alert(action.payload),
+            }
+        case ActionType.RESET_PASSWORD:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                user: null,
+                authMsg:alert(action.payload),
+            }
+        default:
+            return state
 
-    default:
-        return state;
-}
+    }
 }

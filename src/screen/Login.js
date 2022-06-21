@@ -13,21 +13,17 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { signin_action } from '../redux/action/SIgnup_action';
-import { signup } from '../redux/action/SIgnup_action';
-import auth from '@react-native-firebase/auth';
-import { Loading, signInWithFirebase, signupWithFirebase } from '../redux/action/login.action';
+import { createUserWithEmail, Loading, signinUserEmail } from '../redux/action/auth.action';
 
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [Signup, setSignup] = useState(0);
-  const [loading, setisLoading] = useState(false);
   const [hide, setShow] = useState(true)
 
-  const load = useSelector(state => state.firebaseLogin);
-  console.log(load.isLoading);
+  const load = useSelector(state => state.auth);
+  // console.log(load.isLoading);
   
   const dispatch = useDispatch();
   
@@ -37,9 +33,7 @@ const Login = ({ navigation }) => {
     //   password,
     // };
     // dispatch(signin_action(lData, navigation));
-
-    dispatch(Loading())
-    dispatch(signInWithFirebase(email, password, navigation))
+    dispatch(signinUserEmail(email, password))
   };
 
 
@@ -49,19 +43,6 @@ const Login = ({ navigation }) => {
   const [Semail, setSEmail] = useState('');
   const [Spassword, setSPassword] = useState('');
 
-  // let dispatch = useDispatch();
-  // const CreateAccount = () => {
-  //   let sData = {
-  //     name,
-  //     Semail,
-  //     Spassword,
-  //   };
-  //   dispatch(signup(sData,navigation));
-  //   setName('');
-  //   setSPassword('');
-  //   setSEmail('');
-  // };
-
   const CreateAccount = () => {
     // let sData = {
     //   name,
@@ -69,8 +50,10 @@ const Login = ({ navigation }) => {
     //   password,
     // };
     // dispatch(signup(sData,navigation));
+
     dispatch(Loading())
-    dispatch(signupWithFirebase(Semail, Spassword, navigation))
+    dispatch(createUserWithEmail(Semail, Spassword,))
+
     setSEmail('');
     setName('');
     setSPassword('');

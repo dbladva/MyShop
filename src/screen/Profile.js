@@ -8,12 +8,18 @@ import {
   Image,
 } from 'react-native';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
+import { signoutEmail } from '../redux/action/auth.action';
 
 const Profile = ({navigation}) => {
+const dispatch = useDispatch()
+  const LogoutHandler = () => {
+    dispatch(signoutEmail())
+  }
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
@@ -78,6 +84,13 @@ const Profile = ({navigation}) => {
         <TouchableOpacity>
           <View style={styles.EditProfile}>
             <Text style={styles.name}>Notification</Text>
+            <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
+          </View>
+        </TouchableOpacity>
+        
+        <TouchableOpacity onPress={() => LogoutHandler()}>
+          <View style={styles.EditProfile}>
+            <Text style={styles.name}>Logout</Text>
             <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
           </View>
         </TouchableOpacity>
