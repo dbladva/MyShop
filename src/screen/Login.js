@@ -36,7 +36,6 @@ const Login = ({ navigation }) => {
     dispatch(signinUserEmail(email, password))
   };
 
-
   // Signup 
 
   const [name, setName] = useState('');
@@ -260,7 +259,7 @@ const Login = ({ navigation }) => {
               <TouchableOpacity>
                 <Image
                   style={styles.LoginIcon}
-                  source={require('../images/twitter.png')}
+                  source={require('../images/p.png')}
                 />
               </TouchableOpacity>
             </View>

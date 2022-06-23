@@ -114,7 +114,7 @@ export default function Main() {
     console.log(auth.user);
     
     return (
-        auth.user !== null || uid !== null ?
+        auth.user !== null && uid ?
         <NavigationContainer>
             <Drawer.Navigator
                 screenOptions={{

@@ -1,60 +1,3 @@
-// import auth from '@react-native-firebase/auth';
-// import * as ActionType from '../ActionType'
-
-// export const createUserWithEmail = (email,password) => async (dispatch) => {
-//     dispatch(Loading())
-//     auth()
-//     .createUserWithEmailAndPassword(email, password)
-//     .then(() => {
-//       console.log('User account created & signed in!');
-//       dispatch({type: ActionType.SUCCESSFULLY_SIGNUP, payload: 'Please verify email id.'})
-//     })
-//     .catch(error => {
-//       if (error.code === 'auth/email-already-in-use') {
-//         dispatch({ type: ActionType.AUTH_ERROR, payload: "That email address is already in use!" })
-//         // navigation.navigate  
-//       }
-
-//       if (error.code === 'auth/invalid-email') {
-//         dispatch({ type: ActionType.AUTH_ERROR, payload: "That email address is already in use!" })
-//       }
-//       console.error(error);
-//       dispatch({type: ActionType.ERROR_SIGNUP, payload: error.message})
-
-//     });
-// }
-
-// export const Loading = () => (dispatch) => {
-//     dispatch({type: ActionType.LOADING_LOGIN});
-// }
-
-// export const signInWithFirebase = (email,password,navigation) => async (dispatch) => {
-//     dispatch(Loading())
-//     auth()
-//     .signInWithEmailAndPassword(email, password)
-//     .then(() => {
-//       console.log('User account created & signed in!');
-//       // dispatch({type: ActionType.SUCCESSFULLY_SIGNUP})
-//     navigation.navigate('Home')
-
-//     })
-//     .catch(error => {
-//       if (error.code === 'auth/email-already-in-use') {
-//         console.log('That email address is already in use!');
-//         dispatch({type: ActionType.ERROR_SIGNUP, payload: error.message})
-//         // navigation.navigate  
-//       }
-
-//       if (error.code === 'auth/invalid-email') {
-//         console.log('That email address is invalid!');
-//       }
-//       console.error(error);
-//       dispatch({type: ActionType.ERROR_SIGNUP, payload: error.message})
-//     });
-// }  
-
-
-
 import AsyncStorage from '@react-native-community/async-storage';
 import auth from '@react-native-firebase/auth';
 import * as ActionType from '../ActionType'
@@ -117,6 +60,7 @@ export const Loading = () => (dispatch) => {
             auth()
                 .signOut()
                 .then(() => {
+                    AsyncStorage.clear()
                     dispatch({type: ActionType.SIGNOUT_USER, payload: "Signout successfully."})
                     
                 });
@@ -136,4 +80,6 @@ export const Loading = () => (dispatch) => {
             dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
         }
     }
+
+    
 
