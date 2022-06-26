@@ -14,6 +14,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createUserWithEmail, Loading, signinUserEmail } from '../redux/action/auth.action';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 
 const Login = ({ navigation }) => {
@@ -58,6 +59,19 @@ const Login = ({ navigation }) => {
     setSPassword('');
 
   };
+
+
+  GoogleSignin.configure({
+    webClientId: '94612728339-or1vg03qmlj264hq33uj6umt9kccui3e.apps.googleusercontent.com',
+  });
+  const GoogleLoginHandler = async () => {
+    const { idToken } = await GoogleSignin.signIn();
+
+    const googleCredential = await auth.GoogleAuthProvider.credential(idToken);
+  
+    const result = await auth().signInWithCredential(googleCredential);
+    console.log(result);
+  }
 
 
   return (
@@ -244,7 +258,7 @@ const Login = ({ navigation }) => {
               borderBottomRightRadius: 10,
             }}>
             <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => GoogleLoginHandler()}>
                 <Image
                   style={styles.LoginIcon}
                   source={require('../images/google.png')}
@@ -375,7 +389,7 @@ const Login = ({ navigation }) => {
               borderBottomRightRadius: 10,
             }}>
             <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => GoogleLoginHandler()}>
                 <Image
                   style={styles.LoginIcon}
                   source={require('../images/google.png')}
