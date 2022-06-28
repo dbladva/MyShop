@@ -13,8 +13,9 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { createUserWithEmail, Loading, signinUserEmail } from '../redux/action/auth.action';
+import { createUserWithEmail, Loading, LoginwithGoogle, signinUserEmail } from '../redux/action/auth.action';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
 
 
 const Login = ({ navigation }) => {
@@ -59,23 +60,10 @@ const Login = ({ navigation }) => {
     setSPassword('');
 
   };
-
-
-
-  useEffect(() => {
-    GoogleSignin.configure({
-      webClientId:
-        '122462149099-6nhidetiq9419e0uvlbamvt7ofurpftq.apps.googleusercontent.com',
-    });
-  }, []);
-
-  const GoogleLoginHandler = async () => {
-    await GoogleSignin.hasPlayServices();
-    const {accessToken, idToken} = await GoogleSignin.signIn();
-    const credential = auth.GoogleAuthProvider.credential(idToken, accessToken);
-    return await auth().signInWithCredential(credential);
+  
+  const GoogleLoginHandler = () => {
+    dispatch(LoginwithGoogle())
   };
-
 
   return (
     <SafeAreaView style={styles.container}>

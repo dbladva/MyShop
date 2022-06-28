@@ -100,7 +100,7 @@ export default function Main() {
         try {
             const value = await AsyncStorage.getItem('user')
             if (value !== null) {
-                console.log(value);
+                console.log('Value',value);
                 setUid(value)
             }
         } catch (e) {
@@ -111,10 +111,10 @@ export default function Main() {
     console.log('uidddddddd', uid);
     
     let auth = useSelector(state => state.auth);
-    console.log(auth.user);
+    console.log('user',auth.user);
     
     return (
-        auth.user !== null && uid ?
+        auth.user !== null || uid ?
         <NavigationContainer>
             <Drawer.Navigator
                 screenOptions={{
@@ -125,7 +125,6 @@ export default function Main() {
                 }}
                 drawerContent={props => <CustomDrawer {...props} />}>
                
-
                 <Drawer.Screen
                     name="Profile"
                     component={StackScreen}

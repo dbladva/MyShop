@@ -17,9 +17,11 @@ import { signoutEmail } from '../redux/action/auth.action';
 
 const Profile = ({navigation}) => {
 const dispatch = useDispatch()
+
   const LogoutHandler = () => {
     dispatch(signoutEmail())
   }
+  
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
