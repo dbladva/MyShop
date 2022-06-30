@@ -16,6 +16,7 @@ import { color, useDerivedValue } from 'react-native-reanimated';
 import { useSelector, useDispatch } from 'react-redux'
 import { StatusBar } from 'react-native'
 import { getproduct } from '../redux/action/product.action';
+import firestore from '@react-native-firebase/firestore';
 
 const Home = ({ navigation }) => {
   const [category, setCategory] = useState('wearable')
@@ -24,7 +25,7 @@ const Home = ({ navigation }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getproduct())
+    dispatch(getproduct())  
   }, [])
 
 
@@ -42,8 +43,8 @@ const Home = ({ navigation }) => {
               />
             </View>
             <Text style={styles.Itemname}>{item.name}</Text>
-            <Text style={styles.subtitle}>{item.detais}</Text>
-            <Text style={styles.ItenPrice}>${item.Price}</Text>
+            <Text style={styles.subtitle}>{item.details}</Text>
+            <Text style={styles.ItenPrice}>${item.price}</Text>
           </View>
         </TouchableOpacity>
       )
@@ -59,13 +60,13 @@ const Home = ({ navigation }) => {
               />
             </View>
             <Text style={styles.Itemname}>{item.name}</Text>
-            <Text style={styles.subtitle}>{item.detais}</Text>
-            <Text style={styles.ItenPrice}>${item.Price}</Text>
+            <Text style={styles.subtitle}>{item.details}</Text>
+            <Text style={styles.ItenPrice}>${item.price}</Text>
           </View>
         </TouchableOpacity>
       )
     }
-    else if (category === 'phones' && item.category === 'phones') {
+    else if (category === 'phones' && item.category === 'phones') { 
       return (
         <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.Price,category: item.category})}>
           <View style={styles.ItemCard}>
@@ -77,8 +78,8 @@ const Home = ({ navigation }) => {
               />
             </View>
             <Text style={styles.Itemname}>{item.name}</Text>
-            <Text style={styles.subtitle}>{item.detais}</Text>
-            <Text style={styles.ItenPrice}>${item.Price}</Text>
+            <Text style={styles.subtitle}>{item.details}</Text>
+            <Text style={styles.ItenPrice}>${item.price}</Text>
           </View>
         </TouchableOpacity>
       )
@@ -95,8 +96,8 @@ const Home = ({ navigation }) => {
               />
             </View>
             <Text style={styles.Itemname}>{item.name}</Text>
-            <Text style={styles.subtitle}>{item.detais}</Text>
-            <Text style={styles.ItenPrice}>${item.Price}</Text>
+            <Text style={styles.subtitle}>{item.details}</Text>
+            <Text style={styles.ItenPrice}>${item.price}</Text>
           </View>
         </TouchableOpacity>
       )
@@ -166,12 +167,11 @@ const Home = ({ navigation }) => {
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                legacyImplementation={false}
+                // legacyImplementation={false}
                 data={item.Product}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
               />
-
             </View>
           </ScrollView>
 

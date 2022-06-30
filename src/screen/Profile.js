@@ -14,6 +14,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
 import { signoutEmail } from '../redux/action/auth.action';
+import firestore from '@react-native-firebase/firestore';
+
 
 const Profile = ({navigation}) => {
 const dispatch = useDispatch()

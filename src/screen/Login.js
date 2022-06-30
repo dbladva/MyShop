@@ -13,7 +13,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { createUserWithEmail, Loading, LoginwithGoogle, signinUserEmail } from '../redux/action/auth.action';
+import { createUserWithEmail, FacebookLogin, Loading, LoginwithGoogle, signinUserEmail } from '../redux/action/auth.action';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 
@@ -54,7 +54,6 @@ const Login = ({ navigation }) => {
 
     dispatch(Loading())
     dispatch(createUserWithEmail(Semail, Spassword,))
-
     setSEmail('');
     setName('');
     setSPassword('');
@@ -64,6 +63,10 @@ const Login = ({ navigation }) => {
   const GoogleLoginHandler = () => {
     dispatch(LoginwithGoogle())
   };
+
+  const FacebookHandle = () => {
+    dispatch(FacebookLogin())
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -255,7 +258,7 @@ const Login = ({ navigation }) => {
                   source={require('../images/google.png')}
                 />
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => FacebookHandle()}>
                 <Image
                   style={styles.LoginIcon}
                   source={require('../images/facebook.png')}
@@ -386,7 +389,7 @@ const Login = ({ navigation }) => {
                   source={require('../images/google.png')}
                 />
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => FacebookHandle()}>
                 <Image
                   style={styles.LoginIcon}
                   source={require('../images/facebook.png')}
