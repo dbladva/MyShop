@@ -5,29 +5,29 @@ import firestore from '@react-native-firebase/firestore';
 
 
 export const getproduct = () => async (dispatch) => {
-  // try {
-  //     // fetch(baseURL+'/products', {
-  //     // // fetch(baseURLlab,'/products', {
-  //     //       method: 'GET',
-  //     //     })
-  //     //       .then(response => {
-  //     //         if (response.ok) {
-  //     //           return response.json()
-  //     //         } else {
-  //     //           throw new Error('Something went wrong');
-  //     //         }
-  //     //       })
-  //     getAllProductsDetails()
-  //           .then(({data}) => {
-  //             dispatch({type:ActionType.GET_PRODUCT,payload:data})
-  //             console.log(data);
-  //           })
-  //           .catch(error => {
-  //             console.log('Error',error);
-  //           })
-  //   }catch(error) {
-  //     console.log("Error", Error);      
-  // }
+  try {
+      // fetch(baseURL+'/products', {
+      // // fetch(baseURLlab,'/products', {
+      //       method: 'GET',
+      //     })
+      //       .then(response => {
+      //         if (response.ok) {
+      //           return response.json()
+      //         } else {
+      //           throw new Error('Something went wrong');
+      //         }
+      //       })
+      getAllProductsDetails()
+            .then(({data}) => {
+              dispatch({type:ActionType.GET_PRODUCT,payload:data})
+              console.log(data);
+            })
+            .catch(error => {
+              console.log('Error',error);
+            })
+    }catch(error) {
+      console.log("Error", Error);      
+  }
 
   
 

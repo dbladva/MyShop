@@ -103,24 +103,24 @@ export const Loading = () => (dispatch) => {
         }
     }
 
-   export const FacebookLogin = () => async(dispatch) => {
-    try {
-        const result = await LoginManager.logInWithPermissions(['public_profile', 'ladvadharmesh03@gmail.com']);
-    if (result.isCancelled) {
-      throw 'User cancelled the login process';
-    }
-    const data = await AccessToken.getCurrentAccessToken();
-    if (!data) {
-      throw 'Something went wrong obtaining access token';
-    }
-    const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);  
-    const r =  auth().signInWithCredential(facebookCredential);
-    console.log(r);
-    } catch (error) {
-        console.log(error);
-        dispatch({ type: ActionType.AUTH_ERROR, payload: error.code})
-    }
-    }
+//    export const FacebookLogin = () => async(dispatch) => {
+//     try {
+//         const result = await LoginManager.logInWithPermissions(['public_profile', 'ladvadharmesh03@gmail.com']);
+//     if (result.isCancelled) {
+//       throw 'User cancelled the login process';
+//     }
+//     const data = await AccessToken.getCurrentAccessToken();
+//     if (!data) {
+//       throw 'Something went wrong obtaining access token';
+//     }
+//     const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);  
+//     const r =  auth().signInWithCredential(facebookCredential);
+//     console.log(r);
+//     } catch (error) {
+//         console.log(error);
+//         dispatch({ type: ActionType.AUTH_ERROR, payload: error.code})
+//     }
+//     }
 
 
 
