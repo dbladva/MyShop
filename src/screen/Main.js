@@ -111,10 +111,10 @@ export default function Main() {
     console.log('uidddddddd', uid);
     
     let auth = useSelector(state => state.auth);
-    console.log('user',auth.user);
+    console.log('user',auth.user ,);
     
     return (
-        auth.user !== null || uid ?
+        auth.user !== null || uid  ?
         <NavigationContainer>
             <Drawer.Navigator
                 screenOptions={{

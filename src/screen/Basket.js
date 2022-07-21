@@ -7,7 +7,8 @@ import {
   ScrollView,
   Image,
   FlatList,
-  SafeAreaView
+  SafeAreaView,
+  ActivityIndicator
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -17,11 +18,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {deleteCartItem, GetCartItem} from '../redux/action/cart.action';
+import {cartLoading, deleteCartItem, GetCartItem} from '../redux/action/cart.action';
 
 const Basket = ({route, navigation}) => {
   const [quantity, setQuantity] = useState(1)
-  const [total, setTotal] = useState(0)
+  // const [total, setTotal] = useState(0)
+
+  const total = []
 
   // const id = route.params;
   const item = useSelector(state => state.cartitem);
@@ -31,18 +34,16 @@ const Basket = ({route, navigation}) => {
     dispatch(GetCartItem());
   }, []);
 
-  const totalHandler = (price) => {
-    setTotal(total + price)
-  }
 
   
   const deleteHandler = (id) => {
+    dispatch(cartLoading)
       dispatch(deleteCartItem(id))
   }
 
-
   const renderItem = ({item}) => {
-    const {name,price} = item
+    
+
     return (
       <View style={styles.itemView}>
         <View style={styles.itemImage}>
@@ -88,7 +89,11 @@ const Basket = ({route, navigation}) => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.removebtn} onPress={() => deleteHandler(item.id)}>
+            {item.isLoading === true ? 
+                <ActivityIndicator size="small" color="#0000ff" />
+                :
             <MaterialCommunityIcons color={'#FA4A0C'} size={25} name='delete-empty' />
+          }
           </TouchableOpacity>
         </View>
       </View>
@@ -256,6 +261,7 @@ const styles = StyleSheet.create({
 
   },
   itemText: {
+    width: '60%',
     justifyContent: 'space-around',
     margin: 10,
     marginVertical: 20,

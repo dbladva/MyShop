@@ -31,9 +31,10 @@ const Home = ({ navigation }) => {
 
   const renderItem = ({ item }) => {
     const {id,name} = item;
+    // console.log('priceeeeeeeeeeeeeeeee',item.price);
     if (category === 'wearable' && item.category === 'wearable') {
       return (
-        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.Price,category: item.category})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category})}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
               <Image
@@ -50,7 +51,7 @@ const Home = ({ navigation }) => {
       )
     } else if (category === 'laptop' && item.category === 'laptop') {
       return (
-        <TouchableOpacity  onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.Price,category: item.category})}>
+        <TouchableOpacity  onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category})}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
               <Image
@@ -68,7 +69,7 @@ const Home = ({ navigation }) => {
     }
     else if (category === 'phones' && item.category === 'phones') { 
       return (
-        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.Price,category: item.category})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category})}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
               <Image
@@ -86,7 +87,7 @@ const Home = ({ navigation }) => {
     }
     else if (category === 'drones' && item.category === 'drones') {
       return (
-        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.Price,category: item.category})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category})}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
               <Image
@@ -160,7 +161,6 @@ const Home = ({ navigation }) => {
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                // marginLeft: 30,
                 marginHorizontal: 16,
               }}>
 

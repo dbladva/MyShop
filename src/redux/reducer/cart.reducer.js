@@ -22,6 +22,15 @@ export const cartItem = (state = initValue,action) => {
                     cart: state.cart.filter((p) => p.id !== action.payload),
                     Error: '',
                 }
+
+                case ActionType.LOADING_CART:
+                return {
+                    ...state,
+                    isLoading: true,
+                    cart: [],
+                    Error: '',
+                }
+
     
         default: 
         return state

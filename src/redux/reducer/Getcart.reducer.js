@@ -21,7 +21,6 @@ switch (action.type) {
             return {
                 ...state,
                 cartItem: state.cartItem.filter((p) => p.id !== action.payload),
-                // cartItem: action.payload,
                 isLoading: false,
                 error: ''
             }

@@ -1,80 +1,67 @@
-import {Alert} from "react-native";
-
+import { Alert } from "react-native";
 import { baseURL, baseURLlab } from '../../baseURL';
 import * as ActionType from '../ActionType'
+import firestore from '@react-native-firebase/firestore';
 
-export const CartItem = (data,navigation) => (dispatch) => {
-    console.log("dispatchedddddddddddddddddddddddd");
-    try {
-      fetch(baseURL+'/cartitem', {
-        // fetch('http://26.190.111.222:8000/SignupData', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-        .then((data) => {
-          console.log('Success:', data);
-          navigation.navigate('Basket')
-          // Alert.alert(
-          //   "Succesfully",
-          //   "Item add to Basket",
-          // [
-          //     { text: "OK" ,onPress: () => navigation.navigate('Basket')},
-          // ]
-          //         );
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    } catch (e) {
-      console.log(e);
-    }
-    
-  }
-
-  export const GetCartItem = () => (dispatch) => {
-    try {
-      fetch(baseURL+'/cartitem', {
-        // fetch(baseURLlab+'/users', {
-  
-        method: 'GET',
-      })
-
-        .then(response => response.json())
-        .then((data) => {
-          console.log('Succece', data);
-          dispatch({type: ActionType.GET_CART_ITEM, payload: data})
-        });
-    } catch (e) {
-      alert('Item Not Add to cart ');
-    }
-  }
-
-
-  export const deleteCartItem = (id) => (dispatch) => {
+export const CartItem = (data,navigation) => async (dispatch) => {
   try {
-    fetch(baseURL+'/cartitem/'+id, {    
-        // fetch('http://localhost:3004/products/' + id, {
-          method: 'DELETE',
-        })
-          .then(response => {
-            if (response.ok) {
-              return response
-            } else {
-              throw new Error('Something went wrong');
-            }
-          })
-          .then(data => {
-            dispatch({ type: ActionType.DELETE_CART_ITEM, payload: data })
-          })
-          .catch(error => {
-            console.log(error.message);   
-       });
-     
+    dispatch(cartLoading())
+    await firestore()
+      .collection('Cart')
+      .add({
+        name: data.name,
+        price: data.price,
+        category: data.category,
+      })
+      .then(() => {
+        console.log('User added!');
+        navigation.navigate('Basket')
+      });
   } catch (error) {
-    // dispatch(errorProduct(error))
     console.log(error);
   }
+}
+
+export const GetCartItem = () => async (dispatch) => {
+  try {
+    dispatch(cartLoading())
+    let data = [];
+    await firestore()
+      .collection('Cart')
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(documentSnapshot => {
+          let d = {
+            id: documentSnapshot.id,
+            ...documentSnapshot.data()
+          }
+          data.push(d);
+        });
+      });
+    dispatch({ type: ActionType.GET_CART_ITEM, payload: data })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+export const deleteCartItem = (id) => async (dispatch) => {
+  try {
+    dispatch(cartLoading())
+    await firestore()
+    .collection('Cart')
+    .doc(id)
+    .delete()
+    .then(() => {
+      console.log('Item deleted!');
+      dispatch({type:ActionType.DELETE_CART_ITEM,payload: id})
+    }); 
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+export const cartLoading = () => async(dispatch) => {
+  dispatch({type:ActionType.LOADING_CART})
 }

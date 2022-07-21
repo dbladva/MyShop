@@ -57,13 +57,13 @@ export const Loading = () => (dispatch) => {
     }
 
     export const signoutEmail = () => (dispatch) => {
-        AsyncStorage.clear()
+       
         try {
             auth()
                 .signOut()
                 .then(() => {
                     AsyncStorage.clear()
-                    dispatch({type: ActionType.SIGNOUT_USER, payload: "Signout successfully."})
+                    dispatch({type: ActionType.SIGNOUT_USER, payload: "Signout successfully."}) 
                     
                 });
         } catch (e) {

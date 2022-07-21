@@ -13,3 +13,6 @@ export const AUTH_ERROR = 'AUTH_ERROR'
 export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS'
 export const SIGNOUT_USER = 'SIGNOUT_USER'
 export const RESET_PASSWORD = 'RESET_PASSWORD'
+
+
+export const LOADING_CART = 'LOADING_CART'

@@ -25,19 +25,16 @@ const Details = ({ route, navigation }) => {
   const { price } = route.params;
   const { category } = route.params;
 
+
   const item = useSelector(state => state.cart);
   const dispatch = useDispatch();
   const ItemData = item.cart;
-
-
-
-
 
   const HandelBasketItem = (id,name,price,category,navigation) => {
     const data = ({
       name,
       price,
-      category
+      category,
     })
       dispatch(CartItem(data,navigation));
      }

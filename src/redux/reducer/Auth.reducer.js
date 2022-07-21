@@ -17,7 +17,7 @@ export const authReducer = (state = initValue, action) => {
                 user: null,
                 authMsg: alert(action.payload)
             }
-    
+
         case ActionType.AUTH_ERROR:
             return {
                 ...state,
@@ -26,7 +26,7 @@ export const authReducer = (state = initValue, action) => {
                 user: null,
                 authMsg: ''
             }
-            case ActionType.LOADING_LOGIN:
+        case ActionType.LOADING_LOGIN:
             return {
                 ...state,
                 isLoading: true,
@@ -34,15 +34,15 @@ export const authReducer = (state = initValue, action) => {
                 user: null,
                 authMsg: ''
             }
-            case ActionType.SIGNIN_SUCCESS:
-                return {
-                    ...state,
-                    isLoading: false,
-                    error: '',
-                    user: action.payload,
-                    authMsg: ''
-                }
-                case ActionType.SIGNOUT_USER:
+        case ActionType.SIGNIN_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                user: action.payload,
+                authMsg: ''
+            }
+        case ActionType.SIGNOUT_USER:
             return {
                 ...state,
                 isLoading: false,
@@ -56,7 +56,7 @@ export const authReducer = (state = initValue, action) => {
                 isLoading: false,
                 error: '',
                 user: null,
-                authMsg:alert(action.payload),
+                authMsg: alert(action.payload),
             }
         default:
             return state
