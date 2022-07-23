@@ -8,12 +8,13 @@ import {
   TextInput,
   StatusBar,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { createUserWithEmail, FacebookLogin, Loading, LoginwithGoogle, signinUserEmail } from '../redux/action/auth.action';
+import { createUserWithEmail, FacebookLogin, Loading, LoginwithGoogle, resetPasswordEmail, signinUserEmail } from '../redux/action/auth.action';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 
@@ -25,49 +26,41 @@ const Login = ({ navigation }) => {
   const [hide, setShow] = useState(true)
 
   const load = useSelector(state => state.auth);
-  // console.log(load.isLoading);
-  
   const dispatch = useDispatch();
-  
+
   const LoginHandler = () => {
-    // let lData = {
-    //   email,
-    //   password,
-    // };
-    // dispatch(signin_action(lData, navigation));
-    dispatch(signinUserEmail(email, password))
+    if (email !== '' && password !== '') {
+      dispatch(signinUserEmail(email, password))
+    } else {
+      alert('Fill up all details.')
+    }
   };
 
-  // Signup 
 
   const [name, setName] = useState('');
   const [Semail, setSEmail] = useState('');
   const [Spassword, setSPassword] = useState('');
 
   const CreateAccount = () => {
-    // let sData = {
-    //   name,
-    //   email,
-    //   password,
-    // };
-    // dispatch(signup(sData,navigation));
-
-    dispatch(Loading())
-    dispatch(createUserWithEmail(Semail, Spassword,))
-    setSEmail('');
-    setName('');
-    setSPassword('');
-
+    if (email !== '' && password !== '') {
+      dispatch(Loading())
+      dispatch(createUserWithEmail(Semail, Spassword,))
+      setSEmail('');
+      setName('');
+      setSPassword('');
+    } else {
+      alert('Fill up all details.')
+    }
   };
-  
+
   const GoogleLoginHandler = () => {
     dispatch(LoginwithGoogle())
   };
 
-  const FacebookHandle = () => {
-    dispatch(FacebookLogin())
-  }
 
+  const forgotPasswordHandler = () => {
+    navigation.navigate('ForgotPassword')
+  }
   return (
     <SafeAreaView style={styles.container}>
       {Signup === 0 ? (
@@ -80,33 +73,9 @@ const Login = ({ navigation }) => {
           <Text style={styles.titleText}>Welcome</Text>
           <Text style={styles.titleText}>Back</Text>
           <View
-            style={{
-              height: 20,
-              width: 20,
-              borderRadius: 100,
-              borderWidth: 4,
-              borderColor: '#706EFD',
-              backgroundColor: '#5956E9',
-              shadowColor: 'gray',
-              elevation: 30,
-              position: 'absolute',
-              top: 20,
-              left: 100,
-            }}></View>
+            style={styles.round}></View>
           <View
-            style={{
-              height: 30,
-              width: 30,
-              borderRadius: 100,
-              borderWidth: 4,
-              borderColor: '#706EFD',
-              backgroundColor: '#5956E9',
-              shadowColor: 'gray',
-              elevation: 30,
-              position: 'absolute',
-              bottom: 20,
-              right: 100,
-            }}></View>
+            style={styles.round}></View>
         </View>
       ) : (
         <View
@@ -118,33 +87,9 @@ const Login = ({ navigation }) => {
           <Text style={styles.titleText}>Create</Text>
           <Text style={styles.titleText}>Account</Text>
           <View
-            style={{
-              height: 20,
-              width: 20,
-              borderRadius: 100,
-              borderWidth: 4,
-              borderColor: '#706EFD',
-              backgroundColor: '#5956E9',
-              shadowColor: 'gray',
-              elevation: 30,
-              position: 'absolute',
-              top: 20,
-              left: 100,
-            }}></View>
+             style={styles.round}></View>
           <View
-            style={{
-              height: 30,
-              width: 30,
-              borderRadius: 100,
-              borderWidth: 4,
-              borderColor: '#706EFD',
-              backgroundColor: '#5956E9',
-              shadowColor: 'gray',
-              elevation: 30,
-              position: 'absolute',
-              bottom: 20,
-              right: 100,
-            }}></View>
+            style={styles.round}></View>
         </View>
       )}
       {Signup === 0 ? (
@@ -156,126 +101,126 @@ const Login = ({ navigation }) => {
             borderTopLeftRadius: 20,
             justifyContent: 'space-around',
           }}>
-                  <ScrollView keyboardDismissMode='none'>
+          <ScrollView keyboardDismissMode='none'>
 
-          <View style={styles.BtnTab}>
-            <TouchableOpacity
-              disabled={true}
-              style={{
-                borderBottomColor: '#5956E9',
-                borderBottomWidth: 2,
-                // width: '40%',
-                alignItems: 'center',
-              }}>
-              <Text style={styles.SignnInBtn}>Sign In</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                alignItems: 'center'
-              }}
-              onPress={() => setSignup(1)}
-            // onPress={() => navigation.navigate('Signup')}
-            >
-              <Text style={styles.SignnInBtn}>Sign Up</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.InputView}>
-            <Text style={styles.TextInputTitle}>E-Mail address</Text>
-            <TextInput
-              style={styles.EmailInput}
-              placeholder="E-mail"
-              autoCapitalize="none"
-              onChangeText={data => setEmail(data)}
-            />
-          </View>
-          <View style={styles.InputView}>
-            <Text style={styles.TextInputTitle}>Enter Password</Text>
-            {/* <View style={{alignItems: 'center',justifyContent: 'space-between',flexDirection: 'row',}}> */}
-            <TextInput
-              style={styles.EmailInput}
-              secureTextEntry={hide === true ? true : false}
-              autoCapitalize="none"
-              placeholder="Password"
-              onChangeText={text => setPassword(text)}
-            />
-            <TouchableOpacity onPress={() => {
-              if(hide === true ){
-                setShow(false)
-              }else {
-                setShow(true)
-              }
-            }}>
-              <Ionicons name={hide === true ? 'eye' : 'eye-off-sharp'} color={'gray'} size={25}  style={{position: 'absolute',bottom: 20,right: 20 }}/>
+            <View style={styles.BtnTab}>
+              <TouchableOpacity
+                disabled={true}
+                style={{
+                  borderBottomColor: '#5956E9',
+                  borderBottomWidth: 2,
+                  // width: '40%',
+                  alignItems: 'center',
+                }}>
+                <Text style={styles.SignnInBtn}>Sign In</Text>
               </TouchableOpacity>
-            {/* </View> */}
-          </View>
-
-          <View style={styles.Login}>
-            <TouchableOpacity>
-              <Text style={styles.Loginbtn}>Forgot Password ?</Text>
-            </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity
-            style={styles.StartedBtn}
-            onPress={() => { LoginHandler() }}>
-            <Text style={styles.btnText}>{load.isLoading === true ? <ActivityIndicator size="small" color="#00ff00" /> : "Login"}</Text>
-          </TouchableOpacity>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <View
-              style={{
-                borderWidth: 1,
-                borderColor: '#000000',
-                width: '30%',
-              }}></View>
-            <Text style={{ textAlign: 'center', margin: 20, fontWeight: 'bold' }}>
-              OR
-            </Text>
-            <View
-              style={{
-                borderWidth: 1,
-                borderColor: '#000000',
-                width: '30%',
-              }}></View>
-          </View>
-          <Text style={styles.SignnInUsing}>Sign In Using:</Text>
-          <View
-            style={{
-              backgroundColor: '#ffffff',
-              borderBottomLeftRadius: 10,
-              borderBottomRightRadius: 10,
-            }}>
-            <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-              <TouchableOpacity onPress={() => GoogleLoginHandler()}>
-                <Image
-                  style={styles.LoginIcon}
-                  source={require('../images/google.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => FacebookHandle()}>
-                <Image
-                  style={styles.LoginIcon}
-                  source={require('../images/facebook.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image
-                  style={styles.LoginIcon}
-                  source={require('../images/p.png')}
-                />
+              <TouchableOpacity
+                style={{
+                  alignItems: 'center'
+                }}
+                onPress={() => setSignup(1)}
+              // onPress={() => navigation.navigate('Signup')}
+              >
+                <Text style={styles.SignnInBtn}>Sign Up</Text>
               </TouchableOpacity>
             </View>
-          </View>
+
+            <View style={styles.InputView}>
+              <Text style={styles.TextInputTitle}>E-Mail address</Text>
+              <TextInput
+                style={styles.EmailInput}
+                placeholder="E-mail"
+                autoCapitalize="none"
+                onChangeText={data => setEmail(data)}
+              />
+            </View>
+            <View style={styles.InputView}>
+              <Text style={styles.TextInputTitle}>Enter Password</Text>
+              {/* <View style={{alignItems: 'center',justifyContent: 'space-between',flexDirection: 'row',}}> */}
+              <TextInput
+                style={styles.EmailInput}
+                secureTextEntry={hide === true ? true : false}
+                autoCapitalize="none"
+                placeholder="Password"
+                onChangeText={text => setPassword(text)}
+              />
+              <TouchableOpacity onPress={() => {
+                if (hide === true) {
+                  setShow(false)
+                } else {
+                  setShow(true)
+                }
+              }}>
+                <Ionicons name={hide === true ? 'eye' : 'eye-off-sharp'} color={'gray'} size={25} style={{ position: 'absolute', bottom: 20, right: 20 }} />
+              </TouchableOpacity>
+              {/* </View> */}
+            </View>
+
+            <View style={styles.Login}>
+              <TouchableOpacity onPress={() => forgotPasswordHandler()}>
+                <Text style={styles.Loginbtn}>Forgot Password ?</Text>
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity
+              style={styles.StartedBtn}
+              onPress={() => { LoginHandler() }}>
+              <Text style={styles.btnText}>{load.isLoading === true ? <ActivityIndicator size="small" color="#00ff00" /> : "Login"}</Text>
+            </TouchableOpacity>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <View
+                style={{
+                  borderWidth: 1,
+                  borderColor: '#000000',
+                  width: '30%',
+                }}></View>
+              <Text style={{ textAlign: 'center', margin: 20, fontWeight: 'bold' }}>
+                OR
+              </Text>
+              <View
+                style={{
+                  borderWidth: 1,
+                  borderColor: '#000000',
+                  width: '30%',
+                }}></View>
+            </View>
+            <Text style={styles.SignnInUsing}>Sign In Using:</Text>
+            <View
+              style={{
+                backgroundColor: '#ffffff',
+                borderBottomLeftRadius: 10,
+                borderBottomRightRadius: 10,
+              }}>
+              <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+                <TouchableOpacity onPress={() => GoogleLoginHandler()}>
+                  <Image
+                    style={styles.LoginIcon}
+                    source={require('../images/google.png')}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => FacebookHandle()}>
+                  <Image
+                    style={styles.LoginIcon}
+                    source={require('../images/facebook.png')}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('PhoneAuth')}>
+                  <Image
+                    style={styles.LoginIcon}
+                    source={require('../images/phone.png')}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
           </ScrollView>
         </View>
       ) : (
-        
+
         <View
           style={{
             height: '70%',
@@ -306,103 +251,103 @@ const Login = ({ navigation }) => {
             </TouchableOpacity>
           </View>
           <ScrollView keyboardDismissMode='none'>
-          <View style={styles.InputView}>
-            <Text style={styles.TextInputTitle}>E-Mail address</Text>
-            <TextInput
-              style={styles.EmailInput}
-              placeholder="E-mail"
-              value={Semail}
-              autoCapitalize="none"
-              onChangeText={text => setSEmail(text)}
-            />
-          </View>
+            <View style={styles.InputView}>
+              <Text style={styles.TextInputTitle}>E-Mail address</Text>
+              <TextInput
+                style={styles.EmailInput}
+                placeholder="E-mail"
+                value={Semail}
+                autoCapitalize="none"
+                onChangeText={text => setSEmail(text)}
+              />
+            </View>
 
-          <View style={styles.InputView}>
-            <Text style={styles.TextInputTitle}>Name</Text>
-            <TextInput
-              style={styles.EmailInput}
-              placeholder="Name"
-              value={name}
-              onChangeText={text => setName(text)}
-            />
-          </View>
+            <View style={styles.InputView}>
+              <Text style={styles.TextInputTitle}>Name</Text>
+              <TextInput
+                style={styles.EmailInput}
+                placeholder="Name"
+                value={name}
+                onChangeText={text => setName(text)}
+              />
+            </View>
 
-          <View style={styles.InputView}>
-            <Text style={styles.TextInputTitle}>Enter Password</Text>
-            <TextInput
-              style={styles.EmailInput}
-              secureTextEntry={hide === true ? true : false}
-              value={Spassword}
-              placeholder="Password"
-              autoCapitalize="none"
-              onChangeText={text => setSPassword(text)}
-            />
-            <TouchableOpacity onPress={() => {
-              if(hide === true ){
-                setShow(false)
-              }else {
-                setShow(true)
-              }
-            }}>
-              <Ionicons name={hide === true ? 'eye' : 'eye-off-sharp'} color={'gray'} size={25}  style={{position: 'absolute',bottom: 20,right: 20 }}/>
-              </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity
-            style={styles.StartedBtn}
-            onPress={() => CreateAccount()}>
-            <Text style={styles.btnText}>{load.isLoading === true ? <ActivityIndicator size="small" color="#00ff00" /> : "Create Account"}</Text>
-          </TouchableOpacity>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <View
-              style={{
-                borderWidth: 1,
-                borderColor: '#000000',
-                width: '30%',
-              }}></View>
-            <Text style={{ textAlign: 'center', margin: 20, fontWeight: 'bold' }}>
-              OR
-            </Text>
-            <View
-              style={{
-                borderWidth: 1,
-                borderColor: '#000000',
-                width: '30%',
-              }}></View>
-          </View>
-          <Text style={styles.SignnInUsing}>Sign In Using:</Text>
-          <View
-            style={{
-              backgroundColor: '#ffffff',
-              borderBottomLeftRadius: 10,
-              borderBottomRightRadius: 10,
-            }}>
-            <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-              <TouchableOpacity onPress={() => GoogleLoginHandler()}>
-                <Image
-                  style={styles.LoginIcon}
-                  source={require('../images/google.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => FacebookHandle()}>
-                <Image
-                  style={styles.LoginIcon}
-                  source={require('../images/facebook.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image
-                  style={styles.LoginIcon}
-                  source={require('../images/twitter.png')}
-                />
+            <View style={styles.InputView}>
+              <Text style={styles.TextInputTitle}>Enter Password</Text>
+              <TextInput
+                style={styles.EmailInput}
+                secureTextEntry={hide === true ? true : false}
+                value={Spassword}
+                placeholder="Password"
+                autoCapitalize="none"
+                onChangeText={text => setSPassword(text)}
+              />
+              <TouchableOpacity onPress={() => {
+                if (hide === true) {
+                  setShow(false)
+                } else {
+                  setShow(true)
+                }
+              }}>
+                <Ionicons name={hide === true ? 'eye' : 'eye-off-sharp'} color={'gray'} size={25} style={{ position: 'absolute', bottom: 20, right: 20 }} />
               </TouchableOpacity>
             </View>
-          </View>
+
+            <TouchableOpacity
+              style={styles.StartedBtn}
+              onPress={() => CreateAccount()}>
+              <Text style={styles.btnText}>{load.isLoading === true ? <ActivityIndicator size="small" color="#00ff00" /> : "Create Account"}</Text>
+            </TouchableOpacity>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <View
+                style={{
+                  borderWidth: 1,
+                  borderColor: '#000000',
+                  width: '30%',
+                }}></View>
+              <Text style={{ textAlign: 'center', margin: 20, fontWeight: 'bold' }}>
+                OR
+              </Text>
+              <View
+                style={{
+                  borderWidth: 1,
+                  borderColor: '#000000',
+                  width: '30%',
+                }}></View>
+            </View>
+            <Text style={styles.SignnInUsing}>Sign In Using:</Text>
+            <View
+              style={{
+                backgroundColor: '#ffffff',
+                borderBottomLeftRadius: 10,
+                borderBottomRightRadius: 10,
+              }}>
+              <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+                <TouchableOpacity onPress={() => GoogleLoginHandler()}>
+                  <Image
+                    style={styles.LoginIcon}
+                    source={require('../images/google.png')}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => FacebookHandle()}>
+                  <Image
+                    style={styles.LoginIcon}
+                    source={require('../images/facebook.png')}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('PhoneAuth')}>
+                  <Image
+                    style={styles.LoginIcon}
+                    source={require('../images/phone.png')}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
           </ScrollView>
         </View>
       )}
@@ -430,6 +375,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 50,
   },
+  round:{
+    height: 20,
+    width: 20,
+    borderRadius: 100,
+    borderWidth: 4,
+    borderColor: '#706EFD',
+    backgroundColor: '#5956E9',
+    shadowColor: 'gray',
+    elevation: 30,
+    position: 'absolute',
+    top: 20,
+    left: 100,
+  },
   BtnTab: {
     marginTop: 16,
     marginBottom: 16,
@@ -447,6 +405,7 @@ const styles = StyleSheet.create({
   },
   SignnupBtn: {},
   EmailInput: {
+    paddingRight: 50,
     padding: 10,
     margin: 10,
     color: '#000000',

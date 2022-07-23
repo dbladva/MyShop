@@ -4,7 +4,8 @@ const initValue = {
     isLoading: false,
     user: null,
     error: '',
-    authMsg: ''
+    authMsg: '',
+    confirm: null,
 }
 
 export const authReducer = (state = initValue, action) => {
@@ -57,6 +58,23 @@ export const authReducer = (state = initValue, action) => {
                 error: '',
                 user: null,
                 authMsg: alert(action.payload),
+            }
+            case ActionType.UID:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                user: action.payload,
+                authMsg: '',
+            }
+            case ActionType.OTP:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                user: null,
+                authMsg: '',
+                confirm: action.payload
             }
         default:
             return state

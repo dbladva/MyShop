@@ -42,8 +42,7 @@ const Basket = ({route, navigation}) => {
   }
 
   const renderItem = ({item}) => {
-    
-
+ 
     return (
       <View style={styles.itemView}>
         <View style={styles.itemImage}>
