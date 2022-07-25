@@ -42,7 +42,7 @@ const Login = ({ navigation }) => {
   const [Spassword, setSPassword] = useState('');
 
   const CreateAccount = () => {
-    if (email !== '' && password !== '') {
+    if (Semail !== '' && Spassword !== '' && name !== '') {
       dispatch(Loading())
       dispatch(createUserWithEmail(Semail, Spassword,))
       setSEmail('');
@@ -203,12 +203,12 @@ const Login = ({ navigation }) => {
                     source={require('../images/google.png')}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => FacebookHandle()}>
+                {/* <TouchableOpacity onPress={() => FacebookHandle()}>
                   <Image
                     style={styles.LoginIcon}
                     source={require('../images/facebook.png')}
                   />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity onPress={() => navigation.navigate('PhoneAuth')}>
                   <Image
                     style={styles.LoginIcon}
@@ -334,12 +334,12 @@ const Login = ({ navigation }) => {
                     source={require('../images/google.png')}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => FacebookHandle()}>
+                {/* <TouchableOpacity onPress={() => FacebookHandle()}>
                   <Image
                     style={styles.LoginIcon}
                     source={require('../images/facebook.png')}
                   />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity onPress={() => navigation.navigate('PhoneAuth')}>
                   <Image
                     style={styles.LoginIcon}
