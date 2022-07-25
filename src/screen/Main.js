@@ -27,6 +27,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { uid } from '../redux/action/auth.action';
 import ForgotPassword from './ForgotPassword';
 import PhoneAuth from './PhoneAuth';
+import OrientationLoadingOverlay from 'react-native-orientation-loading-overlay';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -121,8 +122,16 @@ export default function Main() {
     console.log('user', auth.user,);
 
     return (
-        // auth.isLoading === true ?  <View style={{flex: 1,alignItems: 'center',justifyContent: 'center',backgroundColor: '#ffffff'}}><ActivityIndicator size="large" color="#000000" /></View>
-        // :
+        auth.isLoading === true ?  <View style={{flex: 1,alignItems: 'center',justifyContent: 'center',}}>
+             <OrientationLoadingOverlay
+          visible={true}
+          color="white"
+          indicatorSize="large"
+          messageFontSize={24}
+          message="Loading..."
+          />
+            </View>
+        :
         auth.user !== null || userId.user !== null ?
             <NavigationContainer>
                 <Drawer.Navigator

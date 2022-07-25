@@ -11,6 +11,7 @@ export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS'
 export const SIGNOUT_USER = 'SIGNOUT_USER'
 export const RESET_PASSWORD = 'RESET_PASSWORD'
 export const OTP = 'OTP'
+export const OTP_TIMEOUT = 'OTP_TIMEOUT'
 
 
 export const GET_PRODUCT = "GET_PRODUCT"

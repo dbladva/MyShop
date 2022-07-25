@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { phoneAuth, resetPasswordEmail, verifyOtp, } from '../redux/action/auth.action';
+import { otpTimeOut, phoneAuth, resetPasswordEmail, verifyOtp, } from '../redux/action/auth.action';
 import PhoneInput from "react-native-phone-number-input";
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 // import auth from '@react-native-firebase/auth';
@@ -24,6 +24,7 @@ const PhoneAuth = ({ navigation }) => {
     const [valid, setValid] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [otp, setOtp] = useState(0);
+    const [seconds, setSeconds] = useState(60);
 
     const load = useSelector(state => state.auth);
     const dispatch = useDispatch();
@@ -36,6 +37,28 @@ const PhoneAuth = ({ navigation }) => {
     const signInWithOtp = (otp) => {
         dispatch(verifyOtp(otp, auth.confirm))
     }
+
+
+    useEffect(() => {
+        if(auth.confirm !== null){
+            let myInterval = setInterval(() => {
+                if (seconds > 0) {
+                  setSeconds(seconds - 1);
+                }
+                if (seconds < 1) {
+                    // setSeconds(30);
+                    dispatch(otpTimeOut())
+                }
+              }, 1000);
+              return () => {
+                clearInterval(myInterval);
+              };
+        }
+          
+       
+      });
+
+      console.log('secounddddddddd', seconds);
 
     console.log('aaaaaaaaaaaaaaaaaaaa', auth.confirm);
     const phoneScreen = () => {
@@ -93,31 +116,35 @@ const PhoneAuth = ({ navigation }) => {
                         <Text style={styles.TextInputTitle}>Phone Number</Text>
                         <View style={{ alignItems: 'center', marginTop: 20, }}>
                             <PhoneInput
-                                // ref={phoneInput}
                                 containerStyle={{ alignItems: 'center', height: 60, width: '100%',marginBottom: 30, }}
                                 textInputStyle={{ padding: 0 }}
                                 defaultValue={value}
                                 defaultCode="IN"
                                 onChangeFormattedText={(text) => {
                                     const length = text.length
-                                    if (length < 14) {
+                                    if (length === 13) {
                                         setPhoneNumber(text);
                                     }
                                 }}
                                 style={styles.phoneInput}
-
                                 withDarkTheme
                                 withShadow
                                 autoFocus
                             />
                         </View>
-
-
                     </View>
 
                     <TouchableOpacity
                         style={styles.StartedBtn}
-                        onPress={() => { signInWithPhoneNumber(phoneNumber) }}>
+                        onPress={() => {
+                            const length = phoneNumber.length
+                            console.log(length);
+                            if(length === 13){
+                                signInWithPhoneNumber(phoneNumber)
+                            }else{
+                                alert("Phone number not valid")
+                            }
+                                }}>
                         <Text style={styles.btnText}>{load.isLoading === true ? <ActivityIndicator size="small" color="#00ff00" /> : "Continue"}</Text>
                     </TouchableOpacity>
                 </View>
@@ -183,6 +210,7 @@ const PhoneAuth = ({ navigation }) => {
                             <OTPInputView
                                 style={{ width: '80%', height: 100 }}
                                 pinCount={6}
+                                
                                 placeholderTextColor={'#000000'}
                                 autoFocusOnLoad={false}
                                 codeInputFieldStyle={styles.underlineStyleBase}
@@ -194,7 +222,7 @@ const PhoneAuth = ({ navigation }) => {
                             />
 
                         </View>
-
+                                <Text style={{fontSize: 16,fontWeight: 'bold',textAlign: 'right',right: 40}}>Timeout :{seconds}</Text>
                     </View>
 
                     <TouchableOpacity

@@ -49,7 +49,7 @@ export const authReducer = (state = initValue, action) => {
                 isLoading: false,
                 error: '',
                 user: null,
-                authMsg: alert(action.payload),
+                // authMsg: alert(action.payload),
             }
         case ActionType.RESET_PASSWORD:
             return {
@@ -76,6 +76,15 @@ export const authReducer = (state = initValue, action) => {
                 authMsg: '',
                 confirm: action.payload
             }
+            case ActionType.OTP_TIMEOUT:
+                return {
+                    ...state,
+                    isLoading: false,
+                    error: '',
+                    user: null,
+                    authMsg: alert(action.payload),
+                    confirm: null
+                }
         default:
             return state
 

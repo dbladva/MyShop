@@ -75,7 +75,7 @@ const Login = ({ navigation }) => {
           <View
             style={styles.round}></View>
           <View
-            style={styles.round}></View>
+            style={styles.roundBottom}></View>
         </View>
       ) : (
         <View
@@ -89,7 +89,7 @@ const Login = ({ navigation }) => {
           <View
              style={styles.round}></View>
           <View
-            style={styles.round}></View>
+            style={styles.roundBottom}></View>
         </View>
       )}
       {Signup === 0 ? (
@@ -387,6 +387,19 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 20,
     left: 100,
+  },
+  roundBottom:{
+    height: 30,
+    width: 30,
+    borderRadius: 100,
+    borderWidth: 4,
+    borderColor: '#706EFD',
+    backgroundColor: '#5956E9',
+    shadowColor: 'gray',
+    elevation: 30,
+    position: 'absolute',
+    bottom: 20,
+    right: 100,
   },
   BtnTab: {
     marginTop: 16,

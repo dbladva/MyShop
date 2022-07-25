@@ -63,7 +63,7 @@ export const signoutEmail = () => (dispatch) => {
             .signOut()
             .then(() => {
                 AsyncStorage.clear()
-                dispatch({ type: ActionType.SIGNOUT_USER, payload: "Signout successfully." })
+                dispatch({ type: ActionType.SIGNOUT_USER,})
                 dispatch(uid())
             });
     } catch (e) {
@@ -136,7 +136,7 @@ export const phoneAuth = (phoneNumber) => async (dispatch) => {
             .signInWithPhoneNumber(phoneNumber)
             .then((confirmation) => {
                 console.log(confirmation);
-                dispatch({ type: ActionType.OTP, payload: confirmation })
+                dispatch({ type: ActionType.OTP, payload: confirmation})
             })
             .catch((error) => {
                 dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
@@ -162,6 +162,20 @@ export const verifyOtp = (otp, confirm) => async (dispatch) => {
         dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
     }
 }
+
+export const otpTimeOut = () => (dispatch) => {
+    try {
+        dispatch(Loading())
+                dispatch({ type: ActionType.OTP_TIMEOUT, payload: 'Timeout'})
+            .catch((error) => {
+                dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
+            })
+    } catch (error) {
+        dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
+    }
+}
+
+
 
 
 

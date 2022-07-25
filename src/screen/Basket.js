@@ -22,9 +22,9 @@ import {cartLoading, deleteCartItem, GetCartItem} from '../redux/action/cart.act
 
 const Basket = ({route, navigation}) => {
   const [quantity, setQuantity] = useState(1)
-  // const [total, setTotal] = useState(0)
+  const [total, setTotal] = useState(0)
 
-  const total = []
+  // const total = []
 
   // const id = route.params;
   const item = useSelector(state => state.cartitem);
@@ -34,15 +34,17 @@ const Basket = ({route, navigation}) => {
     dispatch(GetCartItem());
   }, []);
 
-
-  
   const deleteHandler = (id) => {
     dispatch(cartLoading)
       dispatch(deleteCartItem(id))
   }
 
+
+  let totalPrice = 0
+  item.cartItem.filter((p) => totalPrice = totalPrice + parseInt(p.price))
   const renderItem = ({item}) => {
  
+
     return (
       <View style={styles.itemView}>
         <View style={styles.itemImage}>
@@ -151,8 +153,11 @@ const Basket = ({route, navigation}) => {
           style={{
             marginHorizontal: 20,
             marginVertical: 10,
-            justifyContent: 'space-around',
-            height: '20%',
+            // justifyContent: 'space-around',
+            // height: '20%',
+            position: 'absolute',
+            bottom: 0,
+            width: '90%'
           }}>
           <View
             style={{
@@ -161,8 +166,8 @@ const Basket = ({route, navigation}) => {
               flexDirection: 'row',
               justifyContent: 'space-between',
             }}>
-            <Text style={{color: '#000000'}}>Total</Text>
-            <Text style={styles.itemPrice}>$ {total}</Text>
+            <Text style={{color: '#000000',fontSize: 18,fontWeight: 'bold'}}>Total</Text>
+            <Text style={styles.itemPrice}>$ {totalPrice}</Text>
           </View>
 
           <TouchableOpacity
@@ -271,7 +276,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   itemPrice: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#5956E9',
   },

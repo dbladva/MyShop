@@ -24,6 +24,7 @@ const Details = ({ route, navigation }) => {
   const { name } = route.params;
   const { price } = route.params;
   const { category } = route.params;
+  const [wishlist, setWishlist] = useState(0)
 
   const item = useSelector(state => state.cart);
   const dispatch = useDispatch();
@@ -50,8 +51,14 @@ const Details = ({ route, navigation }) => {
             <View style={{ alignSelf: 'center' }}>
               <Text style={styles.favrioteText}></Text>
             </View>
-            <TouchableOpacity>
-              <Ionicons name="ios-heart-outline" color={'#000000'} size={25} />
+            <TouchableOpacity onPress={() => {
+              if(wishlist === 0) {
+                setWishlist(1)
+              }else{
+                setWishlist(0)
+              }
+            }}>
+              <Ionicons name={wishlist === 0 ? 'ios-heart-outline' : 'ios-heart-sharp'} color={'red'} size={25} />
             </TouchableOpacity>
           </View>
           <View>
