@@ -31,6 +31,14 @@ export const cartItem = (state = initValue,action) => {
                     Error: '',
                 }
 
+                case ActionType.CART_ITEM:
+                    return {
+                        ...state,
+                        isLoading: false,
+                        cart: null,
+                        Error: '',
+                    }
+
     
         default: 
         return state

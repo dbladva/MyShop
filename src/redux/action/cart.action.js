@@ -65,3 +65,7 @@ export const deleteCartItem = (id) => async (dispatch) => {
 export const cartLoading = () => async(dispatch) => {
   dispatch({type:ActionType.LOADING_CART})
 }
+
+export const deleteAllProduct = () => (dispatch) => {
+  
+}

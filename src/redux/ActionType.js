@@ -19,4 +19,5 @@ export const CART_ITEM = "CART_ITEM"
 export const GET_CART_ITEM = "GET_CART_ITEM"
 export const DELETE_CART_ITEM = "DELETE_CART_ITEM"
 export const LOADING_CART = 'LOADING_CART'
+export const DELETE_ALL_ITEM = "DELETE_ALL_ITEM"
 

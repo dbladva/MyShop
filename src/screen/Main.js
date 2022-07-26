@@ -71,6 +71,7 @@ const HomeScreenTab = () => {
                 <Tab.Screen name="Whishlist" component={Whishlist} />
                 <Tab.Screen name="Basket" component={Basket} />
                 <Tab.Screen name="Profile" component={Profile} />
+                
             </Tab.Navigator>
     );
 };

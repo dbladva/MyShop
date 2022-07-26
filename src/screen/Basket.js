@@ -18,7 +18,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {cartLoading, deleteCartItem, GetCartItem} from '../redux/action/cart.action';
+import {cartLoading, deleteAllProduct, deleteCartItem, GetCartItem} from '../redux/action/cart.action';
+import { StripeProvider, useStripe } from '@stripe/stripe-react-native'
+import CheckoutScreen from './CheckoutScreen';
 
 const Basket = ({route, navigation}) => {
   const [quantity, setQuantity] = useState(1)
@@ -39,12 +41,17 @@ const Basket = ({route, navigation}) => {
       dispatch(deleteCartItem(id))
   }
 
+  const deleteAllHandler = () => {
+    dispatch(deleteAllProduct())
+  }
+
+
 
   let totalPrice = 0
   item.cartItem.filter((p) => totalPrice = totalPrice + parseInt(p.price))
-  const renderItem = ({item}) => {
- 
 
+
+  const renderItem = ({item}) => {
     return (
       <View style={styles.itemView}>
         <View style={styles.itemImage}>
@@ -114,7 +121,7 @@ const Basket = ({route, navigation}) => {
           <View style={{alignSelf: 'center'}}>
             <Text style={styles.favrioteText}>Basket</Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => deleteAllHandler()}>
             <MaterialIcons name="delete-outline" color={'#FA4A0C'} size={25} />
           </TouchableOpacity>
         </View>
@@ -171,7 +178,14 @@ const Basket = ({route, navigation}) => {
           </View>
 
           <TouchableOpacity
-            style={{width: '90%', alignSelf: 'center', marginVertical: 10}}>
+            style={{width: '90%', alignSelf: 'center', marginVertical: 10}} 
+            
+            >
+               <StripeProvider
+              publishableKey="pk_test_51LNYxZSDfkRpEt9y8Qnga24uWhgyLC6ONu3eMLnzuIvbpaVwDQTJd7wPTefythkquVUnyIIfCM8h1S7iP3s6yK4m00mbWVxSXi"
+              urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
+              merchantIdentifier="merchant.com.{{YOUR_APP_NAME}}" // required for Apple Pay
+            >
             <View
               style={{
                 alignSelf: 'center',
@@ -179,8 +193,10 @@ const Basket = ({route, navigation}) => {
                 backgroundColor: '#5956E9',
                 borderRadius: 10,
               }}>
-              <Text style={styles.btnText}>Checkout</Text>
+              {/* <Text style={styles.btnText}>Checkout</Text> */}
+              <CheckoutScreen n = {navigation} />
             </View>
+            </StripeProvider>
           </TouchableOpacity>
         </View>
       </View>
