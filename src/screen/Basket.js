@@ -21,6 +21,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {cartLoading, deleteAllProduct, deleteCartItem, GetCartItem} from '../redux/action/cart.action';
 import { StripeProvider, useStripe } from '@stripe/stripe-react-native'
 import CheckoutScreen from './CheckoutScreen';
+import { calculateOrderAmount } from '../../backend';
 
 const Basket = ({route, navigation}) => {
   const [quantity, setQuantity] = useState(1)
@@ -179,7 +180,6 @@ const Basket = ({route, navigation}) => {
 
           <TouchableOpacity
             style={{width: '90%', alignSelf: 'center', marginVertical: 10}} 
-            
             >
                <StripeProvider
               publishableKey="pk_test_51LNYxZSDfkRpEt9y8Qnga24uWhgyLC6ONu3eMLnzuIvbpaVwDQTJd7wPTefythkquVUnyIIfCM8h1S7iP3s6yK4m00mbWVxSXi"

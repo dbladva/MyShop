@@ -3,6 +3,7 @@ import * as ActionType from '../ActionType'
 const initValue = ({
     isLoading: false,
     cart: [],
+    cartVal: 0,
     Error: ''
 })
 
@@ -38,6 +39,14 @@ export const cartItem = (state = initValue,action) => {
                         cart: null,
                         Error: '',
                     }
+
+                    case ActionType.CART_VALUE:
+                        return {
+                            ...state,
+                            isLoading: false,
+                            Error: '',
+                            cartVal: action.payload
+                        }
 
     
         default: 

@@ -12,7 +12,7 @@ export default function CheckoutScreen(props, { navigation }) {
 
     const fetchPaymentSheetParams = async () => {
 
-        const response = await fetch(`http://192.168.2.189:4242/create-payment-intent`, {
+        const response = await fetch(`http://192.168.1.14:4242/create-payment-intent`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

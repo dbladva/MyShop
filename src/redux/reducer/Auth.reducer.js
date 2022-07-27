@@ -85,6 +85,16 @@ export const authReducer = (state = initValue, action) => {
                     authMsg: alert(action.payload),
                     confirm: null
                 }
+
+                case ActionType.USER_PROFILE_PICTURE:
+                    return {
+                        ...state,
+                        isLoading: false,
+                        error: '',
+                        // user: null,
+                        authMsg: '',
+                        userProfile: action.payload
+                    }
         default:
             return state
 

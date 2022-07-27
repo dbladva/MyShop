@@ -10,15 +10,22 @@ const calculateOrderAmount = (items) => {
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
   // people from directly manipulating the amount on the client
-  return 1400;
+  console.log(items);
+  return items;
 };
+
+// const dispatch = useDispatch()
+
+// const total = useSelector(state => state.cart)
+// console.log(total.cartVal);
+
 
 app.post("/create-payment-intent", async (req, res) => {
   const { items } = req.body;
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: 1560,
+    amount: 15000,
     currency: "INR",
     automatic_payment_methods: {
       enabled: true,

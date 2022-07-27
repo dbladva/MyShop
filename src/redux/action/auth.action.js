@@ -3,16 +3,33 @@ import AsyncStorage from '@react-native-community/async-storage';
 import auth from '@react-native-firebase/auth';
 import * as ActionType from '../ActionType'
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
 
-export const createUserWithEmail = (email, password) => async (dispatch) => {
+export const createUserWithEmail = (email, password, name) => async (dispatch) => {
+    console.log(name);
     auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
             auth()
                 .onAuthStateChanged((user) => {
                     user.sendEmailVerification()
-                        .then(() => {
+                        .then(() => { 
                             console.log(1);
+                            firestore()
+                                .collection('Users')
+                                .add({
+                                    email: email,
+                                    name: name,
+                                    picture: ' ',
+                                    uid: user.uid
+                                })
+                                .then(() => {
+                                    console.log('User added!');
+                                })
+                                .catch((error) => {
+                                    dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
+                                })
                             dispatch({ type: ActionType.USER_EMAIL, payload: "Please verify email id." })
                         })
                         .catch((error) => {
@@ -63,7 +80,7 @@ export const signoutEmail = () => (dispatch) => {
             .signOut()
             .then(() => {
                 AsyncStorage.clear()
-                dispatch({ type: ActionType.SIGNOUT_USER,})
+                dispatch({ type: ActionType.SIGNOUT_USER, })
                 dispatch(uid())
             });
     } catch (e) {
@@ -136,7 +153,7 @@ export const phoneAuth = (phoneNumber) => async (dispatch) => {
             .signInWithPhoneNumber(phoneNumber)
             .then((confirmation) => {
                 console.log(confirmation);
-                dispatch({ type: ActionType.OTP, payload: confirmation})
+                dispatch({ type: ActionType.OTP, payload: confirmation })
             })
             .catch((error) => {
                 dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
@@ -166,7 +183,7 @@ export const verifyOtp = (otp, confirm) => async (dispatch) => {
 export const otpTimeOut = () => (dispatch) => {
     try {
         dispatch(Loading())
-                dispatch({ type: ActionType.OTP_TIMEOUT, payload: 'Timeout'})
+        dispatch({ type: ActionType.OTP_TIMEOUT, payload: 'Timeout' })
             .catch((error) => {
                 dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
             })
@@ -175,6 +192,74 @@ export const otpTimeOut = () => (dispatch) => {
     }
 }
 
+
+export const userProfilePicture = (image, uid) => async (dispatch) => {
+    try {
+        let a = image.path.split("/")
+        let fileName = a[a.length - 1];
+        console.log(fileName);
+        const reference = storage().ref('/user/' + fileName);
+        await reference.putFile(image.path);
+        const url = await storage().ref('/user/' + fileName).getDownloadURL();
+        dispatch({ type: ActionType.USER_PROFILE_PICTURE, payload: url })
+        console.log(url);
+
+        try {
+            // dispatch(Loading())
+            await firestore()
+                .collection('Users')
+                .get()
+                .then((data) => {
+                    data.docs.map((data) => {
+                        const a = data._data;
+                        if (a.uid === uid) {
+                            console.log(data.id);
+                            // console.log('mathedddddddddddd');
+                            try {
+                                firestore()
+                                    .collection('Users')
+                                    .doc(data.id)
+                                    .update({
+                                        picture: url,
+                                    })
+                                    .then(() => {
+                                        console.log('Profile picture Added !');
+                                    });
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        }
+
+                    })
+                })
+        } catch (error) {
+            console.log(error);
+        }
+    } catch (error) {
+        console.log(error);
+        dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
+    }
+}
+
+export const getUserProfilePicture = (uid) => async (dispatch) => {
+    // dispatch(Loading())
+    try {
+        await firestore()
+            .collection('Users')
+            .get()
+            .then((user) => {
+                user.docs.map((data) => {
+                    const a = data._data
+                    if (a.uid == uid) {
+                        console.log('matheddd');
+                        dispatch({ type: ActionType.USER_PROFILE_PICTURE, payload: data._data.picture })
+                    }
+                })
+            })
+    } catch (error) {
+        dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
+    }
+}
 
 
 

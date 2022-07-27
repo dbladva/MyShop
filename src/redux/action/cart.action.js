@@ -69,3 +69,7 @@ export const cartLoading = () => async(dispatch) => {
 export const deleteAllProduct = () => (dispatch) => {
   
 }
+
+export const cartValue = (total) => (dispatch) => {
+dispatch({type: ActionType.CART_VALUE,payload: total})
+}
