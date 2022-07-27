@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   Image,
+  SafeAreaView,
 } from 'react-native';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -25,7 +26,7 @@ const dispatch = useDispatch()
   }
   
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.container2}>
         <View style={styles.back}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -107,7 +108,7 @@ const dispatch = useDispatch()
         translucent={false}
         networkActivityIndicatorVisible={true}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

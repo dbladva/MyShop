@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  SafeAreaView,
   Image,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
@@ -18,6 +19,7 @@ import { StatusBar } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { getproduct } from '../redux/action/product.action';
 import { CartItem } from '../redux/action/cart.action';
+
 
 const Details = ({ route, navigation }) => {
   const { itemid } = route.params;
@@ -39,7 +41,7 @@ const Details = ({ route, navigation }) => {
       dispatch(CartItem(data,navigation));
      }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.container2}>
         <View style={styles.FavoriteItemView}>
           <View style={styles.back}>
@@ -174,7 +176,7 @@ const Details = ({ route, navigation }) => {
         translucent={false}
         networkActivityIndicatorVisible={true}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

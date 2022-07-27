@@ -101,7 +101,7 @@ const Login = ({ navigation }) => {
             borderTopLeftRadius: 20,
             justifyContent: 'space-around',
           }}>
-          <ScrollView keyboardDismissMode='none'>
+          
 
             <View style={styles.BtnTab}>
               <TouchableOpacity
@@ -124,7 +124,7 @@ const Login = ({ navigation }) => {
                 <Text style={styles.SignnInBtn}>Sign Up</Text>
               </TouchableOpacity>
             </View>
-
+            <ScrollView keyboardDismissMode='none'>
             <View style={styles.InputView}>
               <Text style={styles.TextInputTitle}>E-Mail address</Text>
               <TextInput

@@ -222,8 +222,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 50,
     padding: 2,
-    shadowColor: 'gray',
-    shadowOpacity: 500,
+    // shadowColor: 'gray',
+    // shadowOpacity: 1 ,
     marginLeft: 15,
   },
   SearchInput: {

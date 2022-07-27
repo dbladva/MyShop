@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   Image,
+  SafeAreaView
 } from 'react-native';
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -15,7 +16,7 @@ import {StatusBar} from 'react-native';
 
 const Whishlist = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.container2}>
         <View style={styles.back}>
           <TouchableOpacity
@@ -61,7 +62,7 @@ const Whishlist = ({navigation}) => {
         translucent={false}
         networkActivityIndicatorVisible={true}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -79,15 +80,20 @@ const styles = StyleSheet.create({
   back: {
     marginVertical: 20,
     marginHorizontal: 16,
-    // flexDirection: 'row',
+    flexDirection: 'row',
     // alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   favrioteText: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#000000',
   },
-  backArrow: {},
+  backArrow: {
+    position: 'absolute',
+    left: 0,
+  },
   FavoriteItemView: {
     height: '70%',
     justifyContent: 'center',
