@@ -41,8 +41,8 @@ const CustomDrawer = (props) => {
             }
           </TouchableOpacity>
           <View style={{ marginLeft: 10, }}>
-            <Text style={{ fontWeight: 'bold', fontSize: 20, color: 'black', }}>Dharmesh</Text>
-            <Text style={{ fontWeight: 'bold', fontSize: 15, color: 'black', }}>Ladva</Text>
+            <Text style={{ fontWeight: 'bold', fontSize: 20, color: 'black', }}>{userId.userName}</Text>
+            {/* <Text style={{ fontWeight: 'bold', fontSize: 15, color: 'black', }}>Ladva</Text> */}
           </View>
         </View>
         {/* <View style={{borderBottomColor: 'white',borderBottomWidth: 2,color: 'white'}}> */}

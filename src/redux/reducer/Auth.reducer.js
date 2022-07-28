@@ -6,6 +6,8 @@ const initValue = {
     error: '',
     authMsg: '',
     confirm: null,
+    userProfile: '',
+    userName: ''
 }
 
 export const authReducer = (state = initValue, action) => {
@@ -94,6 +96,15 @@ export const authReducer = (state = initValue, action) => {
                         // user: null,
                         authMsg: '',
                         userProfile: action.payload
+                    }
+                    case ActionType.USER_PROFILE_NAME:
+                    return {
+                        ...state,
+                        isLoading: false,
+                        error: '',
+                        // user: null,
+                        authMsg: '',
+                        userName: action.payload
                     }
         default:
             return state

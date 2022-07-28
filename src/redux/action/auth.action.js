@@ -256,6 +256,7 @@ export const getUserProfilePicture = (uid) => async (dispatch) => {
                     if (a.uid == uid) {
                         console.log('matheddd');
                         dispatch({ type: ActionType.USER_PROFILE_PICTURE, payload: data._data.picture })
+                        dispatch({ type: ActionType.USER_PROFILE_NAME, payload: data._data.name })
                     }
                 })
             })

@@ -49,7 +49,7 @@ const userId = useSelector(state => state.auth)
                   uri: userId.userProfile 
                 }} />
             }
-          <Text style={styles.name}>Dharmesh Ladva</Text>
+          <Text style={styles.name}>{userId.userName}</Text>
           <View style={styles.address}>
             <Ionicons
               name="location-outline"
