@@ -8,18 +8,19 @@ import {
   Image,
   SafeAreaView,
 } from 'react-native';
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 import {StatusBar} from 'react-native';
-import { signoutEmail } from '../redux/action/auth.action';
-import firestore from '@react-native-firebase/firestore';
-
+import { getUserProfilePicture, signoutEmail } from '../redux/action/auth.action';
+import firestore from '@react-native-firebase/firestore'
 
 const Profile = ({navigation}) => {
+
 const dispatch = useDispatch()
+const userId = useSelector(state => state.auth)
 
   const LogoutHandler = () => {
     dispatch(signoutEmail())
@@ -40,10 +41,14 @@ const dispatch = useDispatch()
         </View>
         <View style={styles.profileDetails}>
           
-          <Image
-            source={require('../images/user.jpg')}
-            style={{width: 80, height: 80, borderRadius: 50,marginTop: -30}}
-          />
+        {
+              userId.userProfile === ' ' || userId.userProfile === undefined ?
+                <Image style={{ height: 80, width: 80, borderRadius: 50 }} source={{uri: 'https://firebasestorage.googleapis.com/v0/b/admin-d986a.appspot.com/o/user%2Fuser.jpg?alt=media&token=6bf25e67-ae65-42b3-8649-ec042b2d43ed'}} />
+                :
+                <Image style={{ height: 80, width: 80, borderRadius: 50 }} source={{
+                  uri: userId.userProfile 
+                }} />
+            }
           <Text style={styles.name}>Dharmesh Ladva</Text>
           <View style={styles.address}>
             <Ionicons

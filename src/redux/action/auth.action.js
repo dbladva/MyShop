@@ -16,6 +16,7 @@ export const createUserWithEmail = (email, password, name) => async (dispatch) =
                     user.sendEmailVerification()
                         .then(() => { 
                             console.log(1);
+
                             firestore()
                                 .collection('Users')
                                 .add({
@@ -62,6 +63,7 @@ export const signinUserEmail = (email, password) => async (dispatch) => {
                 console.log('aaaaaaaaaaa', user.user.uid);
                 AsyncStorage.setItem("user", user.user.uid);
                 dispatch({ type: ActionType.SIGNIN_SUCCESS, payload: user.user })
+                dispatch(getUserProfilePicture(user.user.uid))
             } else {
                 console.log("2", user);
                 dispatch({ type: ActionType.USER_EMAIL, payload: "Please verify your email Address." })
@@ -210,6 +212,7 @@ export const userProfilePicture = (image, uid) => async (dispatch) => {
                 .collection('Users')
                 .get()
                 .then((data) => {
+                    console.log("jkjkjkjkjk  ", data);
                     data.docs.map((data) => {
                         const a = data._data;
                         if (a.uid === uid) {

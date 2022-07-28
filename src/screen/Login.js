@@ -44,7 +44,7 @@ const Login = ({ navigation }) => {
   const CreateAccount = () => {
     if (Semail !== '' && Spassword !== '' && name !== '') {
       dispatch(Loading())
-      dispatch(createUserWithEmail(Semail, Spassword,setName))
+      dispatch(createUserWithEmail(Semail, Spassword,name))
       setSEmail('');
       setName('');
       setSPassword('');
