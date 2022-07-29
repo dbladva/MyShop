@@ -215,8 +215,9 @@ export const userProfilePicture = (image, uid) => async (dispatch) => {
                     console.log("jkjkjkjkjk  ", data);
                     data.docs.map((data) => {
                         const a = data._data;
+                        console.log('aaaaaaaaaaaa',a);
                         if (a.uid === uid) {
-                            console.log(data.id);
+                            console.log('data iddddddddddd',data.id);
                             // console.log('mathedddddddddddd');
                             try {
                                 firestore()
@@ -254,7 +255,6 @@ export const getUserProfilePicture = (uid) => async (dispatch) => {
                 user.docs.map((data) => {
                     const a = data._data
                     if (a.uid == uid) {
-                        console.log('matheddd');
                         dispatch({ type: ActionType.USER_PROFILE_PICTURE, payload: data._data.picture })
                         dispatch({ type: ActionType.USER_PROFILE_NAME, payload: data._data.name })
                     }

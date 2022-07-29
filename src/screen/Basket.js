@@ -49,8 +49,7 @@ const Basket = ({route, navigation}) => {
 
 
   let totalPrice = 0
-  item.cartItem.filter((p) => totalPrice = totalPrice + parseInt(p.price))
-
+  item.cartItem.filter((p) => totalPrice = totalPrice + parseInt(p.price))  
 
   const renderItem = ({item}) => {
     return (
@@ -181,7 +180,7 @@ const Basket = ({route, navigation}) => {
           <TouchableOpacity
             style={{width: '90%', alignSelf: 'center', marginVertical: 10}} 
             >
-               <StripeProvider
+              <StripeProvider
               publishableKey="pk_test_51LNYxZSDfkRpEt9y8Qnga24uWhgyLC6ONu3eMLnzuIvbpaVwDQTJd7wPTefythkquVUnyIIfCM8h1S7iP3s6yK4m00mbWVxSXi"
               urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
               merchantIdentifier="merchant.com.{{YOUR_APP_NAME}}" // required for Apple Pay
