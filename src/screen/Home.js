@@ -31,6 +31,7 @@ const Home = ({ navigation }) => {
 
   const renderItem = ({ item }) => {
     const {id,name} = item;
+    console.log('imggggggggggggggg',item.imgURl);
     // console.log('priceeeeeeeeeeeeeeeee',item.price);
     if (category === 'wearable' && item.category === 'wearable') {
       return (
@@ -39,7 +40,9 @@ const Home = ({ navigation }) => {
             <View style={styles.ItemImage}>
               <Image
                 style={styles.ItemImageStyle}
-                source={require('../images/watch2.jpg')}
+                source={{
+                  uri: item.imgURl
+                }}
               
               />
             </View>
