@@ -46,8 +46,8 @@ const Home = ({ navigation }) => {
               
               />
             </View>
-            <Text style={styles.Itemname}>{item.name}</Text>
-            <Text style={styles.subtitle}>{item.details}</Text>
+            <Text umberOfLines={1} style={styles.Itemname}>{item.name}</Text>
+            <Text style={styles.subtitle} ellipsizeMode={'head'} numberOfLines={2}>{item.details}</Text>
             <Text style={styles.ItenPrice}>${item.price}</Text>
           </View>
         </TouchableOpacity>
@@ -57,14 +57,16 @@ const Home = ({ navigation }) => {
         <TouchableOpacity  onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category})}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
-              <Image
+            <Image
                 style={styles.ItemImageStyle}
-                source={require('../images/mac.jpg')}
+                source={{
+                  uri: item.imgURl
+                }}
               
               />
             </View>
-            <Text style={styles.Itemname}>{item.name}</Text>
-            <Text style={styles.subtitle}>{item.details}</Text>
+            <Text umberOfLines={1} style={styles.Itemname}>{item.name}</Text>
+            <Text style={styles.subtitle}  numberOfLines={2}>{item.details}</Text>
             <Text style={styles.ItenPrice}>${item.price}</Text>
           </View>
         </TouchableOpacity>
@@ -75,14 +77,16 @@ const Home = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category})}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
-              <Image
+            <Image
                 style={styles.ItemImageStyle}
-                source={require('../images/iphone.jpg')}
+                source={{
+                  uri: item.imgURl
+                }}
               
               />
             </View>
-            <Text style={styles.Itemname}>{item.name}</Text>
-            <Text style={styles.subtitle}>{item.details}</Text>
+            <Text umberOfLines={1} style={styles.Itemname}>{item.name}</Text>
+            <Text style={styles.subtitle} numberOfLines={2}>{item.details}</Text>
             <Text style={styles.ItenPrice}>${item.price}</Text>
           </View>
         </TouchableOpacity>
@@ -93,14 +97,16 @@ const Home = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category})}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
-              <Image
+            <Image
                 style={styles.ItemImageStyle}
-                source={require('../images/drones.jpg')}
+                source={{
+                  uri: item.imgURl
+                }}
               
               />
             </View>
-            <Text style={styles.Itemname}>{item.name}</Text>
-            <Text style={styles.subtitle}>{item.details}</Text>
+            <Text umberOfLines={1} style={styles.Itemname}>{item.name}</Text>
+            <Text style={styles.subtitle} numberOfLines={2}>{item.details}</Text>
             <Text style={styles.ItenPrice}>${item.price}</Text>
           </View>
         </TouchableOpacity>
