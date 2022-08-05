@@ -147,7 +147,6 @@ const Home = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
 
-
           <TouchableOpacity style={category === 'laptop' ? styles.selectedBtn : styles.nonSelectBtn} onPress={() => setCategory('laptop')}>
             <Text style={[styles.btnText, category === 'laptop' && { color: 'blue' }]}>Laptop</Text>
           </TouchableOpacity>
@@ -291,16 +290,18 @@ const styles = StyleSheet.create({
   },
   ItenPrice: {
     marginTop: 30,
-    letterSpacing: 2,
+    letterSpacing: 1,
     color: 'blue',
     fontSize: 18,
     fontWeight: 'bold',
   },
   subtitle: {
     color: '#868686',
-    fontWeight: '600',
-    fontSize: 18,
+    fontWeight: '500',
+    fontSize: 14,
     textAlign: 'center',
+    marginTop: 3,
+    marginHorizontal: 3,
   },
   seeMoreBtn: {
     color: '#5956E9',
