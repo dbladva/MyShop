@@ -26,6 +26,8 @@ const Details = ({ route, navigation }) => {
   const { name } = route.params;
   const { price } = route.params;
   const { category } = route.params;
+  const { detail } = route.params;
+  const { img } = route.params;
   const [wishlist, setWishlist] = useState(0)
 
   const item = useSelector(state => state.cart);
@@ -37,6 +39,8 @@ const Details = ({ route, navigation }) => {
       name,
       price,
       category,
+      detail,
+      img
     })
       dispatch(CartItem(data,navigation));
      }
@@ -68,19 +72,19 @@ const Details = ({ route, navigation }) => {
               category === 'wearable' ? 
               (<Image
               style={styles.detailImage}
-              source={require('../images/watch.jpg')}
+             source={{uri: img}}
             /> ) : category==='laptop' ? ( <Image
               style={styles.detailImage}
-              source={require('../images/mac.jpg')}
+              source={{uri: img}}
             />) : category === 'phones' ? ( <Image
               style={styles.detailImage}
-              source={require('../images/iphone.jpg')}
+              source={{uri: img}}
             />) : category ==='drones' ? ( <Image
               style={styles.detailImage}
-              source={require('../images/drones.jpg')}
+              source={{uri: img}}
             />) : ( <Image
               style={styles.detailImage}
-              source={require('../images/mac.jpg')}
+              source={{uri: img}}
             />)
             }
 
@@ -122,16 +126,14 @@ const Details = ({ route, navigation }) => {
               <View style={{ marginTop: 10 }}>
                 <Text style={styles.color}>Get Apple TV + Free for a year</Text>
                 <Text style={styles.detailstext}>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s
+                {detail}
                 </Text>
 
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Text style={styles.detailsInDetail}>Full description</Text>
                   <AntDesign name="arrowright" color={'#5956E9'} size={15} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </View>
           </View>

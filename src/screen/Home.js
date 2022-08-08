@@ -31,11 +31,11 @@ const Home = ({ navigation }) => {
 
   const renderItem = ({ item }) => {
     const {id,name} = item;
-    console.log('imggggggggggggggg',item.imgURl);
+    // console.log('imggggggggggggggg',item.imgURl);
     // console.log('priceeeeeeeeeeeeeeeee',item.price);
     if (category === 'wearable' && item.category === 'wearable') {
       return (
-        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category,detail: item.details,img: item.imgURl})}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
               <Image
@@ -54,7 +54,7 @@ const Home = ({ navigation }) => {
       )
     } else if (category === 'laptop' && item.category === 'laptop') {
       return (
-        <TouchableOpacity  onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category})}>
+        <TouchableOpacity  onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category,detail: item.details,img: item.imgURl})}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
             <Image
@@ -74,7 +74,7 @@ const Home = ({ navigation }) => {
     }
     else if (category === 'phones' && item.category === 'phones') { 
       return (
-        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category,detail: item.details,img: item.imgURl})}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
             <Image
@@ -94,7 +94,7 @@ const Home = ({ navigation }) => {
     }
     else if (category === 'drones' && item.category === 'drones') {
       return (
-        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category,detail: item.details,img: item.imgURl})}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
             <Image

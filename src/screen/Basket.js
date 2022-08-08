@@ -60,19 +60,23 @@ const Basket = ({route, navigation}) => {
               item.category === 'wearable' ? 
               (<Image
                 style={styles.image}
-              source={require('../images/watch.jpg')}
+              source={{uri: item.imgURl}}
             /> ) : item.category==='laptop' ? ( <Image
               style={styles.image}
-              source={require('../images/mac.jpg')}
+              source={{uri: item.imgURl}}
+
             />) : item.category === 'phones' ? ( <Image
               style={styles.image}
-              source={require('../images/iphone.jpg')}
+              source={{uri: item.imgURl}}
+
             />) : item.category ==='drones' ? ( <Image
               style={styles.image}
-              source={require('../images/drones.jpg')}
+              source={{uri: item.imgURl}}
+
             />) : ( <Image
               style={styles.image}
-              source={require('../images/mac.jpg')}
+              source={{uri: item.imgURl}}
+
             />)
             }
         </View>

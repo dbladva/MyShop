@@ -44,7 +44,7 @@ const Login = ({ navigation }) => {
   const CreateAccount = () => {
     if (Semail !== '' && Spassword !== '' && name !== '') {
       dispatch(Loading())
-      dispatch(createUserWithEmail(Semail, Spassword,name))
+      dispatch(createUserWithEmail(Semail, Spassword, name))
       setSEmail('');
       setName('');
       setSPassword('');
@@ -87,7 +87,7 @@ const Login = ({ navigation }) => {
           <Text style={styles.titleText}>Create</Text>
           <Text style={styles.titleText}>Account</Text>
           <View
-             style={styles.round}></View>
+            style={styles.round}></View>
           <View
             style={styles.roundBottom}></View>
         </View>
@@ -101,30 +101,30 @@ const Login = ({ navigation }) => {
             borderTopLeftRadius: 20,
             justifyContent: 'space-around',
           }}>
-          
 
-            <View style={styles.BtnTab}>
-              <TouchableOpacity
-                disabled={true}
-                style={{
-                  borderBottomColor: '#5956E9',
-                  borderBottomWidth: 2,
-                  // width: '40%',
-                  alignItems: 'center',
-                }}>
-                <Text style={styles.SignnInBtn}>Sign In</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  alignItems: 'center'
-                }}
-                onPress={() => setSignup(1)}
-              // onPress={() => navigation.navigate('Signup')}
-              >
-                <Text style={styles.SignnInBtn}>Sign Up</Text>
-              </TouchableOpacity>
-            </View>
-            <ScrollView keyboardDismissMode='none'>
+
+          <View style={styles.BtnTab}>
+            <TouchableOpacity
+              disabled={true}
+              style={{
+                borderBottomColor: '#5956E9',
+                borderBottomWidth: 2,
+                // width: '40%',
+                alignItems: 'center',
+              }}>
+              <Text style={styles.SignnInBtn}>Sign In</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                alignItems: 'center'
+              }}
+              onPress={() => setSignup(1)}
+            // onPress={() => navigation.navigate('Signup')}
+            >
+              <Text style={styles.SignnInBtn}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView keyboardDismissMode='none'>
             <View style={styles.InputView}>
               <Text style={styles.TextInputTitle}>E-Mail address</Text>
               <TextInput
@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 50,
   },
-  round:{
+  round: {
     height: 20,
     width: 20,
     borderRadius: 100,
@@ -388,7 +388,7 @@ const styles = StyleSheet.create({
     top: 20,
     left: 100,
   },
-  roundBottom:{
+  roundBottom: {
     height: 30,
     width: 30,
     borderRadius: 100,

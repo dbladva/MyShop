@@ -12,6 +12,7 @@ export const CartItem = (data,navigation) => async (dispatch) => {
         name: data.name,
         price: data.price,
         category: data.category,
+        imgURl: data.img
       })
       .then(() => {
         console.log('User added!');
