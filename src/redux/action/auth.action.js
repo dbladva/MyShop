@@ -5,6 +5,7 @@ import * as ActionType from '../ActionType'
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
+import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
 
 export const createUserWithEmail = (email, password, name) => async (dispatch) => {
     console.log(name);
@@ -14,7 +15,7 @@ export const createUserWithEmail = (email, password, name) => async (dispatch) =
             auth()
                 .onAuthStateChanged((user) => {
                     user.sendEmailVerification()
-                        .then(() => { 
+                        .then(() => {
                             console.log(1);
 
                             firestore()
@@ -71,6 +72,35 @@ export const signinUserEmail = (email, password) => async (dispatch) => {
         })
         .catch((error) => {
             console.log("3");
+            dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
+        })
+}
+
+export const signinWithFacebook = () => async (dispatch) => {
+
+    dispatch(Loading())
+    const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+
+    if (result.isCancelled) {
+        dispatch({ type: ActionType.AUTH_ERROR, payload: "User cancelled the login process" })
+        throw 'User cancelled the login process';
+    }
+    const data = await AccessToken.getCurrentAccessToken();
+    if (!data) {
+        throw 'Something went wrong obtaining access token';
+    }
+    const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
+    auth()
+        .signInWithCredential(facebookCredential)
+        .then((data) => {
+            console.log('data', data.user.uid);
+            AsyncStorage.setItem('user', data.user.uid)
+            dispatch({
+                type: ActionType.SIGNIN_SUCCESS, payload: data
+            })
+        })
+        .catch((error) => {
+            console.log(error);
             dispatch({ type: ActionType.AUTH_ERROR, payload: error.code })
         })
 }
@@ -194,7 +224,6 @@ export const otpTimeOut = () => (dispatch) => {
     }
 }
 
-
 export const userProfilePicture = (image, uid) => async (dispatch) => {
     try {
         let a = image.path.split("/")
@@ -215,9 +244,9 @@ export const userProfilePicture = (image, uid) => async (dispatch) => {
                     console.log("jkjkjkjkjk  ", data);
                     data.docs.map((data) => {
                         const a = data._data;
-                        console.log('aaaaaaaaaaaa',a);
+                        console.log('aaaaaaaaaaaa', a);
                         if (a.uid === uid) {
-                            console.log('data iddddddddddd',data.id);
+                            console.log('data iddddddddddd', data.id);
                             // console.log('mathedddddddddddd');
                             try {
                                 firestore()

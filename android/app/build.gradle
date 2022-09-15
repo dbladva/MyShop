@@ -1,8 +1,9 @@
 apply plugin: "com.android.application"
 apply plugin: 'com.google.gms.google-services'
 
+
 import com.android.build.OutputFile
-import org.apache.tools.ant.taskdefs.condition.Os
+// import org.apache.tools.ant.taskdefs.condition.
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
@@ -262,6 +263,9 @@ android {
         }
     }
 }
+    repositories {
+        mavenCentral()
+    }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -270,6 +274,8 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
+    
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'

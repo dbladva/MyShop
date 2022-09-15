@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import images from '../images/images';
 
 const Welcome = ({navigation}) => {
 
@@ -20,7 +21,7 @@ const Welcome = ({navigation}) => {
         <Text style={styles.title}>Gadget</Text>
       </View>
       <View style={{height: 300, width: 300}}>
-        <Image style={styles.image} source={require('../images/logo.png')} />
+        <Image style={styles.image} source={images.logo} />
       </View>
       <TouchableOpacity style={{width: '80%', alignSelf: 'center'}} onPress={() => navigation.navigate('Login')}>
         <View

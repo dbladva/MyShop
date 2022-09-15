@@ -11,10 +11,10 @@ import {
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {color} from 'react-native-reanimated';
-import {StatusBar} from 'react-native';
+import { color } from 'react-native-reanimated';
+import { StatusBar } from 'react-native';
 
-const Whishlist = ({navigation}) => {
+const Whishlist = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container2}>
@@ -24,7 +24,7 @@ const Whishlist = ({navigation}) => {
             onPress={() => navigation.goBack()}>
             <MaterialIcons name="arrow-back" color={'#000000'} size={30} />
           </TouchableOpacity>
-          <View style={{alignSelf: 'center'}}>
+          <View style={{ alignSelf: 'center' }}>
             <Text style={styles.favrioteText}>Favorite</Text>
           </View>
           {/* <Text style={styles.favrioteText}></Text> */}
@@ -32,7 +32,7 @@ const Whishlist = ({navigation}) => {
 
         <View style={styles.FavoriteItemView}>
           <Image
-            style={{height: 300, width: 300, alignSelf: 'center'}}
+            style={{ height: 300, width: 300, alignSelf: 'center' }}
             source={require('../images/favorite.png')}
           />
           <Text style={styles.NoitemFavorite}>No favorites yet</Text>
@@ -49,7 +49,7 @@ const Whishlist = ({navigation}) => {
                 marginVertical: 8,
                 borderRadius: 5,
               }}>
-              <Text style={{color: '#ffffff', fontWeight: '500', padding: 10}}>
+              <Text style={{ color: '#ffffff', fontWeight: '500', padding: 10 }}>
                 Start Ordering
               </Text>
             </View>

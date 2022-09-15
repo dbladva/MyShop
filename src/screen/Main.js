@@ -28,6 +28,7 @@ import { getUserProfilePicture, uid } from '../redux/action/auth.action';
 import ForgotPassword from './ForgotPassword';
 import PhoneAuth from './PhoneAuth';
 import OrientationLoadingOverlay from 'react-native-orientation-loading-overlay';
+import FbLogin from './FbLogin';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -206,6 +207,7 @@ export default function Main() {
                             headerShown: false,
                         }}>
                         <Stack.Screen name="Homee" component={Welcome} />
+                        {/* <Stack.Screen name="FbLogin" component={FbLogin} /> */}
                         <Stack.Screen name="Login" component={Login} />
                         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
                         <Stack.Screen name="PhoneAuth" component={PhoneAuth} />

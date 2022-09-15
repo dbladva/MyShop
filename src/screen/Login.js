@@ -14,9 +14,10 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { createUserWithEmail, FacebookLogin, Loading, LoginwithGoogle, resetPasswordEmail, signinUserEmail } from '../redux/action/auth.action';
+import { createUserWithEmail, FacebookLogin, Loading, LoginwithGoogle, resetPasswordEmail, signinUserEmail, signinWithFacebook } from '../redux/action/auth.action';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
+import { LoginManager } from 'react-native-fbsdk-next';
 
 
 const Login = ({ navigation }) => {
@@ -56,6 +57,10 @@ const Login = ({ navigation }) => {
   const GoogleLoginHandler = () => {
     dispatch(LoginwithGoogle())
   };
+
+  const FacebookHandle = async () => {
+    dispatch(signinWithFacebook())
+  }
 
 
   const forgotPasswordHandler = () => {
@@ -203,12 +208,12 @@ const Login = ({ navigation }) => {
                     source={require('../images/google.png')}
                   />
                 </TouchableOpacity>
-                {/* <TouchableOpacity onPress={() => FacebookHandle()}>
+                <TouchableOpacity onPress={() => FacebookHandle()}>
                   <Image
                     style={styles.LoginIcon}
                     source={require('../images/facebook.png')}
                   />
-                </TouchableOpacity> */}
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('PhoneAuth')}>
                   <Image
                     style={styles.LoginIcon}

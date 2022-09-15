@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AdminPanel</string>
+    <string name="facebook_app_id">644316500385683</string>
+    <string name="facebook_client_token">545e6447dc57b56fb672f8b32fc09397</string> 
 </resources>

@@ -25,7 +25,6 @@ const userId = useSelector(state => state.auth)
   const LogoutHandler = () => {
     dispatch(signoutEmail())
   }
-  
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container2}>
