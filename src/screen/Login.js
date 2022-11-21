@@ -15,10 +15,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createUserWithEmail, FacebookLogin, Loading, LoginwithGoogle, resetPasswordEmail, signinUserEmail, signinWithFacebook } from '../redux/action/auth.action';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import auth from '@react-native-firebase/auth';
-import { LoginManager } from 'react-native-fbsdk-next';
-
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -124,7 +120,6 @@ const Login = ({ navigation }) => {
                 alignItems: 'center'
               }}
               onPress={() => setSignup(1)}
-            // onPress={() => navigation.navigate('Signup')}
             >
               <Text style={styles.SignnInBtn}>Sign Up</Text>
             </TouchableOpacity>
@@ -135,6 +130,7 @@ const Login = ({ navigation }) => {
               <TextInput
                 style={styles.EmailInput}
                 placeholder="E-mail"
+                placeholderTextColor={"gray"}
                 autoCapitalize="none"
                 onChangeText={data => setEmail(data)}
               />
@@ -146,6 +142,7 @@ const Login = ({ navigation }) => {
                 style={styles.EmailInput}
                 secureTextEntry={hide === true ? true : false}
                 autoCapitalize="none"
+                placeholderTextColor={"gray"}
                 placeholder="Password"
                 onChangeText={text => setPassword(text)}
               />
@@ -170,7 +167,7 @@ const Login = ({ navigation }) => {
             <TouchableOpacity
               style={styles.StartedBtn}
               onPress={() => { LoginHandler() }}>
-              <Text style={styles.btnText}>{load.isLoading === true ? <ActivityIndicator size="small" color="#00ff00" /> : "Login"}</Text>
+              <Text style={styles.btnText}>{load.isLoading === true ? <ActivityIndicator style={styles.loaderCenter} size={20} color="#00ff00" /> : "Login"}</Text>
             </TouchableOpacity>
             <View
               style={{
@@ -261,6 +258,7 @@ const Login = ({ navigation }) => {
               <TextInput
                 style={styles.EmailInput}
                 placeholder="E-mail"
+                placeholderTextColor={"gray"}
                 value={Semail}
                 autoCapitalize="none"
                 onChangeText={text => setSEmail(text)}
@@ -271,6 +269,7 @@ const Login = ({ navigation }) => {
               <Text style={styles.TextInputTitle}>Name</Text>
               <TextInput
                 style={styles.EmailInput}
+                placeholderTextColor={"gray"}
                 placeholder="Name"
                 value={name}
                 onChangeText={text => setName(text)}
@@ -281,6 +280,7 @@ const Login = ({ navigation }) => {
               <Text style={styles.TextInputTitle}>Enter Password</Text>
               <TextInput
                 style={styles.EmailInput}
+                placeholderTextColor={"gray"}
                 secureTextEntry={hide === true ? true : false}
                 value={Spassword}
                 placeholder="Password"
@@ -301,7 +301,7 @@ const Login = ({ navigation }) => {
             <TouchableOpacity
               style={styles.StartedBtn}
               onPress={() => CreateAccount()}>
-              <Text style={styles.btnText}>{load.isLoading === true ? <ActivityIndicator size="small" color="#00ff00" /> : "Create Account"}</Text>
+              <Text style={styles.btnText}>{load.isLoading === true ? <ActivityIndicator size={20} color="#00ff00" /> : "Create Account"}</Text>
             </TouchableOpacity>
             <View
               style={{
@@ -339,12 +339,12 @@ const Login = ({ navigation }) => {
                     source={require('../images/google.png')}
                   />
                 </TouchableOpacity>
-                {/* <TouchableOpacity onPress={() => FacebookHandle()}>
+                <TouchableOpacity onPress={() => FacebookHandle()}>
                   <Image
                     style={styles.LoginIcon}
                     source={require('../images/facebook.png')}
                   />
-                </TouchableOpacity> */}
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('PhoneAuth')}>
                   <Image
                     style={styles.LoginIcon}
@@ -431,9 +431,6 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
     borderRadius: 5,
     fontSize: 16,
-    // shadowColor: 'gray',
-    // elevation: 5,
-    // width: '90%'
   },
   TextInputTitle: {
     marginLeft: 10,
@@ -454,8 +451,10 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   btnText: {
+    height: 30,
     fontSize: 20,
     fontWeight: 'bold',
+    alignSelf: 'center',
     color: 'white',
   },
   StartedBtn: {
@@ -469,6 +468,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#5956E9',
     width: '70%',
     alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 20,
   },
   SignnInUsing: {
@@ -483,4 +483,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     margin: 5,
   },
+  loaderCenter: {
+    alignSelf: 'center',
+    alignItems: 'center',
+  }
 });

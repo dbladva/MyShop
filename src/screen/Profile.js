@@ -12,15 +12,15 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {color} from 'react-native-reanimated';
-import {StatusBar} from 'react-native';
+import { color } from 'react-native-reanimated';
+import { StatusBar } from 'react-native';
 import { getUserProfilePicture, signoutEmail } from '../redux/action/auth.action';
 import firestore from '@react-native-firebase/firestore'
 
-const Profile = ({navigation}) => {
+const Profile = ({ navigation }) => {
 
-const dispatch = useDispatch()
-const userId = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+  const userId = useSelector(state => state.auth)
 
   const LogoutHandler = () => {
     dispatch(signoutEmail())
@@ -34,78 +34,78 @@ const userId = useSelector(state => state.auth)
           </TouchableOpacity>
         </View>
         <ScrollView >
-        
-        <View style={styles.title}>
-          <Text style={styles.titleText}>My Profile</Text>
-        </View>
-        <View style={styles.profileDetails}>
-          
-        {
+
+          <View style={styles.title}>
+            <Text style={styles.titleText}>My Profile</Text>
+          </View>
+          <View style={styles.profileDetails}>
+
+            {
               userId.userProfile === ' ' || userId.userProfile === undefined ?
-                <Image style={{ height: 80, width: 80, borderRadius: 50 }} source={{uri: 'https://firebasestorage.googleapis.com/v0/b/admin-d986a.appspot.com/o/user%2Fuser.jpg?alt=media&token=6bf25e67-ae65-42b3-8649-ec042b2d43ed'}} />
+                <Image style={{ height: 80, width: 80, borderRadius: 50 }} source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/admin-d986a.appspot.com/o/user%2Fuser.jpg?alt=media&token=6bf25e67-ae65-42b3-8649-ec042b2d43ed' }} />
                 :
                 <Image style={{ height: 80, width: 80, borderRadius: 50 }} source={{
-                  uri: userId.userProfile 
+                  uri: userId.userProfile
                 }} />
             }
-          <Text style={styles.name}>{userId.userName}</Text>
-          <View style={styles.address}>
-            <Ionicons
-              name="location-outline"
-              color={'#000000'}
-              size={20}
-              style={{width: '10%', marginRight: 5}}
-            />
-            <Text style={{color: '#000000', fontSize: 15,}}>
-            The city of Los Angeles{'\n'}U.s
-            </Text>
+            <Text style={styles.name}>{userId.userName}</Text>
+            <View style={styles.address}>
+              <Ionicons
+                name="location-outline"
+                color={'#000000'}
+                size={20}
+                style={{ width: '10%', marginRight: 5 }}
+              />
+              <Text style={{ color: '#000000', fontSize: 15, }}>
+                The city of Los Angeles{'\n'}U.s
+              </Text>
+            </View>
           </View>
-        </View>
 
-        <TouchableOpacity>
-          <View style={styles.EditProfile}>
-            <Text style={styles.name}>Edit Profile</Text>
-            <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.EditProfile}>
+              <Text style={styles.name}>Edit Profile</Text>
+              <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
+            </View>
+          </TouchableOpacity>
 
-        <TouchableOpacity>
-          <View style={styles.EditProfile}>
-            <Text style={styles.name}>Shoping address</Text>
-            <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.EditProfile}>
+              <Text style={styles.name}>Shoping address</Text>
+              <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
+            </View>
+          </TouchableOpacity>
 
-        <TouchableOpacity>
-          <View style={styles.EditProfile}>
-            <Text style={styles.name}>Order histroy</Text>
-            <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.EditProfile}>
+              <Text style={styles.name}>Order histroy</Text>
+              <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
+            </View>
+          </TouchableOpacity>
 
-        <TouchableOpacity>
-          <View style={styles.EditProfile}>
-            <Text style={styles.name}>Cards</Text>
-            <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.EditProfile}>
+              <Text style={styles.name}>Cards</Text>
+              <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
+            </View>
+          </TouchableOpacity>
 
-        <TouchableOpacity>
-          <View style={styles.EditProfile}>
-            <Text style={styles.name}>Notification</Text>
-            <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
-          </View>
-        </TouchableOpacity>
-        
-        <TouchableOpacity onPress={() => LogoutHandler()}>
-          <View style={styles.EditProfile}>
-            <Text style={styles.name}>Logout</Text>
-            <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles.EditProfile} onPress={() => navigation.navigate("WebView")}>
+              <Text style={styles.name}>WebView</Text>
+              <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => LogoutHandler()}>
+            <View style={styles.EditProfile}>
+              <Text style={styles.name}>Logout</Text>
+              <MaterialIcons name="keyboard-arrow-right" color={'#000000'} size={20} />
+            </View>
+          </TouchableOpacity>
         </ScrollView>
       </View>
-      
+
       <StatusBar
         barStyle="dark-content"
         backgroundColor="#E5E5E5"

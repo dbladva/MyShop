@@ -25,17 +25,16 @@ const Home = ({ navigation }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getproduct())  
+    dispatch(getproduct())
   }, [])
 
-
   const renderItem = ({ item }) => {
-    const {id,name} = item;
+    const { id, name } = item;
     // console.log('imggggggggggggggg',item.imgURl);
     // console.log('priceeeeeeeeeeeeeeeee',item.price);
     if (category === 'wearable' && item.category === 'wearable') {
       return (
-        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category,detail: item.details,img: item.imgURl})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Details', { itemid: item.id, name: item.name, price: item.price, category: item.category, detail: item.details, img: item.imgURl })}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
               <Image
@@ -43,7 +42,7 @@ const Home = ({ navigation }) => {
                 source={{
                   uri: item.imgURl
                 }}
-              
+
               />
             </View>
             <Text umberOfLines={1} style={styles.Itemname}>{item.name}</Text>
@@ -54,35 +53,35 @@ const Home = ({ navigation }) => {
       )
     } else if (category === 'laptop' && item.category === 'laptop') {
       return (
-        <TouchableOpacity  onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category,detail: item.details,img: item.imgURl})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Details', { itemid: item.id, name: item.name, price: item.price, category: item.category, detail: item.details, img: item.imgURl })}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
-            <Image
+              <Image
                 style={styles.ItemImageStyle}
                 source={{
                   uri: item.imgURl
                 }}
-              
+
               />
             </View>
             <Text umberOfLines={1} style={styles.Itemname}>{item.name}</Text>
-            <Text style={styles.subtitle}  numberOfLines={2}>{item.details}</Text>
+            <Text style={styles.subtitle} numberOfLines={2}>{item.details}</Text>
             <Text style={styles.ItenPrice}>${item.price}</Text>
           </View>
         </TouchableOpacity>
       )
     }
-    else if (category === 'phones' && item.category === 'phones') { 
+    else if (category === 'phones' && item.category === 'phones') {
       return (
-        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category,detail: item.details,img: item.imgURl})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Details', { itemid: item.id, name: item.name, price: item.price, category: item.category, detail: item.details, img: item.imgURl })}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
-            <Image
+              <Image
                 style={styles.ItemImageStyle}
                 source={{
                   uri: item.imgURl
                 }}
-              
+
               />
             </View>
             <Text umberOfLines={1} style={styles.Itemname}>{item.name}</Text>
@@ -94,15 +93,15 @@ const Home = ({ navigation }) => {
     }
     else if (category === 'drones' && item.category === 'drones') {
       return (
-        <TouchableOpacity onPress={() => navigation.navigate('Details',{itemid: item.id,name: item.name,price: item.price,category: item.category,detail: item.details,img: item.imgURl})}>
+        <TouchableOpacity onPress={() => navigation.navigate('Details', { itemid: item.id, name: item.name, price: item.price, category: item.category, detail: item.details, img: item.imgURl })}>
           <View style={styles.ItemCard}>
             <View style={styles.ItemImage}>
-            <Image
+              <Image
                 style={styles.ItemImageStyle}
                 source={{
                   uri: item.imgURl
                 }}
-              
+
               />
             </View>
             <Text umberOfLines={1} style={styles.Itemname}>{item.name}</Text>

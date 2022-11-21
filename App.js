@@ -6,6 +6,7 @@ import 'react-native-gesture-handler';
 import SplashScreen from 'react-native-splash-screen';
 import { PersistGate } from 'redux-persist/integration/react';
 import Main from './src/screen/Main';
+import NoNetworkBar from './src/screen/NoNetworkBar';
 
 
 const App = ({ navigation }) => {
@@ -18,6 +19,7 @@ const App = ({ navigation }) => {
   return (
     <Provider store={Store}>
       <PersistGate loading={null} persistor={persistor}>
+        <NoNetworkBar />
         <Main />
       </PersistGate>
     </Provider>

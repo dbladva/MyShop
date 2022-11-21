@@ -1,6 +1,6 @@
 export const UID = 'UID'
 
-export const SIGN_IN =  "SIGN_IN"
+export const SIGN_IN = "SIGN_IN"
 export const SUCCESSFULLY_SIGNUP = "SUCCESSFULLY_SIGNUP"
 export const LOADING_LOGIN = "LOADING_LOGIN"
 export const ERROR_SIGNUP = "ERROR_SIGNUP"
@@ -12,6 +12,8 @@ export const SIGNOUT_USER = 'SIGNOUT_USER'
 export const RESET_PASSWORD = 'RESET_PASSWORD'
 export const OTP = 'OTP'
 export const OTP_TIMEOUT = 'OTP_TIMEOUT'
+export const INTERNET_CHECK = "INTERNET_CHECK"
+export const CURRENT_LOCATION = "CURRENT_LOCATION"
 
 
 export const GET_PRODUCT = "GET_PRODUCT"

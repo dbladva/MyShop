@@ -6,9 +6,9 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
+import Snackbar from 'react-native-snackbar';
 
 export const createUserWithEmail = (email, password, name) => async (dispatch) => {
-    console.log(name);
     auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
@@ -43,6 +43,7 @@ export const createUserWithEmail = (email, password, name) => async (dispatch) =
         .catch(error => {
             if (error.code === 'auth/email-already-in-use') {
                 dispatch({ type: ActionType.AUTH_ERROR, payload: "That email address is already in use!" })
+
             }
 
             if (error.code === 'auth/invalid-email') {
@@ -61,7 +62,7 @@ export const signinUserEmail = (email, password) => async (dispatch) => {
         .signInWithEmailAndPassword(email, password)
         .then((user) => {
             if (user.user.emailVerified) {
-                console.log('aaaaaaaaaaa', user.user.uid);
+                console.log('aaaaaaaaaaa', user);
                 AsyncStorage.setItem("user", user.user.uid);
                 dispatch({ type: ActionType.SIGNIN_SUCCESS, payload: user.user })
                 dispatch(getUserProfilePicture(user.user.uid))
@@ -77,8 +78,7 @@ export const signinUserEmail = (email, password) => async (dispatch) => {
 }
 
 export const signinWithFacebook = () => async (dispatch) => {
-
-    dispatch(Loading())
+    // dispatch(Loading())
     const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
 
     if (result.isCancelled) {

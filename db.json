@@ -1,16 +1,40 @@
 {
-  "posts": [
+  "user": [
     {
       "id": 1,
       "title": "json-server",
       "author": "typicode"
     }
   ],
-  "comments": [
+  "products": [
     {
       "id": 1,
+      "body": "product-1",
+      "postId": 1
+    },
+    {
+      "id": 2,
       "body": "some comment",
       "postId": 1
+    },
+    {
+      "id": 3,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "to": "c5hB_gjaQLWOT1pyQ-ncov:APA91bFEVfY2oKRaIMoO9AB1MTPP6-UN0EIjMqciZZ-2l-pe6c4awO_F0xNfhftel6eiHijeCDId6zLdJ4elX9XFd0Llmz32kKVZX15MnZ5f7XJwCg2BFaEqAFQNnond9F439tmBr4aO",
+      "notification": {
+        "body": "Firebase"
+      },
+      "id": 4
+    },
+    {
+      "to": "c5hB_gjaQLWOT1pyQ-ncov:APA91bFEVfY2oKRaIMoO9AB1MTPP6-UN0EIjMqciZZ-2l-pe6c4awO_F0xNfhftel6eiHijeCDId6zLdJ4elX9XFd0Llmz32kKVZX15MnZ5f7XJwCg2BFaEqAFQNnond9F439tmBr4aO",
+      "notification": {
+        "body": "Firebase"
+      },
+      "id": 5
     }
   ],
   "profile": {

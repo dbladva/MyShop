@@ -29,6 +29,10 @@ import ForgotPassword from './ForgotPassword';
 import PhoneAuth from './PhoneAuth';
 import OrientationLoadingOverlay from 'react-native-orientation-loading-overlay';
 import FbLogin from './FbLogin';
+import { Fragment } from 'react';
+import Snackbar from 'react-native-snackbar';
+import Webview from './Webview';
+import GeoLocation from './Geolocation';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -37,7 +41,6 @@ const Tab = createBottomTabNavigator();
 const HomeScreenTab = () => {
 
     return (
-
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
@@ -72,13 +75,11 @@ const HomeScreenTab = () => {
             <Tab.Screen name="Whishlist" component={Whishlist} />
             <Tab.Screen name="Basket" component={Basket} />
             <Tab.Screen name="Profile" component={Profile} />
-
         </Tab.Navigator>
     );
 };
 
 const StackScreen = () => {
-
     return (
         <Stack.Navigator
             screenOptions={{
@@ -89,7 +90,7 @@ const StackScreen = () => {
             <Stack.Screen name="Home" component={HomeScreenTab} />
             <Stack.Screen name="Whishlist" component={Whishlist} />
             <Stack.Screen name="Details" component={Details} />
-            <Stack.Screen name="Basket" component={Basket} />
+            {/* <Stack.Screen name="Basket" component={Basket} /> */}
         </Stack.Navigator>
     );
 };
@@ -100,118 +101,114 @@ export default function Main() {
     const userId = useSelector(state => state.auth)
 
     useEffect(() => {
+        // AsyncStorage.clear()
         dispatch(getUserProfilePicture(userId.user))
         dispatch(uid())
     }, [])
 
     console.log('userrrrrrrrrrrrrrrrrrrrr', userId.user);
-
-    let auth = useSelector(state => state.auth);
-    console.log('user', auth.user,);
+    let isLoggedIn = useSelector(state => state.auth);
+    console.log('isLoggedIn', isLoggedIn.isLoggedIn,);
 
     return (
-        auth.isLoading === true ? <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
-            <OrientationLoadingOverlay
-                visible={true}
-                color="white"
-                indicatorSize="large"
-                messageFontSize={24}
-                message="Loading..."
-            />
-        </View>
-            :
-            auth.user !== null || userId.user !== null ?
-                <NavigationContainer>
-                    <Drawer.Navigator
-                        screenOptions={{
-                            headerShown: false,
-                            activeBackgroundColor: 'white',
-                            inactiveTintColor: 'black',
-                            inactiveBackgroundColor: 'red',
-                        }}
-                        drawerContent={props => <CustomDrawer {...props} />}>
+        <NavigationContainer>
+            {
+                isLoggedIn.isLoggedIn ? (
+                    <Fragment>
+                        <Drawer.Navigator
+                            screenOptions={{
+                                headerShown: false,
+                                activeBackgroundColor: 'white',
+                                inactiveTintColor: 'black',
+                                inactiveBackgroundColor: 'red',
+                            }}
+                            drawerContent={props => <CustomDrawer {...props} />}>
 
-                        <Drawer.Screen
-                            name="Profile"
-                            component={StackScreen}
-                            options={{
-                                drawerIcon: ({ focused, size }) => (
-                                    <AntDesign
-                                        name="user"
-                                        size={size}
-                                        color={focused ? '#7cc' : '#d0c2e8'}
-                                    />
-                                ),
-                            }}
-                        />
+                            <Drawer.Screen
+                                name="Profile"
+                                component={StackScreen}
+                                options={{
+                                    drawerIcon: ({ focused, size }) => (
+                                        <AntDesign
+                                            name="user"
+                                            size={size}
+                                            color={focused ? '#7cc' : '#d0c2e8'}
+                                        />
+                                    ),
+                                }}
+                            />
 
-                        <Drawer.Screen
-                            name="Myorder"
-                            component={Basket}
-                            options={{
-                                drawerIcon: ({ focused, size }) => (
-                                    <AntDesign
-                                        name="shoppingcart"
-                                        size={size}
-                                        color={focused ? '#7cc' : '#d0c2e8'}
-                                    />
-                                ),
-                            }}
-                        />
-                        <Drawer.Screen
-                            name="Favorite"
-                            component={Whishlist}
-                            options={{
-                                drawerIcon: ({ focused, size }) => (
-                                    <AntDesign
-                                        name="heart"
-                                        size={size}
-                                        color={focused ? '#7cc' : '#d0c2e8'}
-                                    />
-                                ),
-                            }}
-                        />
-                        <Drawer.Screen
-                            name="Delevery"
-                            component={Delevery}
-                            options={{
-                                drawerIcon: ({ focused, size }) => (
-                                    <MaterialCommunityIcons
-                                        name="truck-delivery-outline"
-                                        size={size}
-                                        color={focused ? '#7cc' : '#d0c2e8'}
-                                    />
-                                ),
-                            }}
-                        />
+                            <Drawer.Screen
+                                name="Myorder"
+                                component={Basket}
+                                options={{
+                                    drawerIcon: ({ focused, size }) => (
+                                        <AntDesign
+                                            name="shoppingcart"
+                                            size={size}
+                                            color={focused ? '#7cc' : '#d0c2e8'}
+                                        />
+                                    ),
+                                }}
+                            />
+                            <Drawer.Screen
+                                name="Favorite"
+                                component={Whishlist}
+                                options={{
+                                    drawerIcon: ({ focused, size }) => (
+                                        <AntDesign
+                                            name="heart"
+                                            size={size}
+                                            color={focused ? '#7cc' : '#d0c2e8'}
+                                        />
+                                    ),
+                                }}
+                            />
+                            <Drawer.Screen
+                                name="Delevery"
+                                component={Delevery}
+                                options={{
+                                    drawerIcon: ({ focused, size }) => (
+                                        <MaterialCommunityIcons
+                                            name="truck-delivery-outline"
+                                            size={size}
+                                            color={focused ? '#7cc' : '#d0c2e8'}
+                                        />
+                                    ),
+                                }}
+                            />
 
-                        <Drawer.Screen
-                            name="Setting"
-                            component={Setting}
-                            options={{
-                                drawerIcon: ({ focused, size }) => (
-                                    <AntDesign
-                                        name="setting"
-                                        size={size}
-                                        color={focused ? '#7cc' : '#d0c2e8'}
-                                    />
-                                ),
-                            }}
-                        />
-                    </Drawer.Navigator>
-                </NavigationContainer>
-                :
-                <NavigationContainer>
-                    <Stack.Navigator
-                        screenOptions={{
-                            headerShown: false,
-                        }}>
-                        <Stack.Screen name="Homee" component={Welcome} />
-                        {/* <Stack.Screen name="FbLogin" component={FbLogin} /> */}
-                        <Stack.Screen name="Login" component={Login} />
-                        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-                        <Stack.Screen name="PhoneAuth" component={PhoneAuth} />
-                    </Stack.Navigator>
-                </NavigationContainer>
+                            <Drawer.Screen
+                                name="Setting"
+                                component={Setting}
+                                options={{
+                                    drawerIcon: ({ focused, size }) => (
+                                        <AntDesign
+                                            name="setting"
+                                            size={size}
+                                            color={focused ? '#7cc' : '#d0c2e8'}
+                                        />
+                                    ),
+                                }}
+                            />
+                        </Drawer.Navigator>
+                    </Fragment>
+                )
+                    :
+                    (
+                        <Fragment>
+                            <Stack.Navigator
+                                screenOptions={{
+                                    headerShown: false,
+                                }}>
+                                <Stack.Screen name="Homee" component={Welcome} />
+                                <Stack.Screen name="Login" component={Login} />
+                                <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+                                <Stack.Screen name="PhoneAuth" component={PhoneAuth} />
+                            </Stack.Navigator>
+                        </Fragment>
+                    )
+            }
+        </NavigationContainer>
     )
 }

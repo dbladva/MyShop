@@ -1,8 +1,10 @@
+import Snackbar from 'react-native-snackbar'
 import * as ActionType from '../ActionType'
 
 const initValue = {
     isLoading: false,
     user: null,
+    isLoggedIn: false,
     error: '',
     authMsg: '',
     confirm: null,
@@ -11,6 +13,23 @@ const initValue = {
 }
 
 export const authReducer = (state = initValue, action) => {
+
+    const errorShow = (errorMsg) => {
+        return (
+            Snackbar.show({
+                text: errorMsg,
+                duration: 5000,
+                action: {
+                    text: 'Retry',
+                    textColor: 'white',
+                    onPress: () => { /* Do something. */
+                        console.log("Pressed")
+                    },
+                },
+            })
+        )
+    }
+
     switch (action.type) {
         case ActionType.USER_EMAIL:
             return {
@@ -25,7 +44,7 @@ export const authReducer = (state = initValue, action) => {
             return {
                 ...state,
                 isLoading: false,
-                error: alert(action.payload),
+                error: errorShow(action.payload),
                 user: null,
                 authMsg: ''
             }
@@ -42,6 +61,7 @@ export const authReducer = (state = initValue, action) => {
                 ...state,
                 isLoading: false,
                 error: '',
+                isLoggedIn: true,
                 user: action.payload,
                 authMsg: ''
             }
@@ -51,6 +71,7 @@ export const authReducer = (state = initValue, action) => {
                 isLoading: false,
                 error: '',
                 user: null,
+                isLoggedIn: false
                 // authMsg: alert(action.payload),
             }
         case ActionType.RESET_PASSWORD:
@@ -61,7 +82,7 @@ export const authReducer = (state = initValue, action) => {
                 user: null,
                 authMsg: alert(action.payload),
             }
-            case ActionType.UID:
+        case ActionType.UID:
             return {
                 ...state,
                 isLoading: false,
@@ -69,7 +90,7 @@ export const authReducer = (state = initValue, action) => {
                 user: action.payload,
                 authMsg: '',
             }
-            case ActionType.OTP:
+        case ActionType.OTP:
             return {
                 ...state,
                 isLoading: false,
@@ -78,34 +99,34 @@ export const authReducer = (state = initValue, action) => {
                 authMsg: '',
                 confirm: action.payload
             }
-            case ActionType.OTP_TIMEOUT:
-                return {
-                    ...state,
-                    isLoading: false,
-                    error: '',
-                    user: null,
-                    authMsg: alert(action.payload),
-                    confirm: null
-                }
+        case ActionType.OTP_TIMEOUT:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                user: null,
+                authMsg: alert(action.payload),
+                confirm: null
+            }
 
-                case ActionType.USER_PROFILE_PICTURE:
-                    return {
-                        ...state,
-                        isLoading: false,
-                        error: '',
-                        // user: null,
-                        authMsg: '',
-                        userProfile: action.payload
-                    }
-                    case ActionType.USER_PROFILE_NAME:
-                    return {
-                        ...state,
-                        isLoading: false,
-                        error: '',
-                        // user: null,
-                        authMsg: '',
-                        userName: action.payload
-                    }
+        case ActionType.USER_PROFILE_PICTURE:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                // user: null,
+                authMsg: '',
+                userProfile: action.payload
+            }
+        case ActionType.USER_PROFILE_NAME:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                // user: null,
+                authMsg: '',
+                userName: action.payload
+            }
         default:
             return state
     }
